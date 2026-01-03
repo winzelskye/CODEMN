@@ -1,4 +1,5 @@
 ﻿<Solution>
+Updated upstream
 HEAD
   <Project Path="Assembly-CSharp.csproj" />
 
@@ -82,4 +83,7 @@ HEAD
   <Project Path="Unity.RenderPipelines.Core.ShaderLibrary.csproj" />
   <Project Path="Unity.RenderPipelines.Core.Editor.Shared.csproj" />
 main
+
+  <Project Path="Assembly-CSharp.csproj" />
+Stashed changes
 </Solution>
