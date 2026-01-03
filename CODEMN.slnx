@@ -1,5 +1,6 @@
 ﻿<Solution>
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 Updated upstream
 HEAD
   <Project Path="Assembly-CSharp.csproj" />
@@ -87,6 +88,9 @@ main
 
   <Project Path="Assembly-CSharp.csproj" />
 Stashed changes
+=======
+  <Project Path="Assembly-CSharp.csproj" />
+>>>>>>> Stashed changes
 =======
   <Project Path="Assembly-CSharp.csproj" />
 >>>>>>> Stashed changes
