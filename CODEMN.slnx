@@ -1,5 +1,9 @@
+Winz
+<Solution>
+  <Project Path="Assembly-CSharp.csproj" />
+
 ﻿<Solution>
-<<<<<<< Updated upstream
+Updated upstream
 Updated upstream
 Updated upstream
 Updated upstream
@@ -99,7 +103,8 @@ Stashed changes
 
   <Project Path="Assembly-CSharp.csproj" />
 Stashed changes
-=======
+
   <Project Path="Assembly-CSharp.csproj" />
->>>>>>> Stashed changes
+Stashed changes
+main
 </Solution>
