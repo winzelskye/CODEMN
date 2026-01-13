@@ -54,7 +54,7 @@ public class SettingsButton : MonoBehaviour
         }
         
         // Make sure settings panel starts hidden
-        settingsPanel.SetActive(true);
+        settingsPanel.SetActive(false);
     }
     
     private bool ValidateReferences()

@@ -1,0 +1,90 @@
+{
+    "battles": [
+        {
+            "id": "dd4a37ff-cc54-4323-81fc-aacf4528104b",
+            "battleName": "Handler",
+            "description": "Test",
+            "enemy": {
+                "enemyName": "Handler",
+                "enemySprite": {
+                    "instanceID": 0
+                },
+                "animatorController": "",
+                "maxHealth": 100,
+                "attack": 10,
+                "defense": 5,
+                "speed": 5,
+                "enemyColor": {
+                    "r": 1.0,
+                    "g": 1.0,
+                    "b": 1.0,
+                    "a": 1.0
+                },
+                "scale": {
+                    "x": 1.0,
+                    "y": 1.0,
+                    "z": 1.0
+                },
+                "battlePosition": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0
+                },
+                "enableDamageTint": true,
+                "damageTintColor": {
+                    "r": 1.0,
+                    "g": 0.0,
+                    "b": 0.0,
+                    "a": 1.0
+                },
+                "damageTintDuration": 0.20000000298023225,
+                "enableDamageShake": true,
+                "damageShakeIntensity": 0.5,
+                "damageShakeDuration": 0.30000001192092898
+            },
+            "dialogues": [
+                {
+                    "turnNumber": 0,
+                    "dialogueText": "Test Dialogue",
+                    "characterPortrait": {
+                        "instanceID": 0
+                    },
+                    "characterName": "",
+                    "displayDuration": 3.0,
+                    "triggerCondition": "Always",
+                    "healthThreshold": 0,
+                    "customDialogueBox": {
+                        "instanceID": 0
+                    }
+                },
+                {
+                    "turnNumber": 1,
+                    "dialogueText": "idk",
+                    "characterPortrait": {
+                        "instanceID": 0
+                    },
+                    "characterName": "Handler",
+                    "displayDuration": 3.0,
+                    "triggerCondition": "OnTurnStart",
+                    "healthThreshold": 0,
+                    "customDialogueBox": {
+                        "instanceID": 0
+                    }
+                }
+            ],
+            "attacks": [],
+            "phases": [],
+            "distractions": [],
+            "backgroundScene": "",
+            "battleMusic": {
+                "instanceID": 0
+            },
+            "isBossBattle": false,
+            "experienceReward": 0,
+            "goldReward": 0,
+            "itemDrops": [],
+            "globalTimeModifier": 1.0,
+            "basePlayerHealth": 100
+        }
+    ]
+}
