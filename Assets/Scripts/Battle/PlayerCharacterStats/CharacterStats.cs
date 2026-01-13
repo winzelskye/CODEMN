@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 [System.Serializable]
 public class Attack
@@ -33,6 +34,17 @@ public class AnimationPhase
     public bool loop = true;
 }
 
+[System.Serializable]
+public class CharacterStatsData
+{
+    public string characterName;
+    public int currentHP;
+    public int maxHP;
+    public int level;
+    public List<Attack> attacksAvailable;
+    public SpecialSkill specialSkill;
+}
+
 [CreateAssetMenu(fileName = "New Character", menuName = "RPG/Character Stats")]
 public class CharacterStats : ScriptableObject
 {
@@ -44,8 +56,6 @@ public class CharacterStats : ScriptableObject
     public int currentHP;
     public int maxHP = 100;
     public int level = 1;
-    public string attackType;
-    public int bitPoints = 0;
 
     [Header("Abilities")]
     public List<Attack> attacksAvailable = new List<Attack>();
@@ -56,86 +66,75 @@ public class CharacterStats : ScriptableObject
 
     // Events for stat changes
     public event Action OnStatsChanged;
-    public event Action OnBitPointsChanged;
     public event Action OnHPChanged;
 
     public void Initialize()
     {
         currentHP = maxHP;
-        bitPoints = 0;
+
+        // Initialize animation phases if empty
+        if (animationPhases.Count == 0)
+        {
+            animationPhases.Add(new AnimationPhase
+            {
+                phaseName = "Idle",
+                description = "Idle animation",
+                frameRate = 12f,
+                loop = true
+            });
+
+            animationPhases.Add(new AnimationPhase
+            {
+                phaseName = "Hurt",
+                description = "Hurt animation",
+                frameRate = 12f,
+                loop = false
+            });
+        }
     }
 
     public void ModifyHP(int amount)
     {
         currentHP = Mathf.Clamp(currentHP + amount, 0, maxHP);
-        OnHPChanged?.Invoke();
-        OnStatsChanged?.Invoke();
+        if (OnHPChanged != null) OnHPChanged.Invoke();
+        if (OnStatsChanged != null) OnStatsChanged.Invoke();
     }
 
     public void SetHP(int value)
     {
         currentHP = Mathf.Clamp(value, 0, maxHP);
-        OnHPChanged?.Invoke();
-        OnStatsChanged?.Invoke();
-    }
-
-    public void AddBitPoints(int amount)
-    {
-        bitPoints += amount;
-        bitPoints = Mathf.Max(0, bitPoints);
-        OnBitPointsChanged?.Invoke();
-        OnStatsChanged?.Invoke();
-    }
-
-    public void SetBitPoints(int value)
-    {
-        bitPoints = Mathf.Max(0, value);
-        OnBitPointsChanged?.Invoke();
-        OnStatsChanged?.Invoke();
+        if (OnHPChanged != null) OnHPChanged.Invoke();
+        if (OnStatsChanged != null) OnStatsChanged.Invoke();
     }
 
     public bool CanUseAttack(Attack attack)
     {
-        return bitPoints >= attack.bitCost;
+        return true; // No bit cost requirement anymore
     }
 
     public bool UseAttack(Attack attack)
     {
-        if (CanUseAttack(attack))
-        {
-            bitPoints -= attack.bitCost;
-            OnBitPointsChanged?.Invoke();
-            OnStatsChanged?.Invoke();
-            Debug.Log(characterName + " used " + attack.name + " for " + attack.damage + " damage!");
-            return true;
-        }
-        Debug.Log("Not enough Bit Points to use " + attack.name);
-        return false;
+        Debug.Log(characterName + " used " + attack.name + " for " + attack.damage + " damage!");
+        if (OnStatsChanged != null) OnStatsChanged.Invoke();
+        return true;
     }
 
     public bool CanUseSpecialSkill()
     {
-        return bitPoints >= specialSkill.bitCost;
+        return true; // No bit cost requirement anymore
     }
 
     public bool UseSpecialSkill()
     {
-        if (CanUseSpecialSkill())
-        {
-            bitPoints -= specialSkill.bitCost;
-            OnBitPointsChanged?.Invoke();
-            OnStatsChanged?.Invoke();
-            Debug.Log(characterName + " used " + specialSkill.name + "!");
-            return true;
-        }
-        Debug.Log("Not enough Bit Points to use " + specialSkill.name);
-        return false;
+        Debug.Log(characterName + " used " + specialSkill.name + "!");
+        if (OnStatsChanged != null) OnStatsChanged.Invoke();
+        return true;
     }
 
     public void SetLevel(int newLevel)
     {
         level = Mathf.Max(1, newLevel);
-        OnStatsChanged?.Invoke();
+        if (OnStatsChanged != null) OnStatsChanged.Invoke();
     }
 
     public AnimationPhase GetAnimationPhase(string phaseName)
@@ -148,5 +147,75 @@ public class CharacterStats : ScriptableObject
             }
         }
         return null;
+    }
+
+    // JSON Save/Load Methods
+    public void SaveToJson(string filePath)
+    {
+        CharacterStatsData data = new CharacterStatsData
+        {
+            characterName = this.characterName,
+            currentHP = this.currentHP,
+            maxHP = this.maxHP,
+            level = this.level,
+            attacksAvailable = this.attacksAvailable,
+            specialSkill = this.specialSkill
+        };
+
+        string json = JsonUtility.ToJson(data, true);
+        File.WriteAllText(filePath, json);
+        Debug.Log("Character stats saved to: " + filePath);
+    }
+
+    public void LoadFromJson(string filePath)
+    {
+        if (File.Exists(filePath))
+        {
+            string json = File.ReadAllText(filePath);
+            CharacterStatsData data = JsonUtility.FromJson<CharacterStatsData>(json);
+
+            this.characterName = data.characterName;
+            this.currentHP = data.currentHP;
+            this.maxHP = data.maxHP;
+            this.level = data.level;
+            this.attacksAvailable = data.attacksAvailable;
+            this.specialSkill = data.specialSkill;
+
+            if (OnStatsChanged != null) OnStatsChanged.Invoke();
+            Debug.Log("Character stats loaded from: " + filePath);
+        }
+        else
+        {
+            Debug.LogError("File not found: " + filePath);
+        }
+    }
+
+    public string ExportToJson()
+    {
+        CharacterStatsData data = new CharacterStatsData
+        {
+            characterName = this.characterName,
+            currentHP = this.currentHP,
+            maxHP = this.maxHP,
+            level = this.level,
+            attacksAvailable = this.attacksAvailable,
+            specialSkill = this.specialSkill
+        };
+
+        return JsonUtility.ToJson(data, true);
+    }
+
+    public void ImportFromJson(string json)
+    {
+        CharacterStatsData data = JsonUtility.FromJson<CharacterStatsData>(json);
+
+        this.characterName = data.characterName;
+        this.currentHP = data.currentHP;
+        this.maxHP = data.maxHP;
+        this.level = data.level;
+        this.attacksAvailable = data.attacksAvailable;
+        this.specialSkill = data.specialSkill;
+
+        if (OnStatsChanged != null) OnStatsChanged.Invoke();
     }
 }

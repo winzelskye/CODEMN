@@ -111,12 +111,6 @@ public class PlayerInventory : MonoBehaviour
             Debug.Log("Restored " + item.hpRestore + " HP");
         }
 
-        if (item.bitPointsRestore > 0)
-        {
-            character.AddBitPoints(item.bitPointsRestore);
-            Debug.Log("Restored " + item.bitPointsRestore + " Bit Points");
-        }
-
         RemoveItem(item, false);
 
         return true;

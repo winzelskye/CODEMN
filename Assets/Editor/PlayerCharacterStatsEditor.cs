@@ -54,7 +54,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
     {
         EditorGUILayout.Space(10);
 
-        // Title
         GUIStyle titleStyle = new GUIStyle(EditorStyles.boldLabel);
         titleStyle.fontSize = 18;
         titleStyle.alignment = TextAnchor.MiddleCenter;
@@ -64,10 +63,8 @@ public class PlayerCharacterStatsEditor : EditorWindow
 
         EditorGUILayout.BeginHorizontal();
 
-        // Left Panel - Character List
         DrawCharacterList();
 
-        // Right Panel - Character Editor
         EditorGUILayout.BeginVertical(GUILayout.Width(position.width - 220));
 
         if (selectedCharacter != null)
@@ -84,7 +81,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
         EditorGUILayout.EndVertical();
         EditorGUILayout.EndHorizontal();
 
-        // Save Changes
         if (GUI.changed && selectedCharacter != null)
         {
             EditorUtility.SetDirty(selectedCharacter);
@@ -98,7 +94,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
 
         EditorGUILayout.LabelField("Characters", EditorStyles.boldLabel);
 
-        // Create New Character Button
         if (GUILayout.Button("+ Create New Character", GUILayout.Height(30)))
         {
             CreateNewCharacter();
@@ -106,7 +101,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
 
         EditorGUILayout.Space(5);
 
-        // Character List
         characterListScroll = EditorGUILayout.BeginScrollView(characterListScroll, GUILayout.Height(position.height - 150));
 
         for (int i = 0; i < characters.Count; i++)
@@ -141,7 +135,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
 
         EditorGUILayout.EndScrollView();
 
-        // Refresh Button
         if (GUILayout.Button("Refresh List"))
         {
             LoadAllCharacters();
@@ -152,34 +145,27 @@ public class PlayerCharacterStatsEditor : EditorWindow
 
     private void DrawCharacterEditor()
     {
-        // Basic Info Section
         EditorGUILayout.BeginVertical("box");
         EditorGUILayout.LabelField("BASIC INFO", EditorStyles.boldLabel);
 
         selectedCharacter.characterName = EditorGUILayout.TextField("Character Name", selectedCharacter.characterName);
         selectedCharacter.characterSprite = (Sprite)EditorGUILayout.ObjectField("Sprite", selectedCharacter.characterSprite, typeof(Sprite), false);
-        selectedCharacter.attackType = EditorGUILayout.TextField("Attack Type", selectedCharacter.attackType);
 
         EditorGUILayout.EndVertical();
         EditorGUILayout.Space(5);
 
-        // Animations Section
         DrawAnimationsSection();
         EditorGUILayout.Space(5);
 
-        // Stats Display
         DrawStatsSection();
         EditorGUILayout.Space(5);
 
-        // Debug Section
         DrawDebugSection();
         EditorGUILayout.Space(5);
 
-        // Attacks Section (Editable)
         DrawEditableAttacksSection();
         EditorGUILayout.Space(5);
 
-        // Special Skill Section (Editable)
         DrawEditableSpecialSkillSection();
     }
 
@@ -224,7 +210,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
 
                 EditorGUILayout.BeginVertical("box");
 
-                // Header with remove button
                 EditorGUILayout.BeginHorizontal();
                 GUIStyle phaseStyle = new GUIStyle(EditorStyles.boldLabel);
                 phaseStyle.normal.textColor = Color.cyan;
@@ -235,69 +220,54 @@ public class PlayerCharacterStatsEditor : EditorWindow
                 {
                     selectedCharacter.animationPhases.RemoveAt(i);
                     GUI.backgroundColor = Color.white;
+                    EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.EndVertical();
                     break;
                 }
                 GUI.backgroundColor = Color.white;
                 EditorGUILayout.EndHorizontal();
 
-                // Phase details
                 phase.phaseName = EditorGUILayout.TextField("Phase Name", phase.phaseName);
                 phase.description = EditorGUILayout.TextField("Description", phase.description);
 
                 EditorGUILayout.Space(3);
 
-                // Animation Clip
                 phase.animationClip = (AnimationClip)EditorGUILayout.ObjectField("Animation Clip", phase.animationClip, typeof(AnimationClip), false);
-
-                // Animator Controller
                 phase.animatorController = (RuntimeAnimatorController)EditorGUILayout.ObjectField("Animator Controller", phase.animatorController, typeof(RuntimeAnimatorController), false);
 
                 EditorGUILayout.Space(3);
 
-                // Sprite/Texture
                 phase.phaseSprite = (Sprite)EditorGUILayout.ObjectField("Phase Sprite", phase.phaseSprite, typeof(Sprite), false);
                 phase.spriteSheet = (Texture2D)EditorGUILayout.ObjectField("Sprite Sheet", phase.spriteSheet, typeof(Texture2D), false);
 
                 EditorGUILayout.Space(3);
 
-                // Animation settings
                 phase.frameRate = EditorGUILayout.FloatField("Frame Rate", phase.frameRate);
                 phase.loop = EditorGUILayout.Toggle("Loop Animation", phase.loop);
 
-                // Quick access buttons
                 EditorGUILayout.Space(5);
                 EditorGUILayout.BeginHorizontal();
 
-                if (phase.animationClip != null)
+                if (phase.animationClip != null && GUILayout.Button("Select Animation", GUILayout.Height(25)))
                 {
-                    if (GUILayout.Button("Select Animation", GUILayout.Height(25)))
-                    {
-                        Selection.activeObject = phase.animationClip;
-                        EditorGUIUtility.PingObject(phase.animationClip);
-                    }
+                    Selection.activeObject = phase.animationClip;
+                    EditorGUIUtility.PingObject(phase.animationClip);
                 }
 
-                if (phase.animatorController != null)
+                if (phase.animatorController != null && GUILayout.Button("Select Controller", GUILayout.Height(25)))
                 {
-                    if (GUILayout.Button("Select Controller", GUILayout.Height(25)))
-                    {
-                        Selection.activeObject = phase.animatorController;
-                        EditorGUIUtility.PingObject(phase.animatorController);
-                    }
+                    Selection.activeObject = phase.animatorController;
+                    EditorGUIUtility.PingObject(phase.animatorController);
                 }
 
-                if (phase.spriteSheet != null)
+                if (phase.spriteSheet != null && GUILayout.Button("Select Sprite Sheet", GUILayout.Height(25)))
                 {
-                    if (GUILayout.Button("Select Sprite Sheet", GUILayout.Height(25)))
-                    {
-                        Selection.activeObject = phase.spriteSheet;
-                        EditorGUIUtility.PingObject(phase.spriteSheet);
-                    }
+                    Selection.activeObject = phase.spriteSheet;
+                    EditorGUIUtility.PingObject(phase.spriteSheet);
                 }
 
                 EditorGUILayout.EndHorizontal();
 
-                // Preview sprite if available
                 if (phase.phaseSprite != null)
                 {
                     EditorGUILayout.Space(5);
@@ -310,15 +280,14 @@ public class PlayerCharacterStatsEditor : EditorWindow
                 EditorGUILayout.Space(5);
             }
 
-            // Quick Setup Presets
             EditorGUILayout.Space(5);
             EditorGUILayout.BeginVertical("box");
             EditorGUILayout.LabelField("Quick Setup Presets", EditorStyles.boldLabel);
 
             EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("Add Standard Phases", GUILayout.Height(30)))
+            if (GUILayout.Button("Add Idle & Hurt", GUILayout.Height(30)))
             {
-                AddStandardPhases();
+                AddDefaultPhases();
             }
             if (GUILayout.Button("Clear All", GUILayout.Height(30)))
             {
@@ -337,40 +306,45 @@ public class PlayerCharacterStatsEditor : EditorWindow
         EditorGUILayout.EndVertical();
     }
 
-    private void AddStandardPhases()
+    private void AddDefaultPhases()
     {
         if (selectedCharacter.animationPhases == null)
         {
             selectedCharacter.animationPhases = new List<AnimationPhase>();
         }
 
-        string[] standardPhases = { "Idle", "Walk", "Run", "Attack", "Hurt", "Death", "Jump", "Defend" };
+        bool hasIdle = false;
+        bool hasHurt = false;
 
-        foreach (string phaseName in standardPhases)
+        foreach (AnimationPhase phase in selectedCharacter.animationPhases)
         {
-            bool exists = false;
-            foreach (AnimationPhase phase in selectedCharacter.animationPhases)
-            {
-                if (phase.phaseName == phaseName)
-                {
-                    exists = true;
-                    break;
-                }
-            }
-
-            if (!exists)
-            {
-                selectedCharacter.animationPhases.Add(new AnimationPhase
-                {
-                    phaseName = phaseName,
-                    description = phaseName + " animation",
-                    frameRate = 12f,
-                    loop = phaseName != "Attack" && phaseName != "Hurt" && phaseName != "Death"
-                });
-            }
+            if (phase.phaseName == "Idle") hasIdle = true;
+            if (phase.phaseName == "Hurt") hasHurt = true;
         }
 
-        Debug.Log("Added standard animation phases!");
+        if (!hasIdle)
+        {
+            selectedCharacter.animationPhases.Add(new AnimationPhase
+            {
+                phaseName = "Idle",
+                description = "Idle animation",
+                frameRate = 12f,
+                loop = true
+            });
+        }
+
+        if (!hasHurt)
+        {
+            selectedCharacter.animationPhases.Add(new AnimationPhase
+            {
+                phaseName = "Hurt",
+                description = "Hurt animation",
+                frameRate = 12f,
+                loop = false
+            });
+        }
+
+        Debug.Log("Added Idle & Hurt animation phases!");
     }
 
     private void DrawStatsSection()
@@ -378,7 +352,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
         EditorGUILayout.BeginVertical("box");
         EditorGUILayout.LabelField("CURRENT STATS", EditorStyles.boldLabel);
 
-        // HP Bar
         EditorGUILayout.LabelField("HP", EditorStyles.boldLabel);
         float hpPercentage = selectedCharacter.maxHP > 0 ? (float)selectedCharacter.currentHP / selectedCharacter.maxHP : 0;
         Rect hpBarRect = GUILayoutUtility.GetRect(18, 20, GUILayout.ExpandWidth(true));
@@ -386,18 +359,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
 
         EditorGUILayout.Space(5);
 
-        // Bit Points
-        EditorGUILayout.BeginHorizontal();
-        EditorGUILayout.LabelField("Bit Points", EditorStyles.boldLabel, GUILayout.Width(100));
-        GUIStyle bitPointStyle = new GUIStyle(EditorStyles.boldLabel);
-        bitPointStyle.fontSize = 20;
-        bitPointStyle.normal.textColor = Color.yellow;
-        EditorGUILayout.LabelField(selectedCharacter.bitPoints.ToString(), bitPointStyle);
-        EditorGUILayout.EndHorizontal();
-
-        EditorGUILayout.Space(5);
-
-        // Level
         EditorGUILayout.LabelField("Level: " + selectedCharacter.level);
 
         EditorGUILayout.EndVertical();
@@ -417,7 +378,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
             GUI.backgroundColor = originalBgColor;
             EditorGUILayout.Space(5);
 
-            // HP Controls
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Current HP", GUILayout.Width(100));
             selectedCharacter.currentHP = EditorGUILayout.IntSlider(selectedCharacter.currentHP, 0, selectedCharacter.maxHP);
@@ -430,38 +390,13 @@ public class PlayerCharacterStatsEditor : EditorWindow
 
             EditorGUILayout.Space(3);
 
-            // Level
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField("Level", GUILayout.Width(100));
             selectedCharacter.level = EditorGUILayout.IntField(selectedCharacter.level);
             EditorGUILayout.EndHorizontal();
 
-            EditorGUILayout.Space(3);
-
-            // Bit Points Controls
-            EditorGUILayout.BeginHorizontal();
-            EditorGUILayout.LabelField("Bit Points", GUILayout.Width(100));
-            selectedCharacter.bitPoints = EditorGUILayout.IntField(selectedCharacter.bitPoints);
-            EditorGUILayout.EndHorizontal();
-
-            EditorGUILayout.BeginHorizontal();
-            if (GUILayout.Button("+1 Bit", GUILayout.Height(25)))
-            {
-                selectedCharacter.bitPoints++;
-            }
-            if (GUILayout.Button("+5 Bits", GUILayout.Height(25)))
-            {
-                selectedCharacter.bitPoints += 5;
-            }
-            if (GUILayout.Button("Reset Bits", GUILayout.Height(25)))
-            {
-                selectedCharacter.bitPoints = 0;
-            }
-            EditorGUILayout.EndHorizontal();
-
             EditorGUILayout.Space(5);
 
-            // Reset All Button
             GUI.backgroundColor = new Color(1f, 0.5f, 0f);
             if (GUILayout.Button("Reset All Stats", GUILayout.Height(30)))
             {
@@ -472,9 +407,10 @@ public class PlayerCharacterStatsEditor : EditorWindow
                     selectedCharacter.Initialize();
                 }
             }
+
+            GUI.backgroundColor = originalBgColor;
         }
 
-        GUI.backgroundColor = originalBgColor;
         EditorGUILayout.EndVertical();
     }
 
@@ -494,7 +430,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
             selectedCharacter.attacksAvailable.Add(new Attack
             {
                 name = "New Attack",
-                bitCost = 0,
                 damage = 10,
                 description = "Description"
             });
@@ -524,6 +459,8 @@ public class PlayerCharacterStatsEditor : EditorWindow
                 {
                     selectedCharacter.attacksAvailable.RemoveAt(i);
                     GUI.backgroundColor = Color.white;
+                    EditorGUILayout.EndHorizontal();
+                    EditorGUILayout.EndVertical();
                     break;
                 }
                 GUI.backgroundColor = Color.white;
@@ -531,18 +468,12 @@ public class PlayerCharacterStatsEditor : EditorWindow
 
                 attack.name = EditorGUILayout.TextField("Name", attack.name);
                 attack.damage = EditorGUILayout.IntField("Damage", attack.damage);
-                attack.bitCost = EditorGUILayout.IntField("Bit Cost", attack.bitCost);
                 attack.description = EditorGUILayout.TextField("Description", attack.description);
 
-                // Test button
-                bool canUse = selectedCharacter.bitPoints >= attack.bitCost;
-                GUI.enabled = canUse;
                 if (GUILayout.Button("Test Use Attack"))
                 {
-                    selectedCharacter.bitPoints -= attack.bitCost;
                     Debug.Log(selectedCharacter.characterName + " used " + attack.name + "!");
                 }
-                GUI.enabled = true;
 
                 EditorGUILayout.EndVertical();
                 EditorGUILayout.Space(3);
@@ -570,21 +501,15 @@ public class PlayerCharacterStatsEditor : EditorWindow
             EditorGUILayout.BeginVertical("box");
 
             selectedCharacter.specialSkill.name = EditorGUILayout.TextField("Skill Name", selectedCharacter.specialSkill.name);
-            selectedCharacter.specialSkill.bitCost = EditorGUILayout.IntField("Bit Cost", selectedCharacter.specialSkill.bitCost);
             selectedCharacter.specialSkill.effect = EditorGUILayout.TextField("Effect", selectedCharacter.specialSkill.effect);
             selectedCharacter.specialSkill.description = EditorGUILayout.TextField("Description", selectedCharacter.specialSkill.description);
 
             EditorGUILayout.Space(3);
 
-            // Test button
-            bool canUse = selectedCharacter.bitPoints >= selectedCharacter.specialSkill.bitCost;
-            GUI.enabled = canUse;
             if (GUILayout.Button("Test Use Special Skill", GUILayout.Height(30)))
             {
-                selectedCharacter.bitPoints -= selectedCharacter.specialSkill.bitCost;
                 Debug.Log(selectedCharacter.characterName + " used " + selectedCharacter.specialSkill.name + "!");
             }
-            GUI.enabled = true;
 
             EditorGUILayout.EndVertical();
         }
@@ -596,7 +521,6 @@ public class PlayerCharacterStatsEditor : EditorWindow
     {
         string folderPath = "Assets/Scripts/Battle/PlayerCharacterStats";
 
-        // Create folders if they don't exist
         if (!AssetDatabase.IsValidFolder("Assets/Scripts"))
         {
             AssetDatabase.CreateFolder("Assets", "Scripts");
@@ -615,14 +539,11 @@ public class PlayerCharacterStatsEditor : EditorWindow
         newChar.maxHP = 100;
         newChar.currentHP = 100;
         newChar.level = 1;
-        newChar.attackType = "Physical";
-        newChar.bitPoints = 0;
         newChar.attacksAvailable = new List<Attack>();
         newChar.animationPhases = new List<AnimationPhase>();
         newChar.specialSkill = new SpecialSkill
         {
             name = "Special Skill",
-            bitCost = 5,
             effect = "Effect description"
         };
 
