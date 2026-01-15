@@ -2022,7 +2022,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 0
-  m_Value: 47
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -4879,42 +4879,6 @@ MonoBehaviour:
     onMessageShown:
       m_PersistentCalls:
         m_Calls: []
-  - text: Im gay
-    messageName: Gay
-    showOnStart: 0
-    useTypewriter: 1
-    useDisplayDuration: 0
-    displayDuration: 2
-    isSpecialMessage: 0
-    triggerButton: {fileID: 0}
-    isFinalText: 0
-    triggerCondition: 0
-    useCustomTrigger: 0
-    nextMessageTrigger: 0
-    autoAdvanceDelay: 2
-    textEffect: 3
-    effectDuration: 1000
-    effectSettings:
-      waveSpeed: 3
-      waveIntensity: 5
-      shakeIntensity: 3
-      shakeSpeed: 30
-      rainbowSpeed: 0.5
-      rainbowSaturation: 1
-      pulseSpeed: 5
-      pulseIntensity: 0.1
-      bounceSpeed: 4
-      bounceHeight: 10
-      fadeSpeed: 2
-      fadeMin: 0.3
-      fadeMax: 1
-    useCustomColor: 0
-    textColor: {r: 0, g: 0, b: 0, a: 0}
-    useCustomFontSize: 0
-    fontSize: 0
-    onMessageShown:
-      m_PersistentCalls:
-        m_Calls: []
   - text: Wooooo Im a ghost
     messageName: Wooooo Im a ghost
     showOnStart: 0
@@ -5006,7 +4970,7 @@ GameObject:
   - component: {fileID: 1456497580}
   m_Layer: 0
   m_Name: Esther_Sprite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7966,7 +7930,7 @@ GameObject:
   - component: {fileID: 2138732737}
   m_Layer: 0
   m_Name: 'Michael_Sprite '
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

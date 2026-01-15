@@ -631,7 +631,16 @@ MonoBehaviour:
   totalQuizTime: 20
   hideCanvasOnTimeout: 1
   timePenaltyForWrongAnswer: 5
-  questions: []
+  questions:
+  - question: help
+    correctAnswer: ok
+    wrongAnswers: []
+  - question: hi
+    correctAnswer: hello
+    wrongAnswers: []
+  - question: press 1
+    correctAnswer: 1
+    wrongAnswers: []
   randomizeQuestions: 1
   caseSensitiveAnswers: 0
   feedbackDisplayTime: 1.5
