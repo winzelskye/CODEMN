@@ -16,6 +16,9 @@ public class QuizValidator : MonoBehaviour
     [SerializeField] private Button doneButton;
     [SerializeField] private TimerComponent timerComponent;
 
+    [Header("Scatter Reference")]
+    [SerializeField] private ScatterDragObjects scatterScript;
+
     [Header("Drop Zone Answers")]
     [SerializeField] private List<DropZoneAnswer> answers = new List<DropZoneAnswer>();
 
@@ -34,23 +37,26 @@ public class QuizValidator : MonoBehaviour
     {
         if (CheckAllCorrect())
         {
-            // All correct - just hide the popup
+            // All correct - hide the popup and scatter objects
             if (popupCanvas != null)
             {
                 popupCanvas.SetActive(false);
             }
+
+            // Scatter all objects back for next round
+            if (scatterScript != null)
+            {
+                scatterScript.ScatterObjects();
+            }
+
             Debug.Log("Quiz completed correctly!");
         }
         else
         {
-            // Something wrong - apply time penalty
+            // Something wrong - apply time penalty but DON'T scatter or close popup
             if (timerComponent != null)
             {
                 float currentTime = timerComponent.GetCurrentTime();
-                timerComponent.SetTime(currentTime);
-                timerComponent.ResetTimer();
-
-                // Reduce time by penalty
                 float newTime = Mathf.Max(0, currentTime - timePenalty);
                 timerComponent.SetTime(newTime);
                 timerComponent.StartTimer();
@@ -68,7 +74,6 @@ public class QuizValidator : MonoBehaviour
 
             // Check if the correct item is a child of this drop zone
             Transform itemParent = answer.correctItem.transform.parent;
-
             if (itemParent != answer.dropZone)
             {
                 Debug.Log($"{answer.correctItem.name} is not in {answer.dropZone.name}");

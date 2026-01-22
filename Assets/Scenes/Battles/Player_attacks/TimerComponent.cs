@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class TimerComponent : MonoBehaviour
@@ -6,6 +7,7 @@ public class TimerComponent : MonoBehaviour
     [Header("UI Reference")]
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private GameObject popupCanvas;
+    [SerializeField] private Button resetButton;
 
     [Header("Timer Settings")]
     [SerializeField] private float startTime = 20f;
@@ -18,12 +20,28 @@ public class TimerComponent : MonoBehaviour
     [SerializeField] private float warningThreshold = 10f;
     [SerializeField] private float dangerThreshold = 5f;
 
+    [Header("Scatter Reference")]
+    [SerializeField] private ScatterDragObjects scatterScript;
+
     private float currentTime;
     private bool isRunning = true;
 
     void Start()
     {
         currentTime = countUp ? 0 : startTime;
+        UpdateTimerDisplay();
+
+        if (resetButton != null)
+        {
+            resetButton.onClick.AddListener(ResetTimer);
+        }
+    }
+
+    void OnEnable()
+    {
+        // Reset timer every time popup becomes visible
+        currentTime = countUp ? 0 : startTime;
+        isRunning = true;
         UpdateTimerDisplay();
     }
 
@@ -45,7 +63,6 @@ public class TimerComponent : MonoBehaviour
                     OnTimerComplete();
                 }
             }
-
             UpdateTimerDisplay();
         }
     }
@@ -55,7 +72,6 @@ public class TimerComponent : MonoBehaviour
         if (timerText != null)
         {
             timerText.text = Mathf.Ceil(currentTime).ToString();
-
             if (!countUp)
             {
                 if (currentTime <= dangerThreshold)
@@ -81,14 +97,19 @@ public class TimerComponent : MonoBehaviour
     public void ResetTimer()
     {
         currentTime = countUp ? 0 : startTime;
-        isRunning = false;
+        isRunning = true;
         UpdateTimerDisplay();
+
+        // Scatter objects when timer resets
+        if (scatterScript != null)
+        {
+            scatterScript.ScatterObjects();
+        }
     }
 
     public void SetTime(float time)
     {
-        startTime = time;
-        currentTime = countUp ? 0 : startTime;
+        currentTime = time;
         UpdateTimerDisplay();
     }
 
@@ -99,7 +120,6 @@ public class TimerComponent : MonoBehaviour
             popupCanvas.SetActive(false);
         }
         Debug.Log("Timer completed!");
-        // Add your custom logic here
     }
 
     public float GetCurrentTime()
@@ -110,5 +130,13 @@ public class TimerComponent : MonoBehaviour
     public bool IsRunning()
     {
         return isRunning;
+    }
+
+    private void OnDestroy()
+    {
+        if (resetButton != null)
+        {
+            resetButton.onClick.RemoveListener(ResetTimer);
+        }
     }
 }
