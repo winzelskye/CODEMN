@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoundaryConstraint
   boundary: {fileID: 5737192390330523365}
-  padding: 10
+  padding: 1
 --- !u!1 &821434706544812697
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,7 +442,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoundaryConstraint
   boundary: {fileID: 5737192390330523365}
-  padding: 10
+  padding: 1
 --- !u!1 &1175918493743079427
 GameObject:
   m_ObjectHideFlags: 0
@@ -757,7 +757,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoundaryConstraint
   boundary: {fileID: 5737192390330523365}
-  padding: 10
+  padding: 1
 --- !u!1 &1861910607365563824
 GameObject:
   m_ObjectHideFlags: 0
@@ -935,7 +935,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoundaryConstraint
   boundary: {fileID: 5737192390330523365}
-  padding: 10
+  padding: 1
 --- !u!1 &3206504701951619051
 GameObject:
   m_ObjectHideFlags: 0
@@ -1040,7 +1040,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &8664050168016065191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1450,9 +1450,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2abe72823d4ae5c4f8eb2e416e5a5720, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScatterDragObjects
-  draggableObjects: []
+  draggableObjects:
+  - {fileID: 3963240113446469425}
+  - {fileID: 6441088661665473372}
+  - {fileID: 1100864533583038044}
+  - {fileID: 8447852541359210667}
+  - {fileID: 8078716275385581025}
+  - {fileID: 6145636973526279334}
   scatterBounds: {fileID: 5737192390330523365}
-  edgePadding: 50
+  edgePadding: 1
   autoFindDragObjects: 1
 --- !u!1 &5453241912043104434
 GameObject:
@@ -2094,7 +2100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoundaryConstraint
   boundary: {fileID: 5737192390330523365}
-  padding: 10
+  padding: 1
 --- !u!1 &6851420878925820184
 GameObject:
   m_ObjectHideFlags: 0
@@ -2359,7 +2365,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoundaryConstraint
   boundary: {fileID: 5737192390330523365}
-  padding: 10
+  padding: 1
 --- !u!1 &8079754422038798826
 GameObject:
   m_ObjectHideFlags: 0
@@ -2531,8 +2537,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.2468, y: -0.39621}
-  m_SizeDelta: {x: 11.8122, y: 8.2149}
+  m_AnchoredPosition: {x: -0.14124, y: -0.12156}
+  m_SizeDelta: {x: 12.588, y: 9.3945}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6347518783049536203
 CanvasRenderer:
