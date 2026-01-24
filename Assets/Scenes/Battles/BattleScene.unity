@@ -5602,7 +5602,7 @@ PrefabInstance:
       objectReference: {fileID: 984272481}
     - target: {fileID: 98989868065080437, guid: bd567ad73a1159b4483f1b9b5a2d9aa6, type: 3}
       propertyPath: m_SortingOrder
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 558788737923376200, guid: bd567ad73a1159b4483f1b9b5a2d9aa6, type: 3}
       propertyPath: m_PresetInfoIsWorld

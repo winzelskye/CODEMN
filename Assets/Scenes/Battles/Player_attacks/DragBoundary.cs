@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class BoundaryConstraint : MonoBehaviour
+public class DragBoundary : MonoBehaviour
 {
     [SerializeField] private RectTransform boundary;
     [SerializeField] private float padding = 50f;
-    
+
     private RectTransform rectTransform;
     private Canvas canvas;
 
@@ -28,7 +28,7 @@ public class BoundaryConstraint : MonoBehaviour
         if (boundary == null) return;
 
         Vector2 pos = rectTransform.anchoredPosition;
-        
+
         float minX = boundary.anchoredPosition.x - boundary.rect.width / 2 + padding;
         float maxX = boundary.anchoredPosition.x + boundary.rect.width / 2 - padding;
         float minY = boundary.anchoredPosition.y - boundary.rect.height / 2 + padding;
