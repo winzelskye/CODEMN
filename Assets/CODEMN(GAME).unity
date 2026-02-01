@@ -519,6 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdaf7e771723b24eb786e54184a58d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ContinueButton
+  gameSceneName: Level Select
 --- !u!1 &69693014
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,8 +1013,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee589ad18a8045842b9948cb9b0bdcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
-  boundary: {fileID: 0}
-  padding: 50
 --- !u!4 &409590082
 Transform:
   m_ObjectHideFlags: 0
