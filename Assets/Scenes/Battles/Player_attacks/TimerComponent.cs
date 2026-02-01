@@ -25,6 +25,7 @@ public class TimerComponent : MonoBehaviour
 
     private float currentTime;
     private bool isRunning = true;
+    private bool preventReset = false;
 
     void Start()
     {
@@ -35,14 +36,6 @@ public class TimerComponent : MonoBehaviour
         {
             resetButton.onClick.AddListener(ResetTimer);
         }
-    }
-
-    void OnEnable()
-    {
-        // Reset timer every time popup becomes visible
-        currentTime = countUp ? 0 : startTime;
-        isRunning = true;
-        UpdateTimerDisplay();
     }
 
     void Update()
@@ -63,6 +56,7 @@ public class TimerComponent : MonoBehaviour
                     OnTimerComplete();
                 }
             }
+
             UpdateTimerDisplay();
         }
     }
@@ -72,6 +66,7 @@ public class TimerComponent : MonoBehaviour
         if (timerText != null)
         {
             timerText.text = Mathf.Ceil(currentTime).ToString();
+
             if (!countUp)
             {
                 if (currentTime <= dangerThreshold)
@@ -96,6 +91,14 @@ public class TimerComponent : MonoBehaviour
 
     public void ResetTimer()
     {
+        // Block reset if we're applying a penalty
+        if (preventReset)
+        {
+            Debug.Log("ResetTimer BLOCKED - penalty in progress");
+            return;
+        }
+
+        Debug.Log("ResetTimer executed");
         currentTime = countUp ? 0 : startTime;
         isRunning = true;
         UpdateTimerDisplay();
@@ -107,10 +110,30 @@ public class TimerComponent : MonoBehaviour
         }
     }
 
-    public void SetTime(float time)
+    public void ApplyTimePenalty(float penalty)
     {
-        currentTime = time;
+        preventReset = true; // Block any ResetTimer calls
+
+        Debug.Log($"Penalty applied: {currentTime} -> {currentTime - penalty}");
+        currentTime = Mathf.Max(0, currentTime - penalty);
         UpdateTimerDisplay();
+
+        // Check if penalty brought timer to 0
+        if (!countUp && currentTime <= 0)
+        {
+            currentTime = 0;
+            isRunning = false;
+            OnTimerComplete();
+        }
+
+        // Use Invoke to unblock reset after a short delay (to ensure scatter completes)
+        Invoke(nameof(UnblockReset), 0.1f);
+    }
+
+    private void UnblockReset()
+    {
+        preventReset = false;
+        Debug.Log("Reset unblocked");
     }
 
     private void OnTimerComplete()

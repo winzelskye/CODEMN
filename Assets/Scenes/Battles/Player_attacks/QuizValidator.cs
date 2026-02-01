@@ -31,37 +31,41 @@ public class QuizValidator : MonoBehaviour
         {
             doneButton.onClick.AddListener(OnDoneClicked);
         }
+
+        // Try to auto-find TimerComponent if not assigned
+        if (timerComponent == null && popupCanvas != null)
+        {
+            timerComponent = popupCanvas.GetComponentInChildren<TimerComponent>();
+        }
     }
 
     private void OnDoneClicked()
     {
         if (CheckAllCorrect())
         {
-            // All correct - hide the popup and scatter objects
+            // All correct - hide the popup
             if (popupCanvas != null)
             {
                 popupCanvas.SetActive(false);
-            }
-
-            // Scatter all objects back for next round
-            if (scatterScript != null)
-            {
-                scatterScript.ScatterObjects();
             }
 
             Debug.Log("Quiz completed correctly!");
         }
         else
         {
-            // Something wrong - apply time penalty but DON'T scatter or close popup
+            // Wrong answer - apply time penalty FIRST
             if (timerComponent != null)
             {
-                float currentTime = timerComponent.GetCurrentTime();
-                float newTime = Mathf.Max(0, currentTime - timePenalty);
-                timerComponent.SetTime(newTime);
-                timerComponent.StartTimer();
+                timerComponent.ApplyTimePenalty(timePenalty);
             }
-            Debug.Log("Incorrect! Time penalty applied.");
+
+            // THEN scatter all objects
+            if (scatterScript != null)
+            {
+                scatterScript.ScatterObjects();
+            }
+
+            Debug.Log("Incorrect! Time penalty applied and objects scattered.");
         }
     }
 
@@ -76,7 +80,6 @@ public class QuizValidator : MonoBehaviour
             Transform itemParent = answer.correctItem.transform.parent;
             if (itemParent != answer.dropZone)
             {
-                Debug.Log($"{answer.correctItem.name} is not in {answer.dropZone.name}");
                 return false;
             }
         }
@@ -86,7 +89,6 @@ public class QuizValidator : MonoBehaviour
         {
             if (answer.dropZone != null && answer.dropZone.childCount == 0)
             {
-                Debug.Log($"{answer.dropZone.name} is empty");
                 return false;
             }
         }
