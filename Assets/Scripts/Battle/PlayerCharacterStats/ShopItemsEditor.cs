@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -369,13 +369,13 @@ public class ShopItemsEditor : EditorWindow
                 EditorGUILayout.LabelField("Effect Summary:", EditorStyles.boldLabel);
 
                 if (selectedItem.hpRestore > 0)
-                    EditorGUILayout.LabelField("• Restores " + selectedItem.hpRestore + " HP");
+                    EditorGUILayout.LabelField("â€¢ Restores " + selectedItem.hpRestore + " HP");
 
                 if (selectedItem.bitPointsRestore > 0)
-                    EditorGUILayout.LabelField("• Restores " + selectedItem.bitPointsRestore + " Bit Points");
+                    EditorGUILayout.LabelField("â€¢ Restores " + selectedItem.bitPointsRestore + " Bit Points");
 
                 if (!string.IsNullOrEmpty(selectedItem.consumableEffect))
-                    EditorGUILayout.LabelField("• " + selectedItem.consumableEffect);
+                    EditorGUILayout.LabelField("â€¢ " + selectedItem.consumableEffect);
             }
         }
 
@@ -411,16 +411,16 @@ public class ShopItemsEditor : EditorWindow
                 EditorGUILayout.LabelField("Stat Summary:", EditorStyles.boldLabel);
 
                 if (selectedItem.attackBoost != 0)
-                    EditorGUILayout.LabelField("• Attack: " + (selectedItem.attackBoost > 0 ? "+" : "") + selectedItem.attackBoost);
+                    EditorGUILayout.LabelField("â€¢ Attack: " + (selectedItem.attackBoost > 0 ? "+" : "") + selectedItem.attackBoost);
 
                 if (selectedItem.defenseBoost != 0)
-                    EditorGUILayout.LabelField("• Defense: " + (selectedItem.defenseBoost > 0 ? "+" : "") + selectedItem.defenseBoost);
+                    EditorGUILayout.LabelField("â€¢ Defense: " + (selectedItem.defenseBoost > 0 ? "+" : "") + selectedItem.defenseBoost);
 
                 if (selectedItem.hpBoost != 0)
-                    EditorGUILayout.LabelField("• Max HP: " + (selectedItem.hpBoost > 0 ? "+" : "") + selectedItem.hpBoost);
+                    EditorGUILayout.LabelField("â€¢ Max HP: " + (selectedItem.hpBoost > 0 ? "+" : "") + selectedItem.hpBoost);
 
                 if (!string.IsNullOrEmpty(selectedItem.equipmentEffect))
-                    EditorGUILayout.LabelField("• " + selectedItem.equipmentEffect);
+                    EditorGUILayout.LabelField("â€¢ " + selectedItem.equipmentEffect);
             }
         }
 
