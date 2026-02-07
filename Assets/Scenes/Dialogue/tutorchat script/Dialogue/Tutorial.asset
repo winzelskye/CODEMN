@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Tutorial
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  npcLines:
+  - characterName: Handler
+    dialogueText: Hello.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+  - characterName: Handler
+    dialogueText: Can you see my text?
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+  playerChoices:
+  - choiceText: Yes
+    nextNode: {fileID: 11400000, guid: 5822fc766403dbe49b2d4d8cad57203c, type: 2}
+    choiceSound: {fileID: 0}
+  - choiceText: No
+    nextNode: {fileID: 11400000, guid: 024dfecb521be4b4daba5df8a40b69d9, type: 2}
+    choiceSound: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: 38da1d908c907bf4e98d7353d48d6eab, type: 2}
