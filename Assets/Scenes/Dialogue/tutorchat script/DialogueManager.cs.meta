@@ -1,2 +1,20 @@
 fileFormatVersion: 2
 guid: b2090e24cc5e62844b81bb18ee54b55e
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dialogueLinePrefab: {instanceID: 0}
+  - dialogueContainer: {instanceID: 0}
+  - scrollRect: {instanceID: 0}
+  - choiceButtonPrefab: {instanceID: 0}
+  - choiceContainer: {instanceID: 0}
+  - typingIndicatorPrefab: {instanceID: 0}
+  - audioSource: {instanceID: 0}
+  - defaultMessageSound: {instanceID: 0}
+  - startingNode: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,7 +1,8 @@
 ﻿using System.Collections;
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -24,24 +25,31 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Settings")]
     public DialogueNode startingNode;
-    public float timeBetweenLines = 0.3f;
+    public float timeBetweenLines = 1.5f;
     public bool useTypewriter = true;
     public float typewriterSpeed = 0.05f;
     public bool showTypingIndicator = true;
     public float typingIndicatorDelay = 0.8f;
 
     [Header("Delay Options")]
-    public bool useTextLengthDelay = true; // Delay based on text length
-    public bool useRandomDelay = false; // Random delay between messages
+    public bool useTextLengthDelay = true;
+    public bool useRandomDelay = false;
     public float minRandomDelay = 0.8f;
     public float maxRandomDelay = 2.0f;
+    public float delayBeforeNewNode = 1.5f;
+
+    [Header("Conversation Switching")]
+    public bool hideOtherConversations = true;
 
     private DialogueNode currentNode;
+    private string currentCharacter = "";
     private bool isTyping = false;
+    private bool isNewNode = false;
+
+    private Dictionary<string, List<GameObject>> conversationMessages = new Dictionary<string, List<GameObject>>();
 
     void Start()
     {
-        // Check all required references
         if (!ValidateReferences())
         {
             Debug.LogError("DialogueManager is missing required references! Check the Inspector.");
@@ -96,6 +104,66 @@ public class DialogueManager : MonoBehaviour
         return isValid;
     }
 
+    public void SwitchToCharacter(string characterName)
+    {
+        if (currentCharacter == characterName) return;
+
+        if (hideOtherConversations)
+        {
+            HideConversation(currentCharacter);
+        }
+
+        currentCharacter = characterName;
+        ShowConversation(characterName);
+
+        ClearChoices();
+        StartCoroutine(ScrollToBottom());
+    }
+
+    void HideConversation(string characterName)
+    {
+        if (string.IsNullOrEmpty(characterName)) return;
+
+        if (conversationMessages.ContainsKey(characterName))
+        {
+            foreach (GameObject msg in conversationMessages[characterName])
+            {
+                if (msg != null)
+                {
+                    msg.SetActive(false);
+                }
+            }
+        }
+    }
+
+    void ShowConversation(string characterName)
+    {
+        if (string.IsNullOrEmpty(characterName)) return;
+
+        if (conversationMessages.ContainsKey(characterName))
+        {
+            foreach (GameObject msg in conversationMessages[characterName])
+            {
+                if (msg != null)
+                {
+                    msg.SetActive(true);
+                }
+            }
+        }
+    }
+
+    void StoreMessage(string characterName, GameObject messageObj)
+    {
+        if (string.IsNullOrEmpty(characterName)) return;
+
+        if (!conversationMessages.ContainsKey(characterName))
+        {
+            conversationMessages[characterName] = new List<GameObject>();
+        }
+
+        conversationMessages[characterName].Add(messageObj);
+    }
+
     public void StartDialogue(DialogueNode node)
     {
         if (node == null)
@@ -104,27 +172,53 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        if (!string.IsNullOrEmpty(node.characterName))
+        {
+            if (currentCharacter != node.characterName)
+            {
+                SwitchToCharacter(node.characterName);
+            }
+            currentCharacter = node.characterName;
+        }
+
         currentNode = node;
+        isNewNode = true;
         ClearChoices();
         StartCoroutine(ProcessNode(node));
     }
 
     IEnumerator ProcessNode(DialogueNode node)
     {
-        // Display all NPC lines
+        if (isNewNode && currentNode != startingNode)
+        {
+            yield return new WaitForSeconds(delayBeforeNewNode);
+        }
+
         if (node.npcLines != null && node.npcLines.Length > 0)
         {
-            foreach (DialogueLine line in node.npcLines)
+            for (int i = 0; i < node.npcLines.Length; i++)
             {
+                DialogueLine line = node.npcLines[i];
+
                 yield return StartCoroutine(DisplayLine(line));
 
-                // Calculate delay based on settings
-                float delay = CalculateDelay(line);
-                yield return new WaitForSeconds(delay);
+                bool isLastMessage = (i == node.npcLines.Length - 1);
+                bool hasChoices = (node.playerChoices != null && node.playerChoices.Length > 0);
+
+                if (!isLastMessage || !hasChoices)
+                {
+                    float delay = CalculateDelay(line);
+                    yield return new WaitForSeconds(delay);
+                }
+                else
+                {
+                    yield return new WaitForSeconds(0.3f);
+                }
             }
         }
 
-        // Show player choices or auto-continue
+        isNewNode = false;
+
         if (node.playerChoices != null && node.playerChoices.Length > 0)
         {
             ShowChoices(node.playerChoices);
@@ -138,26 +232,22 @@ public class DialogueManager : MonoBehaviour
 
     float CalculateDelay(DialogueLine line)
     {
-        // If line has custom delay, use it
         if (line.delayAfter > 0)
         {
             return line.delayAfter;
         }
 
-        // Use text length based delay
         if (useTextLengthDelay)
         {
-            // 0.02 seconds per character, minimum 0.5 seconds
-            return Mathf.Max(0.5f, line.dialogueText.Length * 0.02f);
+            float calculatedDelay = Mathf.Clamp(line.dialogueText.Length * 0.03f, 1.0f, 3.0f);
+            return calculatedDelay;
         }
 
-        // Use random delay
         if (useRandomDelay)
         {
             return Random.Range(minRandomDelay, maxRandomDelay);
         }
 
-        // Use default delay
         return timeBetweenLines;
     }
 
@@ -169,8 +259,7 @@ public class DialogueManager : MonoBehaviour
             yield break;
         }
 
-        // Show typing indicator for NPC messages
-        if (!line.isPlayer && showTypingIndicator)
+        if (!line.isPlayer && showTypingIndicator && typingIndicatorPrefab != null)
         {
             ShowTypingIndicator();
             yield return new WaitForSeconds(typingIndicatorDelay);
@@ -181,6 +270,8 @@ public class DialogueManager : MonoBehaviour
 
         GameObject lineObj = Instantiate(dialogueLinePrefab, dialogueContainer);
         lineObj.SetActive(true);
+
+        StoreMessage(currentCharacter, lineObj);
 
         DialogueLineUI lineUI = lineObj.GetComponent<DialogueLineUI>();
 
@@ -199,22 +290,29 @@ public class DialogueManager : MonoBehaviour
             lineUI.Setup(line);
         }
 
-        StartCoroutine(ScrollToBottom());
+        yield return null;
+        Canvas.ForceUpdateCanvases();
+
+        RectTransform containerRect = dialogueContainer.GetComponent<RectTransform>();
+        if (containerRect != null)
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(containerRect);
+        }
+
+        yield return StartCoroutine(ScrollToBottom());
+        yield return new WaitForSeconds(0.05f);
     }
 
     IEnumerator TypewriterEffect(DialogueLineUI lineUI, DialogueLine line)
     {
         isTyping = true;
 
-        // Build the complete prefix with colored name
         string colorHex = ColorUtility.ToHtmlStringRGB(line.textColor);
         string fullPrefix = $"<color=#{colorHex}><b>{line.characterName}:</b></color> ";
 
-        // Start with just the prefix visible
         lineUI.messageText.text = fullPrefix;
         lineUI.messageText.color = Color.white;
 
-        // Now type out ONLY the dialogue text (not the name again)
         string textSoFar = fullPrefix;
         foreach (char c in line.dialogueText)
         {
@@ -234,11 +332,11 @@ public class DialogueManager : MonoBehaviour
         if (!showTypingIndicator || typingIndicatorPrefab == null || dialogueContainer == null)
             return;
 
-        // Remove any existing typing indicator
         HideTypingIndicator();
 
-        // Create new typing indicator
         currentTypingIndicator = Instantiate(typingIndicatorPrefab, dialogueContainer);
+        currentTypingIndicator.SetActive(true);
+
         StartCoroutine(AnimateTypingIndicator());
         StartCoroutine(ScrollToBottom());
     }
@@ -313,16 +411,19 @@ public class DialogueManager : MonoBehaviour
             isPlayer = true
         };
 
-        StartCoroutine(DisplayPlayerChoice(playerLine, choice.nextNode));
+        StartCoroutine(DisplayPlayerChoice(playerLine, choice));
     }
 
-    IEnumerator DisplayPlayerChoice(DialogueLine playerLine, DialogueNode nextNode)
+    IEnumerator DisplayPlayerChoice(DialogueLine playerLine, DialogueChoice choice)
     {
         ClearChoices();
 
         if (dialogueLinePrefab != null && dialogueContainer != null)
         {
             GameObject lineObj = Instantiate(dialogueLinePrefab, dialogueContainer);
+
+            StoreMessage(currentCharacter, lineObj);
+
             DialogueLineUI lineUI = lineObj.GetComponent<DialogueLineUI>();
 
             if (lineUI != null)
@@ -333,12 +434,14 @@ public class DialogueManager : MonoBehaviour
 
         yield return StartCoroutine(ScrollToBottom());
 
-        // Wait longer before starting next node (changed from 0.5f)
-        yield return new WaitForSeconds(1.5f);
-
-        if (nextNode != null)
+        if (!string.IsNullOrEmpty(choice.switchToCharacter))
         {
-            StartDialogue(nextNode);
+            yield return new WaitForSeconds(0.5f);
+            SwitchToCharacter(choice.switchToCharacter);
+        }
+        else if (choice.nextNode != null)
+        {
+            StartDialogue(choice.nextNode);
         }
     }
 
@@ -362,7 +465,16 @@ public class DialogueManager : MonoBehaviour
         }
 
         yield return null;
+        yield return null;
+
         Canvas.ForceUpdateCanvases();
+
+        RectTransform containerRect = dialogueContainer.GetComponent<RectTransform>();
+        if (containerRect != null)
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(containerRect);
+        }
+
         scrollRect.verticalNormalizedPosition = 0f;
     }
 
@@ -388,6 +500,16 @@ public class DialogueManager : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
+        conversationMessages.Clear();
         ClearChoices();
+    }
+
+    public void TriggerConversation(string characterName, DialogueNode node)
+    {
+        if (node != null)
+        {
+            node.characterName = characterName;
+            StartDialogue(node);
+        }
     }
 }
