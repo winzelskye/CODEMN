@@ -23,11 +23,18 @@ public class DialogueChoice
     public string choiceText;
     public DialogueNode nextNode;
     public AudioClip choiceSound;
+
+    [Header("Switch Conversation (Optional)")]
+    [Tooltip("Switch to a different character's conversation")]
+    public string switchToCharacter;
 }
 
 [CreateAssetMenu(fileName = "New Dialogue Node", menuName = "Dialogue/Node")]
 public class DialogueNode : ScriptableObject
 {
+    [Header("Character Info")]
+    public string characterName;
+
     public DialogueLine[] npcLines;
     public DialogueChoice[] playerChoices;
     public DialogueNode nextNode;
