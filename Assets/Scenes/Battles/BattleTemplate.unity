@@ -490,7 +490,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1890042786}
-  m_PlaneDistance: 35
+  m_PlaneDistance: 68
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -500,7 +500,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 100
+  m_SortingOrder: 42
   m_TargetDisplay: 0
 --- !u!1 &112118048
 GameObject:
@@ -703,7 +703,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -5632,7 +5632,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 1890042786}
-  m_PlaneDistance: 100
+  m_PlaneDistance: 68
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -5666,8 +5666,8 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!4 &1328573858 stripped
-Transform:
+--- !u!224 &1328573858 stripped
+RectTransform:
   m_CorrespondingSourceObject: {fileID: 6512240026527570615, guid: c3ee6cd111f29494eba2ff6188c5a5c2, type: 3}
   m_PrefabInstance: {fileID: 7774817018617586882}
   m_PrefabAsset: {fileID: 0}
@@ -6130,7 +6130,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -8405,6 +8405,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Sprite
       objectReference: {fileID: 0}
+    - target: {fileID: 535222351564168215, guid: c3ee6cd111f29494eba2ff6188c5a5c2, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6512240026527570615, guid: c3ee6cd111f29494eba2ff6188c5a5c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -8444,6 +8448,10 @@ PrefabInstance:
     - target: {fileID: 6512240026527570615, guid: c3ee6cd111f29494eba2ff6188c5a5c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7867583107159886064, guid: c3ee6cd111f29494eba2ff6188c5a5c2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

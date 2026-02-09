@@ -27,6 +27,7 @@ public class HTMLImageLoader : MonoBehaviour
         if (htmlSystem != null)
         {
             htmlSystem.OnCodeExecuted += OnHTMLExecuted;
+            htmlSystem.OnSystemCleared += ClearImages;
         }
     }
 
@@ -170,6 +171,7 @@ public class HTMLImageLoader : MonoBehaviour
         if (htmlSystem != null)
         {
             htmlSystem.OnCodeExecuted -= OnHTMLExecuted;
+            htmlSystem.OnSystemCleared -= ClearImages;
         }
     }
 }

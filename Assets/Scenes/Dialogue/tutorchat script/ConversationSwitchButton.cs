@@ -1,50 +1,100 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class ConversationSwitchButton : MonoBehaviour
+public class ConversationSwitcher : MonoBehaviour
 {
-    [Header("Character Settings")]
-    public string characterName; // e.g., "Handler", "Guard"
-    public DialogueNode characterDialogueNode; // The dialogue node to start
-
-    [Header("References")]
     public DialogueManager dialogueManager;
 
-    private Button button;
+    [Header("Handler")]
+    public DialogueNode handlerNode;
+    private bool handlerStarted = false;
 
-    void Awake()
-    {
-        button = GetComponent<Button>();
-        if (button != null)
-        {
-            button.onClick.AddListener(OnButtonClick);
-        }
-    }
+    [Header("Hacker")]
+    public DialogueNode hackerNode;
+    private bool hackerStarted = false;
 
-    void OnButtonClick()
+    [Header("Guard")]
+    public DialogueNode guardNode;
+    private bool guardStarted = false;
+
+    void Start()
     {
         if (dialogueManager == null)
         {
-            Debug.LogError("DialogueManager is not assigned!");
-            return;
+            dialogueManager = FindObjectOfType<DialogueManager>();
         }
+    }
 
-        if (string.IsNullOrEmpty(characterName))
+    public void SwitchToHandler()
+    {
+        if (handlerNode != null)
         {
-            Debug.LogError("Character Name is not set!");
-            return;
-        }
+            handlerNode.characterName = "Handler";
 
-        if (characterDialogueNode == null)
+            if (!handlerStarted)
+            {
+                dialogueManager.TriggerConversation("Handler", handlerNode);
+                handlerStarted = true;
+            }
+            else
+            {
+                dialogueManager.SwitchToCharacter("Handler");
+            }
+        }
+        else
         {
-            Debug.LogError("Character Dialogue Node is not assigned!");
-            return;
+            Debug.LogError("Handler node is NULL!");
         }
+    }
 
-        // Make sure the node has the character name set
-        characterDialogueNode.characterName = characterName;
+    public void SwitchToHacker()
+    {
+        if (hackerNode != null)
+        {
+            hackerNode.characterName = "Hacker";
 
-        // Start the conversation
-        dialogueManager.TriggerConversation(characterName, characterDialogueNode);
+            if (!hackerStarted)
+            {
+                dialogueManager.TriggerConversation("Hacker", hackerNode);
+                hackerStarted = true;
+            }
+            else
+            {
+                dialogueManager.SwitchToCharacter("Hacker");
+            }
+        }
+        else
+        {
+            Debug.LogError("Hacker node is NULL!");
+        }
+    }
+
+    public void SwitchToGuard()
+    {
+        if (guardNode != null)
+        {
+            guardNode.characterName = "Guard";
+
+            if (!guardStarted)
+            {
+                dialogueManager.TriggerConversation("Guard", guardNode);
+                guardStarted = true;
+            }
+            else
+            {
+                dialogueManager.SwitchToCharacter("Guard");
+            }
+        }
+        else
+        {
+            Debug.LogError("Guard node is NULL!");
+        }
+    }
+
+    public void ResetAllConversations()
+    {
+        handlerStarted = false;
+        hackerStarted = false;
+        guardStarted = false;
+        dialogueManager.ClearDialogue();
     }
 }
