@@ -153,9 +153,26 @@ public class HTMLCodingSystem : MonoBehaviour
 
     public void ClearAll()
     {
+        Debug.Log("ClearAll called");
+
         codeInputField.text = "";
-        outputPanel.text = "";
+
+        // Clear text output if available
+        if (outputPanel != null)
+        {
+            outputPanel.text = "";
+        }
+
+        // Clear rich output if available
+        if (richOutputRenderer != null)
+        {
+            richOutputRenderer.RenderHTML(""); // Render empty content
+        }
+
+        Debug.Log("About to invoke OnSystemCleared event");
+        // Notify subscribers (this clears images)
         OnSystemCleared?.Invoke();
+        Debug.Log("OnSystemCleared event invoked");
     }
 
     private string NormalizeHTML(string html)
@@ -320,18 +337,8 @@ public class HTMLCodingSystem : MonoBehaviour
         // Images - support both src and alt attributes
         result = Regex.Replace(result, @"<img[^>]*src=[""']([^""']+)[""']([^>]*alt=[""']([^""']+)[""'])?[^>]*>",
             match => {
-                string src = match.Groups[1].Value;
-                string alt = match.Groups[3].Success ? match.Groups[3].Value : "image";
-
-                // Check if it's a file path or URL
-                if (src.StartsWith("http://") || src.StartsWith("https://") || src.StartsWith("www."))
-                {
-                    return $"<color=#FFA500>[🖼️ Image: {alt}]</color>\n<color=#808080><i>{src}</i></color>";
-                }
-                else
-                {
-                    return $"<color=#FFA500>[🖼️ {alt}]</color> <color=#808080>({src})</color>";
-                }
+                // Just remove the image tag - the image system will handle displaying it
+                return "";
             },
             RegexOptions.IgnoreCase);
 

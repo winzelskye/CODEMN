@@ -38,6 +38,7 @@ public class HTMLSimpleImageSystem : MonoBehaviour
         if (htmlSystem != null)
         {
             htmlSystem.OnCodeExecuted += OnHTMLExecuted;
+            htmlSystem.OnSystemCleared += ClearImages;
         }
     }
 
@@ -100,6 +101,8 @@ public class HTMLSimpleImageSystem : MonoBehaviour
 
     void ClearImages()
     {
+        Debug.Log("ClearImages called - clearing all images");
+
         if (imageDisplayArea != null)
         {
             foreach (Transform child in imageDisplayArea)
@@ -114,6 +117,7 @@ public class HTMLSimpleImageSystem : MonoBehaviour
         if (htmlSystem != null)
         {
             htmlSystem.OnCodeExecuted -= OnHTMLExecuted;
+            htmlSystem.OnSystemCleared -= ClearImages;
         }
     }
 }

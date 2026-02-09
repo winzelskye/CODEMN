@@ -47,6 +47,7 @@ public class DialogueManager : MonoBehaviour
     private bool isNewNode = false;
 
     private Dictionary<string, List<GameObject>> conversationMessages = new Dictionary<string, List<GameObject>>();
+    private HashSet<DialogueNode> completedNodes = new HashSet<DialogueNode>();
 
     void Start()
     {
@@ -106,7 +107,10 @@ public class DialogueManager : MonoBehaviour
 
     public void SwitchToCharacter(string characterName)
     {
-        if (currentCharacter == characterName) return;
+        if (currentCharacter == characterName)
+        {
+            return;
+        }
 
         if (hideOtherConversations)
         {
@@ -122,7 +126,10 @@ public class DialogueManager : MonoBehaviour
 
     void HideConversation(string characterName)
     {
-        if (string.IsNullOrEmpty(characterName)) return;
+        if (string.IsNullOrEmpty(characterName))
+        {
+            return;
+        }
 
         if (conversationMessages.ContainsKey(characterName))
         {
@@ -138,7 +145,10 @@ public class DialogueManager : MonoBehaviour
 
     void ShowConversation(string characterName)
     {
-        if (string.IsNullOrEmpty(characterName)) return;
+        if (string.IsNullOrEmpty(characterName))
+        {
+            return;
+        }
 
         if (conversationMessages.ContainsKey(characterName))
         {
@@ -154,7 +164,10 @@ public class DialogueManager : MonoBehaviour
 
     void StoreMessage(string characterName, GameObject messageObj)
     {
-        if (string.IsNullOrEmpty(characterName)) return;
+        if (string.IsNullOrEmpty(characterName))
+        {
+            return;
+        }
 
         if (!conversationMessages.ContainsKey(characterName))
         {
@@ -174,7 +187,7 @@ public class DialogueManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(node.characterName))
         {
-            if (currentCharacter != node.characterName)
+            if (currentCharacter != node.characterName && !string.IsNullOrEmpty(currentCharacter))
             {
                 SwitchToCharacter(node.characterName);
             }
@@ -501,14 +514,30 @@ public class DialogueManager : MonoBehaviour
             }
         }
         conversationMessages.Clear();
+        completedNodes.Clear();
         ClearChoices();
     }
 
     public void TriggerConversation(string characterName, DialogueNode node)
     {
-        if (node != null)
+        if (node == null)
         {
-            node.characterName = characterName;
+            Debug.LogError("TriggerConversation: Node is null!");
+            return;
+        }
+
+        node.characterName = characterName;
+
+        if (currentCharacter != characterName)
+        {
+            SwitchToCharacter(characterName);
+        }
+
+        currentCharacter = characterName;
+
+        if (!completedNodes.Contains(node))
+        {
+            completedNodes.Add(node);
             StartDialogue(node);
         }
     }
