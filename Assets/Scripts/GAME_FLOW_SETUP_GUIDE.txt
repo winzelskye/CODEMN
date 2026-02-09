@@ -1,0 +1,152 @@
+GAME FLOW SETUP GUIDE
+=====================
+
+This guide explains how to wire up all the scripts and buttons to make the game flow functional.
+
+SCENE SETUP
+-----------
+
+1. MAIN MENU SCENE ("CODEMN(GAME)")
+   - Add MainMenuController component to a GameObject
+   - Assign UI references:
+     * New Game Button
+     * Continue Button
+     * Settings Button
+     * Quit Button
+     * Reset Progress Panel (optional)
+     * Reset Yes/No Buttons (optional)
+   - "Reset progress?" dialog (flowchart): must have two actions:
+     * Yes -> ProceedButton (resets progress + loads CharacterSelect) OR MainMenuController.OnResetYesClicked
+     * No  -> MainMenuController.OnResetNoClicked (go to CharacterSelect without reset)
+   - OR use NewGameButton script on the New Game button directly
+
+2. CHARACTER SELECTION SCENE ("CharacterSelect")
+   - Add CharacterSelectionFlowController component
+   - Add CharacterSelectionPersistence component (implements IDataPersistence for selected character save)
+   - Assign UI references:
+     * Character Selection Panel
+     * Character Info Panel
+     * Confirmation Panel
+     * Esther Button, Michael Button
+     * Confirm/Cancel/Back buttons (or single "Select" button)
+     * Character name/description/portrait displays
+   - Wire the main "Select" button to CharacterSelectionFlowController.ConfirmSelection()
+   - Ensure DataPersistenceManager is in the scene (or persists) so SaveGame() persists character choice
+
+3. LEVEL SELECTION SCENE ("Level Select")
+   - Add LevelProgressionManager component
+   - Configure level configs in Inspector (Level_1, Level_2, etc. with sublevel counts)
+   - Ensure level buttons call LevelProgressionManager.LoadLevel()
+
+4. BATTLE SCENE ("BattleTemplate" or your battle scene)
+   - Add BattleFlowController component
+   - Assign UI references:
+     * Retry Button
+     * Return to Menu Button
+     * Victory/Defeat/Reward Panels
+     * Gold/Item reward text displays
+   - Ensure BattleController calls BattleFlowController.OnBattleWon/Lost()
+
+5. SHOP SCENE (Create new scene "Shop" or add UI panel)
+   - Add ShopController component
+   - Assign UI references:
+     * Shop Panel
+     * Item Preview Panel
+     * Buy Button
+     * Exit Button
+     * Feedback panels (not enough money, inventory full, success)
+   - Assign available ShopItems list in Inspector
+
+6. SETTINGS (Can be panel in Main Menu or separate scene)
+   - Add SettingsMenuController component
+   - Assign UI references:
+     * Main Settings Panel
+     * Audio/Controls/About Panels
+     * Volume sliders and text
+     * Back buttons
+
+BUTTON WIRING
+-------------
+
+Option 1: Use the UI Button Scripts (Recommended)
+- Add NewGameButton.cs to New Game button
+- Add ShopBuyButton.cs to Buy button in shop
+- Add ShopExitButton.cs to Exit button in shop
+- Add BattleRetryButton.cs to Retry button in battle
+- Add BattleReturnMenuButton.cs to Return to Menu button in battle
+
+Option 2: Manual Wiring
+- In Unity Inspector, add OnClick() listeners:
+  * New Game → MainMenuController.OnNewGameClicked()
+  * Continue → ContinueButton.OnContinueClick()
+  * Settings → MainMenuController.OnSettingsClicked()
+  * Quit → MainMenuController.OnQuitClicked()
+  * Buy Item → ShopController.OnBuyItemClicked()
+  * Exit Shop → ShopController.OnExitClicked()
+  * Retry → BattleFlowController.OnRetryClicked()
+  * Return to Menu → BattleFlowController.OnReturnToMenuClicked()
+
+GAMEFLOW MANAGER SETUP
+----------------------
+
+- Add GameFlowManager component to a GameObject in the first scene
+- It will persist across scenes (DontDestroyOnLoad)
+- Used for centralized scene transitions
+
+DATA PERSISTENCE
+----------------
+
+- Ensure DataPersistenceManager exists in a scene (or in first scene and persists)
+- LevelProgressionManager implements IDataPersistence for sublevel tracking
+- CharacterSelectionPersistence (in CharacterSelect scene) writes selectedCharacterName to GameData on SaveGame()
+- GameData now includes:
+  * Sublevel completion tracking
+  * Gold earned
+  * Shop purchase history
+  * Last visited scene
+  * selectedCharacterName (from CharacterSelectionPersistence)
+
+INTEGRATION POINTS
+------------------
+
+1. Battle Win → Shop:
+   - BattleController.EndBattle() calls BattleFlowController.OnBattleWon()
+   - BattleFlowController collects rewards and transitions to Shop
+
+2. Battle Loss → Retry/Menu:
+   - BattleController.EndBattle() calls BattleFlowController.OnBattleLost()
+   - Shows defeat panel with Retry/Return to Menu options
+
+3. Level Completion:
+   - Call LevelProgressionManager.CompleteSublevel(levelName, sublevelIndex)
+   - Automatically checks if all sublevels done, then completes level
+
+4. Shop Purchase:
+   - ShopController checks gold and inventory space
+   - Adds item to PlayerInventory
+   - Saves to GameData
+
+TESTING CHECKLIST
+------------------
+
+[ ] Main menu buttons work
+[ ] New Game → Character Selection
+[ ] Continue → Level Selection (with saved data)
+[ ] Character Selection → Level Selection
+[ ] Level Selection → Battle
+[ ] Battle Win → Shop
+[ ] Battle Loss → Retry/Menu
+[ ] Shop Buy → Gold/Inventory checks work
+[ ] Shop Exit → Level Selection
+[ ] Settings menu navigation
+[ ] Save/Load persistence
+
+DEBUGGING TIPS
+--------------
+
+- Check Console for warnings about missing controllers
+- Ensure all UI references are assigned in Inspector
+- Verify scene names match exactly (case-sensitive)
+- Check that DataPersistenceManager.instance is not null
+- Ensure GameFlowManager.Instance exists before calling methods
+- PlayerInventory.Instance should exist (singleton pattern)

@@ -11,6 +11,7 @@ public class ContinueButton : MonoBehaviour
     // This method will be called by the Continue button click event
     public void OnContinueClick()
     {
+<<<<<<< Updated upstream
         Debug.Log("Continue button clicked!");
         
 
@@ -20,6 +21,25 @@ public class ContinueButton : MonoBehaviour
 
         // Or load the last saved scene index
         // SceneManager.LoadScene(PlayerPrefs.GetInt("LastLevel", 1));
+=======
+        // Load saved game data
+        if (DataPersistenceManager.instance != null)
+        {
+            DataPersistenceManager.instance.LoadGame();
+        }
+
+        // Use GameFlowManager if available
+        if (GameFlowManager.Instance != null)
+        {
+            GameFlowManager.Instance.GoToLevelSelection();
+        }
+        else
+        {
+            SceneManager.LoadScene(gameSceneName);
+        }
+        
+        Debug.Log("Loading scene: " + gameSceneName);
+>>>>>>> Stashed changes
     }
 
     // Update is called once per frame
