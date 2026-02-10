@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: 2
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  characterName: Handler
+  npcLines:
+  - characterName: Handler
+    dialogueText: You can call me the Handler. I will be the one handling and managing
+      you, your tasks, and your job for the day.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+    delayAfter: 2
+  - characterName: Handler
+    dialogueText: You do not need to tell me who you are [Player]. I am told about
+      your abilities and potential.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+    delayAfter: 3
+  playerChoices:
+  - choiceText: Alright.
+    nextNode: {fileID: 11400000, guid: 467cf3dde8167df41b9291862cdbc07a, type: 2}
+    choiceSound: {fileID: 0}
+    switchToCharacter: 
+  nextNode: {fileID: 0}

@@ -10,24 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Tutorial
+  m_Name: 5
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Hello.
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    dialogueText: Yes. Your missions includes dealing with html bugs, errors, and
+      if unlucky, hackers.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 0}
+    delayAfter: 2
   - characterName: Handler
-    dialogueText: Can you see my text?
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    dialogueText: But before anything, do you have knowledge in html coding?
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 0}
+    delayAfter: 2
   playerChoices:
   - choiceText: Yes
-    nextNode: {fileID: 11400000, guid: 5822fc766403dbe49b2d4d8cad57203c, type: 2}
+    nextNode: {fileID: 11400000, guid: d540acdf020548d4bb91f61c7545695c, type: 2}
     choiceSound: {fileID: 0}
+    switchToCharacter: 
   - choiceText: No
-    nextNode: {fileID: 11400000, guid: 024dfecb521be4b4daba5df8a40b69d9, type: 2}
+    nextNode: {fileID: 11400000, guid: 5812427137435a94b9f8a2132356b48d, type: 2}
     choiceSound: {fileID: 0}
-  nextNode: {fileID: 11400000, guid: 38da1d908c907bf4e98d7353d48d6eab, type: 2}
+    switchToCharacter: 
+  nextNode: {fileID: 0}

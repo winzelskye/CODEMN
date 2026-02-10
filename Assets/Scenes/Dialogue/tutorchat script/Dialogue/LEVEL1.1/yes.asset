@@ -10,23 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: anyways
+  m_Name: yes
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: I will be using this to contact you before and after battles.
+    dialogueText: Well I supposed we can skip that part of the lesson then.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 0}
-  - characterName: Handler
-    dialogueText: But of course, I will not be the only one who can message you.
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 0}
-  - characterName: Handler
-    dialogueText: They can be helpful or not depending on your choices so be careful.
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 0}
+    delayAfter: 0.12
   playerChoices: []
   nextNode: {fileID: 0}
