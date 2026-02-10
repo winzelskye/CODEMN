@@ -38,15 +38,12 @@ public class DialogueManager : MonoBehaviour
     public float maxRandomDelay = 2.0f;
     public float delayBeforeNewNode = 1.5f;
 
-    [Header("Conversation Switching")]
-    public bool hideOtherConversations = true;
-
     private DialogueNode currentNode;
     private string currentCharacter = "";
     private bool isTyping = false;
     private bool isNewNode = false;
+    private ConversationManager conversationManager;
 
-    private Dictionary<string, List<GameObject>> conversationMessages = new Dictionary<string, List<GameObject>>();
     private HashSet<DialogueNode> completedNodes = new HashSet<DialogueNode>();
 
     void Start()
@@ -105,76 +102,11 @@ public class DialogueManager : MonoBehaviour
         return isValid;
     }
 
-    public void SwitchToCharacter(string characterName)
+    public void SetCurrentCharacter(string characterName)
     {
-        if (currentCharacter == characterName)
-        {
-            return;
-        }
-
-        if (hideOtherConversations)
-        {
-            HideConversation(currentCharacter);
-        }
-
         currentCharacter = characterName;
-        ShowConversation(characterName);
-
         ClearChoices();
         StartCoroutine(ScrollToBottom());
-    }
-
-    void HideConversation(string characterName)
-    {
-        if (string.IsNullOrEmpty(characterName))
-        {
-            return;
-        }
-
-        if (conversationMessages.ContainsKey(characterName))
-        {
-            foreach (GameObject msg in conversationMessages[characterName])
-            {
-                if (msg != null)
-                {
-                    msg.SetActive(false);
-                }
-            }
-        }
-    }
-
-    void ShowConversation(string characterName)
-    {
-        if (string.IsNullOrEmpty(characterName))
-        {
-            return;
-        }
-
-        if (conversationMessages.ContainsKey(characterName))
-        {
-            foreach (GameObject msg in conversationMessages[characterName])
-            {
-                if (msg != null)
-                {
-                    msg.SetActive(true);
-                }
-            }
-        }
-    }
-
-    void StoreMessage(string characterName, GameObject messageObj)
-    {
-        if (string.IsNullOrEmpty(characterName))
-        {
-            return;
-        }
-
-        if (!conversationMessages.ContainsKey(characterName))
-        {
-            conversationMessages[characterName] = new List<GameObject>();
-        }
-
-        conversationMessages[characterName].Add(messageObj);
     }
 
     public void StartDialogue(DialogueNode node)
@@ -187,10 +119,6 @@ public class DialogueManager : MonoBehaviour
 
         if (!string.IsNullOrEmpty(node.characterName))
         {
-            if (currentCharacter != node.characterName && !string.IsNullOrEmpty(currentCharacter))
-            {
-                SwitchToCharacter(node.characterName);
-            }
             currentCharacter = node.characterName;
         }
 
@@ -284,7 +212,11 @@ public class DialogueManager : MonoBehaviour
         GameObject lineObj = Instantiate(dialogueLinePrefab, dialogueContainer);
         lineObj.SetActive(true);
 
-        StoreMessage(currentCharacter, lineObj);
+        // Register message with ConversationManager
+        if (conversationManager != null)
+        {
+            conversationManager.RegisterMessage(currentCharacter, lineObj);
+        }
 
         DialogueLineUI lineUI = lineObj.GetComponent<DialogueLineUI>();
 
@@ -435,7 +367,11 @@ public class DialogueManager : MonoBehaviour
         {
             GameObject lineObj = Instantiate(dialogueLinePrefab, dialogueContainer);
 
-            StoreMessage(currentCharacter, lineObj);
+            // Register player message
+            if (conversationManager != null)
+            {
+                conversationManager.RegisterMessage(currentCharacter, lineObj);
+            }
 
             DialogueLineUI lineUI = lineObj.GetComponent<DialogueLineUI>();
 
@@ -450,7 +386,11 @@ public class DialogueManager : MonoBehaviour
         if (!string.IsNullOrEmpty(choice.switchToCharacter))
         {
             yield return new WaitForSeconds(0.5f);
-            SwitchToCharacter(choice.switchToCharacter);
+            // Let ConversationManager handle the switch
+            if (conversationManager != null)
+            {
+                conversationManager.SwitchToCharacter(choice.switchToCharacter);
+            }
         }
         else if (choice.nextNode != null)
         {
@@ -513,12 +453,11 @@ public class DialogueManager : MonoBehaviour
                 Destroy(child.gameObject);
             }
         }
-        conversationMessages.Clear();
         completedNodes.Clear();
         ClearChoices();
     }
 
-    public void TriggerConversation(string characterName, DialogueNode node)
+    public void TriggerConversation(string characterName, DialogueNode node, ConversationManager cm, bool forceRerun = false)
     {
         if (node == null)
         {
@@ -526,16 +465,11 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        conversationManager = cm;
         node.characterName = characterName;
-
-        if (currentCharacter != characterName)
-        {
-            SwitchToCharacter(characterName);
-        }
-
         currentCharacter = characterName;
 
-        if (!completedNodes.Contains(node))
+        if (!completedNodes.Contains(node) || forceRerun)
         {
             completedNodes.Add(node);
             StartDialogue(node);
