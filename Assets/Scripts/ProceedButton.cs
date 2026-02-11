@@ -82,7 +82,7 @@ public class ProceedButton : MonoBehaviour
         else
         {
             // Load scene by name
-            SceneManager.LoadScene(sceneToLoad);
+            SceneManager.LoadScene("CharacterSelect");
         }
     }
 }
