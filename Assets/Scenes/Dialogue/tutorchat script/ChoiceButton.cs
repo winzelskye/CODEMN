@@ -32,7 +32,9 @@ public class ChoiceButton : MonoBehaviour
 
         choice = dialogueChoice;
         manager = dialogueManager;
-        choiceText.text = dialogueChoice.choiceText;
+
+        // Add => to the beginning of the choice text
+        choiceText.text = "==> " + dialogueChoice.choiceText;
     }
 
     void OnChoiceSelected()
