@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: 4
+  m_Name: 11
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: This is TutorChat. This is where I will be teaching you things
-      you need to know before your missions.
+    dialogueText: Which now comes your first test.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 3
+    delayAfter: 2
     isContinuation: 0
+    wordHighlights: []
   playerChoices:
-  - choiceText: Missions?
-    nextNode: {fileID: 11400000, guid: 1f0101e275e11ed46a1230ec0607f248, type: 2}
+  - choiceText: Hold on, test?
+    nextNode: {fileID: 11400000, guid: 8d276e06d186906478b7b9145d8ef443, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}

@@ -15,13 +15,20 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Yes. Your missions includes dealing with html bugs, errors, and
+    dialogueText: Yes. Your missions includes dealing with HTML bugs, errors, and
       if unlucky, hackers.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
+    wordHighlights:
+    - word: HTML bugs
+      highlightColor: {r: 1, g: 0, b: 0, a: 1}
+    - word: errors
+      highlightColor: {r: 1, g: 0, b: 0, a: 1}
+    - word: hackers
+      highlightColor: {r: 1, g: 0, b: 0, a: 1}
   - characterName: Handler
     dialogueText: But before anything, do you have knowledge in html coding?
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -29,6 +36,7 @@ MonoBehaviour:
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
+    wordHighlights: []
   playerChoices:
   - choiceText: Yes
     nextNode: {fileID: 11400000, guid: d540acdf020548d4bb91f61c7545695c, type: 2}
