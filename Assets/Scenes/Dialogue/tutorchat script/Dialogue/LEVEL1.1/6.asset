@@ -15,17 +15,58 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Yes. Your missions includes dealing with html bugs, errors, and
-      if unlucky, hackers.
+    dialogueText: You can try compiling basic html tags to your right.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 0}
-    delayAfter: 0
+    delayAfter: 2
+    isContinuation: 0
   - characterName: Handler
-    dialogueText: But before anything, do you have knowledge in html coding?
+    dialogueText: TutorChat have a built in compiler.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 0}
-    delayAfter: 0
-  playerChoices: []
+    delayAfter: 2
+    isContinuation: 0
+  - characterName: Handler
+    dialogueText: The output of your code will be shown at the bottom right of your
+      screen.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+    delayAfter: 2
+    isContinuation: 0
+  - characterName: Handler
+    dialogueText: Try putting this and see if it works.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+    delayAfter: 2
+    isContinuation: 0
+  - characterName: Handler
+    dialogueText: "<html>\r\n   <head>\r\n     <title>My First Website</title></head>"
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+    delayAfter: 2
+    isContinuation: 0
+  - characterName: Handler
+    dialogueText: "\n   <body>\n     <h1>Hello world!</h1>\n     <p>This is my webpage.</p>"
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+    delayAfter: 2
+    isContinuation: 1
+  - characterName: Handler
+    dialogueText: "\n   </body>\r\n   </html>"
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+    delayAfter: 2
+    isContinuation: 1
+  playerChoices:
+  - choiceText: It works!
+    nextNode: {fileID: 0}
+    choiceSound: {fileID: 0}
+    switchToCharacter: 
   nextNode: {fileID: 0}

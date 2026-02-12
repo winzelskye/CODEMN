@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: yes
+  m_Name: no 4
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
-  npcLines:
-  - characterName: Handler
-    dialogueText: Well I supposed we can skip that part of the lesson then.
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 0}
-    delayAfter: 0.12
-  playerChoices: []
-  nextNode: {fileID: 11400000, guid: 8a4ec67299548994090ba122461a727c, type: 2}
+  npcLines: []
+  playerChoices:
+  - choiceText: So where do I put it?
+    nextNode: {fileID: 11400000, guid: f3a9db76c64fbc145901ca9e6458e594, type: 2}
+    choiceSound: {fileID: 0}
+    switchToCharacter: 
+  nextNode: {fileID: 0}

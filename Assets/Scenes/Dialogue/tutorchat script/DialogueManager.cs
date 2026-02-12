@@ -37,12 +37,14 @@ public class DialogueManager : MonoBehaviour
     public float minRandomDelay = 0.8f;
     public float maxRandomDelay = 2.0f;
     public float delayBeforeNewNode = 1.5f;
+    public float continuationDelay = 0.1f; // Short delay for continuation messages
 
     private DialogueNode currentNode;
     private string currentCharacter = "";
     private bool isTyping = false;
     private bool isNewNode = false;
     private ConversationManager conversationManager;
+    private GameObject lastDialogueLineObj; // Track the last message for continuations
 
     private HashSet<DialogueNode> completedNodes = new HashSet<DialogueNode>();
 
@@ -148,8 +150,19 @@ public class DialogueManager : MonoBehaviour
 
                 if (!isLastMessage || !hasChoices)
                 {
-                    float delay = CalculateDelay(line);
-                    yield return new WaitForSeconds(delay);
+                    // Check if the next message is a continuation
+                    bool nextIsContinuation = (i + 1 < node.npcLines.Length) && node.npcLines[i + 1].isContinuation;
+
+                    if (nextIsContinuation)
+                    {
+                        // Very short delay for continuation messages
+                        yield return new WaitForSeconds(continuationDelay);
+                    }
+                    else
+                    {
+                        float delay = CalculateDelay(line);
+                        yield return new WaitForSeconds(delay);
+                    }
                 }
                 else
                 {
@@ -200,7 +213,8 @@ public class DialogueManager : MonoBehaviour
             yield break;
         }
 
-        if (!line.isPlayer && showTypingIndicator && typingIndicatorPrefab != null)
+        // Only show typing indicator for non-player, non-continuation messages
+        if (!line.isPlayer && !line.isContinuation && showTypingIndicator && typingIndicatorPrefab != null)
         {
             ShowTypingIndicator();
             yield return new WaitForSeconds(typingIndicatorDelay);
@@ -211,6 +225,7 @@ public class DialogueManager : MonoBehaviour
 
         GameObject lineObj = Instantiate(dialogueLinePrefab, dialogueContainer);
         lineObj.SetActive(true);
+        lastDialogueLineObj = lineObj; // Track for potential continuations
 
         // Register message with ConversationManager
         if (conversationManager != null)
@@ -226,7 +241,7 @@ public class DialogueManager : MonoBehaviour
             yield break;
         }
 
-        if (useTypewriter && !line.isPlayer)
+        if (useTypewriter && !line.isPlayer && !line.isContinuation)
         {
             yield return StartCoroutine(TypewriterEffect(lineUI, line));
         }
@@ -455,6 +470,7 @@ public class DialogueManager : MonoBehaviour
         }
         completedNodes.Clear();
         ClearChoices();
+        lastDialogueLineObj = null;
     }
 
     public void TriggerConversation(string characterName, DialogueNode node, ConversationManager cm, bool forceRerun = false)
