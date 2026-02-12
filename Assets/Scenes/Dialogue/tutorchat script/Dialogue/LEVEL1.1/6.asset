@@ -18,14 +18,14 @@ MonoBehaviour:
     dialogueText: You can try compiling basic html tags to your right.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
   - characterName: Handler
     dialogueText: TutorChat have a built in compiler.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
   - characterName: Handler
@@ -33,21 +33,21 @@ MonoBehaviour:
       screen.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
   - characterName: Handler
     dialogueText: Try putting this and see if it works.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
   - characterName: Handler
     dialogueText: "<html>\r\n   <head>\r\n     <title>My First Website</title></head>"
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
   - characterName: Handler

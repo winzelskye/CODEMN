@@ -16,19 +16,31 @@ MonoBehaviour:
   npcLines:
   - characterName: Handler
     dialogueText: Another tags you will need for the development of a website are
-      the paired tags. Like the structural tags, it also starts with an open tag
-      and ends with a closed one.
+      the paired tags.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 5
+    isContinuation: 0
+    wordHighlights: []
+  - characterName: Handler
+    dialogueText: Like the structural tags, it also starts with an open tag and ends
+      with a closed one.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 5
+    isContinuation: 0
+    wordHighlights: []
   - characterName: Handler
     dialogueText: There are many paired tags. But for now, you only need to learn
       <p>, </p>, <h1>, and <h1>.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 5
+    isContinuation: 0
+    wordHighlights: []
   playerChoices:
   - choiceText: Alright.
     nextNode: {fileID: 11400000, guid: dc2b19d3bf18bfd4ab5a82229e239a5a, type: 2}

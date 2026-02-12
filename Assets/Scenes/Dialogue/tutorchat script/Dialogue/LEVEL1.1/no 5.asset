@@ -15,26 +15,47 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: "\n----------------------------\r\n   <html>\r\n   <head>\r\n    
-      <title>My First Website</title>\n\r\n   </head>\r\n"
+    dialogueText: "----------------------------\r\n   <html>\r\n   <head>"
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 5
+    isContinuation: 0
+    wordHighlights: []
   - characterName: 
-    dialogueText: " <body>\r\n     <h1>Hello world!</h1>\r\n     <p>This is my webpage.</p>\r\n  
-      </body>\r\n   </html>\r\n   ----------------------------\r\n"
+    dialogueText: "\n     <title>My First Website</title></head>\n"
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 0}
     delayAfter: 0
+    isContinuation: 1
+    wordHighlights: []
+  - characterName: 
+    dialogueText: " \n<body>\r\n     <h1>Hello world!</h1>\r\n     <p>This is my
+      webpage.</p>"
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+    delayAfter: 0
+    isContinuation: 1
+    wordHighlights: []
+  - characterName: 
+    dialogueText: "\n   </body>\n   </html>\n   ----------------------------"
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 0}
+    delayAfter: 0
+    isContinuation: 1
+    wordHighlights: []
   - characterName: Handler
     dialogueText: You can put a title tag after <head>, but it is not really necessary
       for now.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 0
+    isContinuation: 0
+    wordHighlights: []
   playerChoices:
   - choiceText: I see.
     nextNode: {fileID: 11400000, guid: 8a4ec67299548994090ba122461a727c, type: 2}

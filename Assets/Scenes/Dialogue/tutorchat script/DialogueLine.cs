@@ -2,6 +2,16 @@ using System;
 using UnityEngine;
 
 [Serializable]
+public class WordHighlight
+{
+    [Tooltip("The exact word to highlight (case-sensitive)")]
+    public string word;
+
+    [Tooltip("Color for this word")]
+    public Color highlightColor = Color.yellow;
+}
+
+[Serializable]
 public class DialogueLine
 {
     public string characterName;
@@ -18,6 +28,10 @@ public class DialogueLine
     [Header("Message Continuation")]
     [Tooltip("Check this to append to the previous message without showing the character name again")]
     public bool isContinuation = false;
+
+    [Header("Word Highlighting (Optional)")]
+    [Tooltip("Highlight specific words with different colors for emphasis")]
+    public WordHighlight[] wordHighlights;
 }
 
 [Serializable]
