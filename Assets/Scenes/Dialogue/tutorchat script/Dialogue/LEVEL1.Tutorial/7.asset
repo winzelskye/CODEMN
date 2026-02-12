@@ -10,63 +10,49 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: 6
+  m_Name: 7
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: You can try compiling basic html tags to your right.
+    dialogueText: Great.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
+    wordHighlights: []
   - characterName: Handler
-    dialogueText: TutorChat have a built in compiler.
+    dialogueText: That would be the end of your lesson.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
+    wordHighlights: []
   - characterName: Handler
-    dialogueText: The output of your code will be shown at the bottom right of your
-      screen.
+    dialogueText: For now anyways.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
+    wordHighlights: []
   - characterName: Handler
-    dialogueText: Try putting this and see if it works.
+    dialogueText: Any questions?
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
-  - characterName: Handler
-    dialogueText: "<html>\r\n   <head>\r\n     <title>My First Website</title></head>"
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 2
-    isContinuation: 0
-  - characterName: Handler
-    dialogueText: "\n   <body>\n     <h1>Hello world!</h1>\n     <p>This is my webpage.</p>"
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 0}
-    delayAfter: 2
-    isContinuation: 1
-  - characterName: Handler
-    dialogueText: "\n   </body>\r\n   </html>"
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 0}
-    delayAfter: 2
-    isContinuation: 1
+    wordHighlights: []
   playerChoices:
-  - choiceText: It works!
-    nextNode: {fileID: 0}
+  - choiceText: I might.
+    nextNode: {fileID: 11400000, guid: cb81ca2fe708c7d40bf30b87684a2efc, type: 2}
+    choiceSound: {fileID: 0}
+    switchToCharacter: 
+  - choiceText: No, it's simple enough.
+    nextNode: {fileID: 11400000, guid: e76cd08d39c851c4c86a112d0517c013, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
