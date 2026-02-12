@@ -10,15 +10,20 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: yes
+  m_Name: no 2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Well I supposed we can skip that part of the lesson then.
+    dialogueText: The dash is for closing the tags. It is necessary for most of the
+      tags so do not forget about it.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 0}
-    delayAfter: 0.12
-  playerChoices: []
-  nextNode: {fileID: 11400000, guid: 8a4ec67299548994090ba122461a727c, type: 2}
+    delayAfter: 5
+  playerChoices:
+  - choiceText: Ok.
+    nextNode: {fileID: 11400000, guid: 14a1bcb381a0bb94686a1a2caf92b077, type: 2}
+    choiceSound: {fileID: 0}
+    switchToCharacter: 
+  nextNode: {fileID: 0}
