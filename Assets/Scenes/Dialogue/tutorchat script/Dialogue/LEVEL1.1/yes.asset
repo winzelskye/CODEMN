@@ -15,10 +15,12 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Well I supposed we can skip that part of the lesson then.
+    dialogueText: Well I supposed that is pretty expected.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 0.12
+    isContinuation: 0
+    wordHighlights: []
   playerChoices: []
   nextNode: {fileID: 11400000, guid: 8a4ec67299548994090ba122461a727c, type: 2}

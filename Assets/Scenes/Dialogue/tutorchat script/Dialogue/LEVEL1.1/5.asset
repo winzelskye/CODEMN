@@ -19,14 +19,16 @@ MonoBehaviour:
       if unlucky, hackers.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
+    isContinuation: 0
   - characterName: Handler
     dialogueText: But before anything, do you have knowledge in html coding?
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
+    isContinuation: 0
   playerChoices:
   - choiceText: Yes
     nextNode: {fileID: 11400000, guid: d540acdf020548d4bb91f61c7545695c, type: 2}

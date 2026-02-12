@@ -398,9 +398,11 @@ public class DialogueManager : MonoBehaviour
 
         yield return StartCoroutine(ScrollToBottom());
 
+        // Add a small delay before the next dialogue starts for better pacing
+        yield return new WaitForSeconds(0.8f);
+
         if (!string.IsNullOrEmpty(choice.switchToCharacter))
         {
-            yield return new WaitForSeconds(0.5f);
             // Let ConversationManager handle the switch
             if (conversationManager != null)
             {

@@ -19,15 +19,19 @@ MonoBehaviour:
       you, your tasks, and your job for the day.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
+    isContinuation: 0
+    wordHighlights: []
   - characterName: Handler
     dialogueText: You do not need to tell me who you are [Player]. I am told about
       your abilities and potential.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
   playerChoices:
   - choiceText: Alright.
     nextNode: {fileID: 11400000, guid: 467cf3dde8167df41b9291862cdbc07a, type: 2}
