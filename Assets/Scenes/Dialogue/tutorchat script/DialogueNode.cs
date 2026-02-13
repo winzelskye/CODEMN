@@ -1,12 +1,14 @@
 using System;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 [Serializable]
 public class WordHighlight
 {
     [Tooltip("The exact word to highlight (case-sensitive)")]
     public string word;
-
     [Tooltip("Color for this word")]
     public Color highlightColor = Color.yellow;
 }
@@ -32,6 +34,16 @@ public class DialogueLine
     [Header("Word Highlighting (Optional)")]
     [Tooltip("Highlight specific words with different colors for emphasis")]
     public WordHighlight[] wordHighlights;
+
+    [Header("Attached GameObject (Optional)")]
+    [Tooltip("Show a GameObject after this message appears")]
+    public bool showAttachedObject = false;
+    [Tooltip("The GameObject to show (can be UI element, image, etc.)")]
+    public GameObject attachedObject;
+    [Tooltip("Delay in seconds before showing the attached object")]
+    public float attachedObjectDelay = 1.0f;
+    [Tooltip("Hide the object when moving to the next message")]
+    public bool hideOnNextMessage = true;
 }
 
 [Serializable]
@@ -52,7 +64,26 @@ public class DialogueNode : ScriptableObject
 {
     [Header("Character Info")]
     public string characterName;
+
+    [SerializeField]
     public DialogueLine[] npcLines;
+
+    [SerializeField]
     public DialogueChoice[] playerChoices;
+
+    [SerializeField]
     public DialogueNode nextNode;
+
+#if UNITY_EDITOR
+    private void OnValidate()
+    {
+        EditorUtility.SetDirty(this);
+        AssetDatabase.SaveAssets();
+    }
+
+    private void OnEnable()
+    {
+        EditorUtility.SetDirty(this);
+    }
+#endif
 }

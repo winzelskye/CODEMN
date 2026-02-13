@@ -22,6 +22,10 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: Handler
     dialogueText: They will try to test you. And if you do not pass and beat them,
       not only will you not fix the problem.
@@ -31,6 +35,10 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: Handler
     dialogueText: But they will also prevent you on going further.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -39,6 +47,10 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   playerChoices:
   - choiceText: They?
     nextNode: {fileID: 11400000, guid: 8404434d715382e43814676121d36d43, type: 2}

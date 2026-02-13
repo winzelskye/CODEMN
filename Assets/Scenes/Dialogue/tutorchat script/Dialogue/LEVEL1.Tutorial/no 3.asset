@@ -25,6 +25,10 @@ MonoBehaviour:
     wordHighlights:
     - word: PAIRED TAGS
       highlightColor: {r: 0.47843137, g: 0.41568628, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: Handler
     dialogueText: Like the structural tags, it also starts with an open tag and ends
       with a closed one.
@@ -34,6 +38,10 @@ MonoBehaviour:
     delayAfter: 5
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: Handler
     dialogueText: There are many paired tags. But for now, you only need to learn
       <p>, </p>, <h1>, and </h1>.
@@ -51,6 +59,10 @@ MonoBehaviour:
       highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
     - word: </h1>
       highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   playerChoices:
   - choiceText: Alright.
     nextNode: {fileID: 11400000, guid: dc2b19d3bf18bfd4ab5a82229e239a5a, type: 2}

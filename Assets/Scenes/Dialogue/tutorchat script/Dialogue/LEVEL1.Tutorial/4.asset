@@ -25,6 +25,10 @@ MonoBehaviour:
     wordHighlights:
     - word: TutorChat
       highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   playerChoices:
   - choiceText: Missions?
     nextNode: {fileID: 11400000, guid: 1f0101e275e11ed46a1230ec0607f248, type: 2}

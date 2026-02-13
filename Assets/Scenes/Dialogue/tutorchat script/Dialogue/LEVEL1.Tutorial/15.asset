@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: 14
+  m_Name: 15
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Very well.
+    dialogueText: Let's begin.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
-    showAttachedObject: 0
+    showAttachedObject: 1
     attachedObject: {fileID: 0}
-    attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    attachedObjectDelay: 5
+    hideOnNextMessage: 0
   playerChoices: []
-  nextNode: {fileID: 11400000, guid: 3008d628140d6984ba1e90c910191bc8, type: 2}
+  nextNode: {fileID: 0}

@@ -23,6 +23,10 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: Handler
     dialogueText: That's how we deal problems here in WHHA.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -31,6 +35,10 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   playerChoices:
   - choiceText: I see...
     nextNode: {fileID: 11400000, guid: 69d6c98f93710d14a802a46321baa480, type: 2}
