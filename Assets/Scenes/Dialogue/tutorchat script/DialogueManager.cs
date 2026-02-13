@@ -255,10 +255,10 @@ public class DialogueManager : MonoBehaviour
             yield break;
         }
 
-        // Hide previous attached object if needed
+        // Destroy previous attached object if needed
         if (currentAttachedObject != null)
         {
-            currentAttachedObject.SetActive(false);
+            Destroy(currentAttachedObject);
             currentAttachedObject = null;
         }
 
@@ -310,7 +310,7 @@ public class DialogueManager : MonoBehaviour
         yield return new WaitForSeconds(0.05f);
 
         // Show attached GameObject if enabled
-        if (line.showAttachedObject && line.attachedObject != null)
+        if (line.showAttachedObject && line.attachedObjectPrefab != null)
         {
             StartCoroutine(ShowAttachedObject(line));
         }
@@ -534,10 +534,9 @@ public class DialogueManager : MonoBehaviour
         ClearChoices();
         lastDialogueLineObj = null;
 
-        // Hide any attached objects
         if (currentAttachedObject != null)
         {
-            currentAttachedObject.SetActive(false);
+            Destroy(currentAttachedObject);
             currentAttachedObject = null;
         }
     }
@@ -565,14 +564,21 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(line.attachedObjectDelay);
 
-        if (line.attachedObject != null)
+        if (line.attachedObjectPrefab != null)
         {
-            line.attachedObject.SetActive(true);
-            currentAttachedObject = line.attachedObject;
+            // Find Canvas to spawn under
+            Canvas canvas = FindObjectOfType<Canvas>();
+            Transform parent = canvas != null ? canvas.transform : null;
 
-            Debug.Log($"Showing attached object: {line.attachedObject.name}");
+            // Instantiate the prefab
+            GameObject spawnedObject = Instantiate(line.attachedObjectPrefab, parent);
+            spawnedObject.SetActive(true);
 
-            if (!line.hideOnNextMessage)
+            currentAttachedObject = spawnedObject;
+
+            Debug.Log($"Showing attached object: {spawnedObject.name}");
+
+            if (!line.destroyOnNextMessage)
             {
                 currentAttachedObject = null;
             }

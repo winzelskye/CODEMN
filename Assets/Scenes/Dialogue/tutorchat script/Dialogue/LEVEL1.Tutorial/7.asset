@@ -23,9 +23,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: That would be the end of your lesson.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -35,9 +35,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: For now anyways.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -47,9 +47,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: Any questions?
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -59,9 +59,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   playerChoices:
   - choiceText: I might.
     nextNode: {fileID: 11400000, guid: cb81ca2fe708c7d40bf30b87684a2efc, type: 2}

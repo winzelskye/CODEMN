@@ -23,9 +23,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: I was informed in your porfolio that you know how to code using
       the HTML language.
@@ -36,9 +36,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: But it doesn't matter. I'll teach you how to. Right now.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -48,9 +48,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: HTML or Hyper Text Markup Language is the standard markup language
       for the creation Web pages.
@@ -67,9 +67,9 @@ MonoBehaviour:
     - word: creation Web pages
       highlightColor: {r: 1, g: 1, b: 1, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: There isn't much time before your first mission so let's shorten
       things by starting with the basic tags.
@@ -80,9 +80,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: STRUCTURAL TAGS are the most important tags you will need to learn.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -94,9 +94,9 @@ MonoBehaviour:
     - word: STRUCTURAL TAGS
       highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: 'It''s the tags that will tell the browser that the text is a web
       page. It starts with an open tag and a close tag. '
@@ -107,9 +107,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: Examples of Structural Tags includes <html>, </html>, <head>, </head>,
       <body>, and </body>.
@@ -132,9 +132,9 @@ MonoBehaviour:
     - word: </body>
       highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: 'Once put into code, it will look like this:'
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -144,8 +144,8 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   playerChoices: []
   nextNode: {fileID: 11400000, guid: 9067635dc9686694695da439efc9b1bb, type: 2}

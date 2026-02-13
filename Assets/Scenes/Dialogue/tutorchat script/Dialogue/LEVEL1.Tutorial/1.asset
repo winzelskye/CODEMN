@@ -26,9 +26,9 @@ MonoBehaviour:
     - word: White Hat Hackers Association
       highlightColor: {r: 1, g: 1, b: 1, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   playerChoices:
   - choiceText: Yes, but who are you?
     nextNode: {fileID: 11400000, guid: 11e46afc7463d9e4c9f05a7b6a1472f6, type: 2}

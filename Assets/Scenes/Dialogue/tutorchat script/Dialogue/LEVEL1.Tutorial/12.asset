@@ -23,9 +23,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: Since you already know how to code in html, I will now show you
       how you will face your enemies in a BATTLE.
@@ -38,9 +38,9 @@ MonoBehaviour:
     - word: BATTLE
       highlightColor: {r: 1, g: 0, b: 0, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   playerChoices:
   - choiceText: I don't think I'm ready yet.
     nextNode: {fileID: 11400000, guid: fb171ebf14aa11844abc616a45aefbb9, type: 2}

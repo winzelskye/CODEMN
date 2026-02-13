@@ -23,8 +23,8 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 1
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 6464230234252360636, guid: 0e01ea45ba4eae14888448b1a170fbbd, type: 3}
     attachedObjectDelay: 5
-    hideOnNextMessage: 0
+    destroyOnNextMessage: 0
   playerChoices: []
   nextNode: {fileID: 0}

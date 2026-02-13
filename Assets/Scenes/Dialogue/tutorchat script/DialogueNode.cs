@@ -36,14 +36,17 @@ public class DialogueLine
     public WordHighlight[] wordHighlights;
 
     [Header("Attached GameObject (Optional)")]
-    [Tooltip("Show a GameObject after this message appears")]
+    [Tooltip("Show a GameObject/Prefab after this message appears")]
     public bool showAttachedObject = false;
-    [Tooltip("The GameObject to show (can be UI element, image, etc.)")]
-    public GameObject attachedObject;
+
+    [Tooltip("The GameObject/Prefab to show (drag from Project folder)")]
+    public GameObject attachedObjectPrefab;
+
     [Tooltip("Delay in seconds before showing the attached object")]
     public float attachedObjectDelay = 1.0f;
-    [Tooltip("Hide the object when moving to the next message")]
-    public bool hideOnNextMessage = true;
+
+    [Tooltip("Destroy the object when moving to the next message")]
+    public bool destroyOnNextMessage = true;
 }
 
 [Serializable]

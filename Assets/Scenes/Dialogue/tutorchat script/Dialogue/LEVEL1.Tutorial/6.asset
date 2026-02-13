@@ -23,9 +23,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: TutorChat have a built in compiler.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -37,9 +37,9 @@ MonoBehaviour:
     - word: built in compiler
       highlightColor: {r: 1, g: 1, b: 1, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: The output of your code will be shown at the bottom right of your
       screen.
@@ -50,9 +50,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: Try putting this and see if it works.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -62,9 +62,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: "<html>\r\n   <head>\r\n     <title>My First Website</title></head>"
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -76,9 +76,9 @@ MonoBehaviour:
     - word: <html>    <head>      <title>My First Website</title></head>
       highlightColor: {r: 0.4772886, g: 0.41194963, b: 1, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: "\n   <body>\n     <h1>Hello world!</h1>\n     <p>This is my webpage.</p>"
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -90,9 +90,9 @@ MonoBehaviour:
     - word: <body>      <h1>Hello world!</h1>      <p>This is my webpage.</p>
       highlightColor: {r: 0.47843137, g: 0.41568628, b: 1, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: "\n   </body>\r\n   </html>"
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -104,9 +104,9 @@ MonoBehaviour:
     - word: </body>    </html>
       highlightColor: {r: 0.47843137, g: 0.41568628, b: 1, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   playerChoices:
   - choiceText: It works!
     nextNode: {fileID: 11400000, guid: 9bb914f308a751541ac1212eb1594dbf, type: 2}
