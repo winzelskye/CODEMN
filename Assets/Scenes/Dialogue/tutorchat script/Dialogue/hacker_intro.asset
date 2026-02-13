@@ -20,5 +20,7 @@ MonoBehaviour:
     isPlayer: 0
     messageSound: {fileID: 0}
     delayAfter: 0
+    isContinuation: 0
+    wordHighlights: []
   playerChoices: []
   nextNode: {fileID: 0}

@@ -28,6 +28,10 @@ MonoBehaviour:
       highlightColor: {r: 0.47843137, g: 0.41568628, b: 1, a: 1}
     - word: </head>
       highlightColor: {r: 0.47843137, g: 0.41568628, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: 
     dialogueText: "\n   <body>\n   </body>\r\n   </html>"
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -42,6 +46,10 @@ MonoBehaviour:
       highlightColor: {r: 0.47843137, g: 0.41568628, b: 1, a: 1}
     - word: </html>
       highlightColor: {r: 0.47843137, g: 0.41568628, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: 
     dialogueText: "\n   ----------------------------"
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -50,6 +58,10 @@ MonoBehaviour:
     delayAfter: 0
     isContinuation: 1
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   playerChoices:
   - choiceText: What's the / for?
     nextNode: {fileID: 11400000, guid: 48c5cc443263e064f83dafbe4e9918e2, type: 2}

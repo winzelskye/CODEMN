@@ -22,6 +22,11 @@ MonoBehaviour:
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 5
     isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   playerChoices:
   - choiceText: Ok.
     nextNode: {fileID: 11400000, guid: 14a1bcb381a0bb94686a1a2caf92b077, type: 2}

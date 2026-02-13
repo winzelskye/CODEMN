@@ -24,6 +24,10 @@ MonoBehaviour:
     wordHighlights:
     - word: GUIDE TAB
       highlightColor: {r: 1, g: 1, b: 1, a: 0}
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: Handler
     dialogueText: If you ever need refreshments, feel free to visit it.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -32,6 +36,10 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: Handler
     dialogueText: And just so you know.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -40,6 +48,10 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: Handler
     dialogueText: I will not be the only one communicating to you with this app.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -48,6 +60,10 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   - characterName: Handler
     dialogueText: You will also need this to contact your foes for your mission and
       encounter many others.
@@ -57,9 +73,13 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   playerChoices:
   - choiceText: Foes? I thought I'm only dealing with bugs, errors and hackers?
-    nextNode: {fileID: 0}
+    nextNode: {fileID: 11400000, guid: da0faaed1666ed94887e4364e2b199ad, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 11400000, guid: da0faaed1666ed94887e4364e2b199ad, type: 2}

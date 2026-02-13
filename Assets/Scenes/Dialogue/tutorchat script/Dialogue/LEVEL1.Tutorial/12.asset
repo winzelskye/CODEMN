@@ -15,8 +15,20 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Yes. Since you already know how to code in html, I will now show
-      you how you will face your enemies in a BATTLE.
+    dialogueText: Yes.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 2
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Since you already know how to code in html, I will now show you
+      how you will face your enemies in a BATTLE.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -25,6 +37,10 @@ MonoBehaviour:
     wordHighlights:
     - word: BATTLE
       highlightColor: {r: 1, g: 0, b: 0, a: 1}
+    showAttachedObject: 0
+    attachedObject: {fileID: 0}
+    attachedObjectDelay: 1
+    hideOnNextMessage: 1
   playerChoices:
   - choiceText: I don't think I'm ready yet.
     nextNode: {fileID: 11400000, guid: fb171ebf14aa11844abc616a45aefbb9, type: 2}
