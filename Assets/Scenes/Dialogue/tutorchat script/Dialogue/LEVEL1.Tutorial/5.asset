@@ -30,9 +30,9 @@ MonoBehaviour:
     - word: hackers
       highlightColor: {r: 1, g: 0, b: 0, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: But before anything, do you have knowledge in html coding?
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
@@ -42,9 +42,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   playerChoices:
   - choiceText: Yes
     nextNode: {fileID: 11400000, guid: d540acdf020548d4bb91f61c7545695c, type: 2}

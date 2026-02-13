@@ -26,9 +26,9 @@ MonoBehaviour:
     - word: Handler
       highlightColor: {r: 1, g: 1, b: 1, a: 1}
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   - characterName: Handler
     dialogueText: You do not need to tell me who you are [Player]. I am told about
       your abilities and potential.
@@ -39,9 +39,9 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
-    attachedObject: {fileID: 0}
+    attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
-    hideOnNextMessage: 1
+    destroyOnNextMessage: 1
   playerChoices:
   - choiceText: Alright.
     nextNode: {fileID: 11400000, guid: 467cf3dde8167df41b9291862cdbc07a, type: 2}
