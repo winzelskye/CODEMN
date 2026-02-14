@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: no 3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  characterName: Handler
+  npcLines:
+  - characterName: Handler
+    dialogueText: Another tags you will need for the development of a website are
+      the PAIRED TAGS.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 5
+    isContinuation: 0
+    wordHighlights:
+    - word: PAIRED TAGS
+      highlightColor: {r: 0.47843137, g: 0.41568628, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Like the structural tags, it also starts with an open tag and ends
+      with a closed one.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 5
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: There are many paired tags. But for now, you only need to learn
+      <p>, </p>, <h1>, and </h1>.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 5
+    isContinuation: 0
+    wordHighlights:
+    - word: <p>
+      highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
+    - word: </p>
+      highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
+    - word: <h1>
+      highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
+    - word: </h1>
+      highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  playerChoices:
+  - choiceText: Alright.
+    nextNode: {fileID: 11400000, guid: dc2b19d3bf18bfd4ab5a82229e239a5a, type: 2}
+    choiceSound: {fileID: 0}
+    switchToCharacter: 
+  nextNode: {fileID: 0}

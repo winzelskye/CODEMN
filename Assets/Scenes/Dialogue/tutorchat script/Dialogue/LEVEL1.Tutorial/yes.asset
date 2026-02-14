@@ -10,22 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: 6
+  m_Name: yes
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Yes. Your missions includes dealing with html bugs, errors, and
-      if unlucky, hackers.
+    dialogueText: Well I supposed that is pretty expected.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
-    delayAfter: 0
-  - characterName: Handler
-    dialogueText: But before anything, do you have knowledge in html coding?
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 0}
-    delayAfter: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 0.12
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
   playerChoices: []
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: 8a4ec67299548994090ba122461a727c, type: 2}

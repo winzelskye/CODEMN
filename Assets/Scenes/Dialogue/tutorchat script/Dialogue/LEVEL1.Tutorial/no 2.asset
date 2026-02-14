@@ -10,27 +10,26 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: 2
+  m_Name: no 2
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: You can call me the Handler. I will be the one handling and managing
-      you, your tasks, and your job for the day.
+    dialogueText: The dash is for closing the tags. It is necessary for most of the
+      tags so do not forget about it.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
-    delayAfter: 2
-  - characterName: Handler
-    dialogueText: You do not need to tell me who you are [Player]. I am told about
-      your abilities and potential.
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 0}
-    delayAfter: 3
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 5
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: Alright.
-    nextNode: {fileID: 11400000, guid: 467cf3dde8167df41b9291862cdbc07a, type: 2}
+  - choiceText: Ok.
+    nextNode: {fileID: 11400000, guid: 14a1bcb381a0bb94686a1a2caf92b077, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}

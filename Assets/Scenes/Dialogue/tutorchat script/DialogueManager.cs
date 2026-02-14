@@ -37,12 +37,15 @@ public class DialogueManager : MonoBehaviour
     public float minRandomDelay = 0.8f;
     public float maxRandomDelay = 2.0f;
     public float delayBeforeNewNode = 1.5f;
+    public float continuationDelay = 0.1f;
 
     private DialogueNode currentNode;
     private string currentCharacter = "";
     private bool isTyping = false;
     private bool isNewNode = false;
     private ConversationManager conversationManager;
+    private GameObject lastDialogueLineObj;
+    private GameObject currentAttachedObject;
 
     private HashSet<DialogueNode> completedNodes = new HashSet<DialogueNode>();
 
@@ -61,7 +64,23 @@ public class DialogueManager : MonoBehaviour
 
         if (startingNode != null)
         {
+            string tempName = startingNode.characterName;
+            int lineCount = startingNode.npcLines != null ? startingNode.npcLines.Length : 0;
+
+            Debug.Log($"Starting Node: {startingNode.name}");
+            Debug.Log($"Character: {tempName}");
+            Debug.Log($"Lines: {lineCount}");
+
+            if (lineCount == 0)
+            {
+                Debug.LogWarning("Starting node has 0 lines! Did you forget to set up the dialogue?");
+            }
+
             StartDialogue(startingNode);
+        }
+        else
+        {
+            Debug.LogError("Starting Node is not assigned in the Inspector!");
         }
     }
 
@@ -117,6 +136,16 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        if (node.npcLines == null || node.npcLines.Length == 0)
+        {
+            Debug.LogWarning($"Node '{node.name}' has no lines! Make sure it's set up properly.");
+        }
+        else
+        {
+            string tempText = node.npcLines[0].dialogueText;
+            Debug.Log($"Loading node: {node.name} - First line: {(string.IsNullOrEmpty(tempText) ? "EMPTY" : tempText.Substring(0, Mathf.Min(20, tempText.Length)))}...");
+        }
+
         if (!string.IsNullOrEmpty(node.characterName))
         {
             currentCharacter = node.characterName;
@@ -135,6 +164,12 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(delayBeforeNewNode);
         }
 
+        if (node.npcLines == null)
+        {
+            Debug.LogError($"Node '{node.name}' npcLines is NULL!");
+            yield break;
+        }
+
         if (node.npcLines != null && node.npcLines.Length > 0)
         {
             for (int i = 0; i < node.npcLines.Length; i++)
@@ -148,8 +183,17 @@ public class DialogueManager : MonoBehaviour
 
                 if (!isLastMessage || !hasChoices)
                 {
-                    float delay = CalculateDelay(line);
-                    yield return new WaitForSeconds(delay);
+                    bool nextIsContinuation = (i + 1 < node.npcLines.Length) && node.npcLines[i + 1].isContinuation;
+
+                    if (nextIsContinuation)
+                    {
+                        yield return new WaitForSeconds(continuationDelay);
+                    }
+                    else
+                    {
+                        float delay = CalculateDelay(line);
+                        yield return new WaitForSeconds(delay);
+                    }
                 }
                 else
                 {
@@ -166,8 +210,19 @@ public class DialogueManager : MonoBehaviour
         }
         else if (node.nextNode != null)
         {
+            DialogueNode next = node.nextNode;
+
+            if (next.npcLines == null || next.npcLines.Length == 0)
+            {
+                Debug.LogWarning($"Next node '{next.name}' has no lines loaded!");
+            }
+            else
+            {
+                Debug.Log($"Transitioning to next node: {next.name}");
+            }
+
             yield return new WaitForSeconds(1f);
-            StartDialogue(node.nextNode);
+            StartDialogue(next);
         }
     }
 
@@ -200,7 +255,14 @@ public class DialogueManager : MonoBehaviour
             yield break;
         }
 
-        if (!line.isPlayer && showTypingIndicator && typingIndicatorPrefab != null)
+        // Destroy previous attached object if needed
+        if (currentAttachedObject != null)
+        {
+            Destroy(currentAttachedObject);
+            currentAttachedObject = null;
+        }
+
+        if (!line.isPlayer && !line.isContinuation && showTypingIndicator && typingIndicatorPrefab != null)
         {
             ShowTypingIndicator();
             yield return new WaitForSeconds(typingIndicatorDelay);
@@ -211,8 +273,8 @@ public class DialogueManager : MonoBehaviour
 
         GameObject lineObj = Instantiate(dialogueLinePrefab, dialogueContainer);
         lineObj.SetActive(true);
+        lastDialogueLineObj = lineObj;
 
-        // Register message with ConversationManager
         if (conversationManager != null)
         {
             conversationManager.RegisterMessage(currentCharacter, lineObj);
@@ -226,7 +288,7 @@ public class DialogueManager : MonoBehaviour
             yield break;
         }
 
-        if (useTypewriter && !line.isPlayer)
+        if (useTypewriter && !line.isPlayer && !line.isContinuation)
         {
             yield return StartCoroutine(TypewriterEffect(lineUI, line));
         }
@@ -246,6 +308,12 @@ public class DialogueManager : MonoBehaviour
 
         yield return StartCoroutine(ScrollToBottom());
         yield return new WaitForSeconds(0.05f);
+
+        // Show attached GameObject if enabled
+        if (line.showAttachedObject && line.attachedObjectPrefab != null)
+        {
+            StartCoroutine(ShowAttachedObject(line));
+        }
     }
 
     IEnumerator TypewriterEffect(DialogueLineUI lineUI, DialogueLine line)
@@ -367,7 +435,6 @@ public class DialogueManager : MonoBehaviour
         {
             GameObject lineObj = Instantiate(dialogueLinePrefab, dialogueContainer);
 
-            // Register player message
             if (conversationManager != null)
             {
                 conversationManager.RegisterMessage(currentCharacter, lineObj);
@@ -382,11 +449,10 @@ public class DialogueManager : MonoBehaviour
         }
 
         yield return StartCoroutine(ScrollToBottom());
+        yield return new WaitForSeconds(0.8f);
 
         if (!string.IsNullOrEmpty(choice.switchToCharacter))
         {
-            yield return new WaitForSeconds(0.5f);
-            // Let ConversationManager handle the switch
             if (conversationManager != null)
             {
                 conversationManager.SwitchToCharacter(choice.switchToCharacter);
@@ -394,7 +460,18 @@ public class DialogueManager : MonoBehaviour
         }
         else if (choice.nextNode != null)
         {
-            StartDialogue(choice.nextNode);
+            DialogueNode next = choice.nextNode;
+
+            if (next.npcLines == null || next.npcLines.Length == 0)
+            {
+                Debug.LogWarning($"Choice leading to node '{next.name}' which has no lines!");
+            }
+            else
+            {
+                Debug.Log($"Choice leading to node: {next.name}");
+            }
+
+            StartDialogue(next);
         }
     }
 
@@ -455,6 +532,13 @@ public class DialogueManager : MonoBehaviour
         }
         completedNodes.Clear();
         ClearChoices();
+        lastDialogueLineObj = null;
+
+        if (currentAttachedObject != null)
+        {
+            Destroy(currentAttachedObject);
+            currentAttachedObject = null;
+        }
     }
 
     public void TriggerConversation(string characterName, DialogueNode node, ConversationManager cm, bool forceRerun = false)
@@ -473,6 +557,31 @@ public class DialogueManager : MonoBehaviour
         {
             completedNodes.Add(node);
             StartDialogue(node);
+        }
+    }
+
+    IEnumerator ShowAttachedObject(DialogueLine line)
+    {
+        yield return new WaitForSeconds(line.attachedObjectDelay);
+
+        if (line.attachedObjectPrefab != null)
+        {
+            // Find Canvas to spawn under
+            Canvas canvas = FindObjectOfType<Canvas>();
+            Transform parent = canvas != null ? canvas.transform : null;
+
+            // Instantiate the prefab
+            GameObject spawnedObject = Instantiate(line.attachedObjectPrefab, parent);
+            spawnedObject.SetActive(true);
+
+            currentAttachedObject = spawnedObject;
+
+            Debug.Log($"Showing attached object: {spawnedObject.name}");
+
+            if (!line.destroyOnNextMessage)
+            {
+                currentAttachedObject = null;
+            }
         }
     }
 }

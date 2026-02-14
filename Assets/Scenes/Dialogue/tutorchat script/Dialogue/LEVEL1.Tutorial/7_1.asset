@@ -10,17 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: hacker_intro
+  m_Name: 7_1
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
-  - characterName: Hacker
-    dialogueText: It's soon.
-    textColor: {r: 1, g: 0, b: 0, a: 1}
+  - characterName: Handler
+    dialogueText: That's normal.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
-    messageSound: {fileID: 0}
-    delayAfter: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 2
     isContinuation: 0
     wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
   playerChoices: []
-  nextNode: {fileID: 0}
+  nextNode: {fileID: 11400000, guid: 33b7ea5f5b53cfe40a6446afb3e23d75, type: 2}
