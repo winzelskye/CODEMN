@@ -80,8 +80,8 @@ public class DialogueNode : ScriptableObject
 #if UNITY_EDITOR
     private void OnValidate()
     {
-        EditorUtility.SetDirty(this);
-        AssetDatabase.SaveAssets();
+        //EditorUtility.SetDirty(this);
+        //AssetDatabase.SaveAssets();
     }
 
     private void OnEnable()
