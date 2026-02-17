@@ -832,8 +832,13 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_AnchoredPosition: {x: -211, y: -75}
   m_SizeDelta: {x: 97.67, y: 12.09}
+=======
+  m_AnchoredPosition: {x: -73, y: -105}
+  m_SizeDelta: {x: 200, y: 50}
+>>>>>>> Stashed changes
 =======
   m_AnchoredPosition: {x: -73, y: -105}
   m_SizeDelta: {x: 200, y: 50}
@@ -887,11 +892,19 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_fontSize: 10
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
+=======
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+>>>>>>> Stashed changes
 =======
   m_fontSize: 20
   m_fontSizeBase: 20
@@ -1169,7 +1182,11 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_fontSize: 35.35
+=======
+  m_fontSize: 36.9
+>>>>>>> Stashed changes
 =======
   m_fontSize: 36.9
 >>>>>>> Stashed changes
@@ -3071,8 +3088,13 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 216, y: -75}
   m_SizeDelta: {x: 87.64, y: 21.95}
+=======
+  m_AnchoredPosition: {x: 352, y: -105}
+  m_SizeDelta: {x: 200, y: 50}
+>>>>>>> Stashed changes
 =======
   m_AnchoredPosition: {x: 352, y: -105}
   m_SizeDelta: {x: 200, y: 50}
@@ -3126,11 +3148,19 @@ MonoBehaviour:
     serializedVersion: 2
     rgba: 4294967295
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_fontSize: 10
   m_fontSizeBase: 10
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
+=======
+  m_fontSize: 20
+  m_fontSizeBase: 20
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+>>>>>>> Stashed changes
 =======
   m_fontSize: 20
   m_fontSizeBase: 20
@@ -3670,8 +3700,13 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_AnchoredPosition: {x: 0, y: -180}
   m_SizeDelta: {x: 303.38, y: 41.44}
+=======
+  m_AnchoredPosition: {x: 5.7e-14, y: -181}
+  m_SizeDelta: {x: 239.03, y: 43.28}
+>>>>>>> Stashed changes
 =======
   m_AnchoredPosition: {x: 5.7e-14, y: -181}
   m_SizeDelta: {x: 239.03, y: 43.28}

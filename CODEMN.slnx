@@ -61,6 +61,7 @@
   <Project Path="Unity.Mathematics.Editor.csproj" />
   <Project Path="Unity.VisualScripting.SettingsProvider.Editor.csproj" />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
   <Project Path="UnityEditor.UI.Analytics.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
@@ -72,6 +73,16 @@
 <<<<<<< Updated upstream
   <Project Path="Assembly-CSharp.csproj" />
 =======
+  <Project Path="Unity.2D.Aseprite.Common.csproj" />
+  <Project Path="Unity.CollabProxy.Editor.csproj" />
+>>>>>>> Stashed changes
+=======
+  <Project Path="UnityEditor.UI.Analytics.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="Unity.2D.Common.Runtime.csproj" />
+  <Project Path="Unity.InputSystem.TestFramework.csproj" />
+  <Project Path="Unity.ShaderGraph.Utilities.csproj" />
+  <Project Path="Unity.VisualScripting.Shared.Editor.csproj" />
   <Project Path="Unity.2D.Aseprite.Common.csproj" />
   <Project Path="Unity.CollabProxy.Editor.csproj" />
 >>>>>>> Stashed changes
