@@ -12,6 +12,7 @@ public class ContinueButton : MonoBehaviour
     public void OnContinueClick()
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         Debug.Log("Continue button clicked!");
         
 
@@ -22,6 +23,8 @@ public class ContinueButton : MonoBehaviour
         // Or load the last saved scene index
         // SceneManager.LoadScene(PlayerPrefs.GetInt("LastLevel", 1));
 =======
+=======
+>>>>>>> Stashed changes
         // Load saved game data
         if (DataPersistenceManager.instance != null)
         {
