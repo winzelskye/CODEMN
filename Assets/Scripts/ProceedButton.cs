@@ -8,7 +8,7 @@ public class ProceedButton : MonoBehaviour
     public GameObject confirmationDialog;
 
     // Name of the scene to load (e.g., "MainMenu", "NewGame", etc.)
-    public string sceneToLoad = "MainMenu";
+    public string sceneToLoad = "CODEMN(GAME)";
 
     // Alternative: use scene build index
     public int sceneIndex = 0;

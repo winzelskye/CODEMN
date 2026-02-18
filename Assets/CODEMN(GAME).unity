@@ -587,6 +587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee589ad18a8045842b9948cb9b0bdcdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
+  fadeCanvasPrefab: {fileID: 6722841442810743008, guid: 8feaef595f364c842a9d7fb64fa6a272, type: 3}
 --- !u!4 &409590082
 Transform:
   m_ObjectHideFlags: 0

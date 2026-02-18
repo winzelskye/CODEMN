@@ -137,6 +137,7 @@ GameObject:
   - component: {fileID: 232941802393098453}
   - component: {fileID: 1041293011244858450}
   - component: {fileID: 6171663732679401830}
+  - component: {fileID: 3581681904907657933}
   m_Layer: 0
   m_Name: SettingsPanel
   m_TagString: Untagged
@@ -167,7 +168,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.27978516, y: 0.019989014}
+  m_AnchoredPosition: {x: -0.27978516, y: 0.020019531}
   m_SizeDelta: {x: 2.6898804, y: 2.880005}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1041293011244858450
@@ -208,6 +209,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3581681904907657933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 642260840387123342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c06eea4c085db3498aeb4701f207d39, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PauseButtonHandler
 --- !u!1 &650819486480607313
 GameObject:
   m_ObjectHideFlags: 0
@@ -659,7 +672,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6193991775506028111}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3581681904907657933}
+        m_TargetAssemblyTypeName: PauseButtonHandler, Assembly-CSharp
+        m_MethodName: CloseSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!1 &1905524201514348845
 GameObject:
   m_ObjectHideFlags: 0

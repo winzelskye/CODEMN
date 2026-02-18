@@ -14,6 +14,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level Select.unity
     guid: 140a4b4632fd1ac4fb65725a6bdb9f52
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/tutorchat.unity
+    guid: 3b79198d61685f14eaa622cc1b3873e8
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/conversations/TutorialStart.unity
+    guid: 9af129cd9feb5154094794f7e3d17d1a
+  - enabled: 1
+    path: Assets/Scenes/Battles/BattleTemplate.unity
+    guid: 8608990096e3f904584a7a3ef4a3bae4
+  - enabled: 1
+    path: Assets/Scenes/Handler's shop/Shop.unity
+    guid: 6d99a5f5aff855d4fae447c9a5d08859
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
