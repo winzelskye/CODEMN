@@ -147,6 +147,7 @@ public class QuizManager : MonoBehaviour
             {
                 quizCanvas.SetActive(false);
                 quizActive = false;
+                BattleManager.Instance.OnPlayerAttackResult(true, false);
             }
             else
             {
@@ -245,6 +246,7 @@ public class QuizManager : MonoBehaviour
     void EndQuizByTimeout()
     {
         quizActive = false;
+        BattleManager.Instance.OnPlayerAttackResult(false, false);
 
         if (hideCanvasOnTimeout && quizCanvas != null)
         {

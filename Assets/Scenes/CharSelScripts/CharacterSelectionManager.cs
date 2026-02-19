@@ -1,58 +1,80 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelectionManager : MonoBehaviour
 {
     [Header("Character Selection")]
     [SerializeField] private Button estherButton;
     [SerializeField] private Button michaelButton;
+    [SerializeField] private Button confirmButton;
 
-    private const string SELECTED_CHARACTER_KEY = "SelectedCharacter";
+    [Header("Next Scene")]
+    [SerializeField] private string nextSceneName = "Level Select";
 
-    private void Start()
+    private string selectedCharacter = "Esther";
+
+    void Start()
     {
-        // Setup button listeners
+        // Auto-initialize managers if missing
+        if (DatabaseManager.Instance == null)
+        {
+            GameObject managers = new GameObject("Managers");
+            managers.AddComponent<DatabaseManager>();
+            managers.AddComponent<SaveLoadManager>();
+        }
+
         if (estherButton != null)
-            estherButton.onClick.AddListener(() => SelectCharacter("Esther"));
-
+            estherButton.onClick.AddListener(() => HighlightCharacter("Esther"));
         if (michaelButton != null)
-            michaelButton.onClick.AddListener(() => SelectCharacter("Michael"));
+            michaelButton.onClick.AddListener(() => HighlightCharacter("Michael"));
+        if (confirmButton != null)
+            confirmButton.onClick.AddListener(ConfirmSelection);
     }
 
-    public void SelectCharacter(string characterName)
+    private void HighlightCharacter(string characterName)
     {
-        // Save selected character to PlayerPrefs
-        PlayerPrefs.SetString(SELECTED_CHARACTER_KEY, characterName);
-        PlayerPrefs.Save();
-
-        Debug.Log($"Character selected: {characterName}");
-
-        // Optional: Load the next scene or notify other systems
-        // SceneManager.LoadScene("GameScene");
+        selectedCharacter = characterName;
+        Debug.Log($"Highlighted: {characterName}");
     }
 
-    /// <summary>
-    /// Get the currently selected character name
-    /// </summary>
+    private void ConfirmSelection()
+    {
+        if (DatabaseManager.Instance == null)
+        {
+            GameObject managers = new GameObject("Managers");
+            var dbManager = managers.AddComponent<DatabaseManager>();
+            managers.AddComponent<SaveLoadManager>();
+            dbManager.InitDB(); // Force initialize immediately
+        }
+        else if (DatabaseManager.Instance.db == null)
+        {
+            DatabaseManager.Instance.InitDB(); // Force initialize if db is null
+        }
+
+        SaveLoadManager.Instance.SavePlayer("Player", selectedCharacter, 1);
+        Debug.Log($"Confirmed: {selectedCharacter}");
+
+        SceneController sceneController = FindFirstObjectByType<SceneController>();
+        if (sceneController != null)
+            sceneController.ChangeScene(nextSceneName);
+        else
+            SceneManager.LoadScene(nextSceneName);
+    }
+
     public static string GetSelectedCharacter()
     {
-        return PlayerPrefs.GetString(SELECTED_CHARACTER_KEY, "Esther"); // Default to Esther
+        var player = SaveLoadManager.Instance.LoadPlayer();
+        return player != null ? player.selectedCharacter : "Esther";
     }
 
-    /// <summary>
-    /// Check if a specific character is selected
-    /// </summary>
     public static bool IsCharacterSelected(string characterName)
     {
         return GetSelectedCharacter() == characterName;
     }
 
-    /// <summary>
-    /// Clear the saved character selection
-    /// </summary>
     public static void ClearSelection()
     {
-        PlayerPrefs.DeleteKey(SELECTED_CHARACTER_KEY);
-        PlayerPrefs.Save();
+        SaveLoadManager.Instance.SavePlayer("Player", "Esther", 1);
     }
 }

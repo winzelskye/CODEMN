@@ -49,6 +49,7 @@ public class QuizValidator : MonoBehaviour
                 popupCanvas.SetActive(false);
             }
 
+            BattleManager.Instance.OnPlayerAttackResult(true, false);
             Debug.Log("Quiz completed correctly!");
         }
         else

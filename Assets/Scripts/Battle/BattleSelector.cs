@@ -4,9 +4,8 @@ using TMPro;
 
 public class BattleSelector : MonoBehaviour
 {
-    [SerializeField] private BattleSceneController battleController;
-    [SerializeField] private Transform buttonContainer; // Parent object for buttons
-    [SerializeField] private GameObject buttonPrefab; // Button prefab
+    [SerializeField] private Transform buttonContainer;
+    [SerializeField] private GameObject buttonPrefab;
 
     private void Start()
     {
@@ -15,48 +14,32 @@ public class BattleSelector : MonoBehaviour
 
     private void CreateBattleButtons()
     {
-        if (battleController == null)
-        {
-            Debug.LogError("❌ BattleSceneController not assigned!");
-            return;
-        }
+        var levels = SaveLoadManager.Instance.GetAllLevels();
 
-        int battleCount = battleController.GetBattleCount();
-
-        // Clear existing buttons
         foreach (Transform child in buttonContainer)
-        {
             Destroy(child.gameObject);
-        }
 
-        // Create button for each battle
-        for (int i = 0; i < battleCount; i++)
+        foreach (var level in levels)
         {
-            int battleIndex = i; // Capture index for closure
-
+            var levelRef = level;
             GameObject buttonObj = Instantiate(buttonPrefab, buttonContainer);
 
-            // Set button text
             TextMeshProUGUI buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
-            if (buttonText != null)
-            {
-                buttonText.text = $"Battle {i + 1}";
-            }
+            if (buttonText != null) buttonText.text = level.levelName;
 
-            // Add click listener
             Button button = buttonObj.GetComponent<Button>();
             if (button != null)
             {
-                button.onClick.AddListener(() => OnBattleButtonClicked(battleIndex));
+                button.interactable = level.isUnlocked == 1;
+                button.onClick.AddListener(() => OnLevelSelected(levelRef.id));
             }
         }
-
-        Debug.Log($"✅ Created {battleCount} battle buttons");
     }
 
-    private void OnBattleButtonClicked(int battleIndex)
+    private void OnLevelSelected(int levelId)
     {
-        Debug.Log($"🎮 Loading battle {battleIndex + 1}");
-        battleController.ChangeBattle(battleIndex);
+        BattleManager.Instance.currentLevelId = levelId;
+        Debug.Log($"Loading level {levelId}");
+        // Add scene loading here if needed
     }
 }
