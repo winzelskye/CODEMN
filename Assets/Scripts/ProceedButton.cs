@@ -62,6 +62,13 @@ public class ProceedButton : MonoBehaviour
         if (sceneController != null)
             sceneController.ChangeScene(sceneToLoad);
         else
+idk
             SceneManager.LoadScene(sceneToLoad);
+
+        {
+            // Load scene by name
+            SceneManager.LoadScene("CharacterSelect");
+        }
+main
     }
 }
