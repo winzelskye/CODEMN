@@ -11,17 +11,15 @@ public class PauseManager : MonoBehaviour
 
     [Header("Settings")]
     public GameObject settingsPrefab;
-    public string mainMenuSceneName = "MainMenu";
+    public string mainMenuSceneName = "CODEMN(GAME)";
 
     private bool isPaused = false;
     private GameObject settingsInstance;
 
     void Awake()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(gameObject);
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
     void Start()
@@ -36,18 +34,11 @@ public class PauseManager : MonoBehaviour
             if (isPaused)
             {
                 if (settingsInstance != null && settingsInstance.activeSelf)
-                {
                     CloseSettings();
-                }
                 else
-                {
                     ReturnToGame();
-                }
             }
-            else
-            {
-                Pause();
-            }
+            else Pause();
         }
     }
 
@@ -62,13 +53,11 @@ public class PauseManager : MonoBehaviour
     {
         isPaused = false;
         pauseMenuUI.SetActive(false);
-
         if (settingsInstance != null)
         {
             Destroy(settingsInstance);
             settingsInstance = null;
         }
-
         Time.timeScale = 1f;
     }
 
@@ -94,6 +83,10 @@ public class PauseManager : MonoBehaviour
     public void LoadMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainMenuSceneName);
+        SceneController sceneController = FindFirstObjectByType<SceneController>();
+        if (sceneController != null)
+            sceneController.ChangeScene(mainMenuSceneName);
+        else
+            SceneManager.LoadScene(mainMenuSceneName);
     }
 }

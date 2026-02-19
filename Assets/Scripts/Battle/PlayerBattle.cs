@@ -1,0 +1,58 @@
+using UnityEngine;
+using UnityEngine.UI;
+
+public class PlayerBattle : MonoBehaviour
+{
+    public float currentHealth = 0f;
+    public float bitpoints = 0f;
+    public float bitpointRate = 10f;
+    public bool specialReady = false;
+
+    public AttackData currentAttack;
+    public AttackData specialAttack;
+    private string characterName;
+
+    public Slider healthBar;
+    public Slider bitpointBar;
+
+    public void Setup(CharacterStats stats, string charName)
+    {
+        characterName = charName;
+        currentHealth = stats.health;
+        bitpointRate = stats.bitpointRate;
+        specialAttack = SaveLoadManager.Instance.GetSpecialAttack(characterName);
+
+        if (healthBar != null) { healthBar.minValue = 0; healthBar.maxValue = 100; healthBar.value = currentHealth; }
+        if (bitpointBar != null) { bitpointBar.minValue = 0; bitpointBar.maxValue = 100; bitpointBar.value = 0; }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        currentHealth += amount;
+        currentHealth = Mathf.Clamp(currentHealth, 0, 100);
+        if (healthBar != null) healthBar.value = currentHealth;
+    }
+
+    public void AddBitpoints(float amount)
+    {
+        bitpoints += amount;
+        bitpoints = Mathf.Clamp(bitpoints, 0, 100);
+        if (bitpointBar != null) bitpointBar.value = bitpoints;
+        if (bitpoints >= 100) specialReady = true;
+    }
+
+    public void UseAttack(AttackData attack)
+    {
+        currentAttack = attack;
+        // Hook your puzzle prefab here, then call BattleManager.Instance.OnPlayerAttackResult()
+    }
+
+    public void UseSpecial()
+    {
+        if (!specialReady) return;
+        bitpoints = 0;
+        specialReady = false;
+        if (bitpointBar != null) bitpointBar.value = 0;
+        BattleManager.Instance.OnPlayerAttackResult(true, true);
+    }
+}

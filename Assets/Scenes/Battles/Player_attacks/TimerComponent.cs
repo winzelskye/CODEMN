@@ -142,6 +142,8 @@ public class TimerComponent : MonoBehaviour
         {
             popupCanvas.SetActive(false);
         }
+
+        BattleManager.Instance.OnPlayerAttackResult(false, false);
         Debug.Log("Timer completed!");
     }
 
