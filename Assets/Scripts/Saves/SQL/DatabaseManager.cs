@@ -37,7 +37,7 @@ public class DatabaseManager : MonoBehaviour
         if (db.Table<LevelData>().Count() > 0) return;
         db.Insert(new CharacterStats { characterName = "Esther", health = 0, maxHealth = 100, attack = 15, defense = 10, speed = 5, bitpointRate = 10 });
         db.Insert(new CharacterStats { characterName = "Michael", health = 0, maxHealth = 100, attack = 10, defense = 15, speed = 7, bitpointRate = 8 });
-        db.Insert(new AttackData { attackName = "Basic Attack", damage = 10, unlockLevel = 1, isUnlocked = 1, isSpecial = 0, forCharacter = "both" });
+        db.Insert(new AttackData { attackName = "BorderTest", damage = 10, unlockLevel = 1, isUnlocked = 1, isSpecial = 0, forCharacter = "both" });
         db.Insert(new AttackData { attackName = "Power Strike", damage = 20, unlockLevel = 2, isUnlocked = 0, isSpecial = 0, forCharacter = "both" });
         db.Insert(new AttackData { attackName = "Cascadia", damage = 60, unlockLevel = 1, isUnlocked = 1, isSpecial = 1, forCharacter = "Esther" });
         db.Insert(new AttackData { attackName = "Stack Overflow", damage = 60, unlockLevel = 1, isUnlocked = 1, isSpecial = 1, forCharacter = "Michael" });

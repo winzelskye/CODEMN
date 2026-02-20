@@ -7,7 +7,6 @@ public class PlayerBattle : MonoBehaviour
     public float bitpoints = 0f;
     public float bitpointRate = 10f;
     public bool specialReady = false;
-
     public AttackData currentAttack;
     public AttackData specialAttack;
     private string characterName;
@@ -15,12 +14,20 @@ public class PlayerBattle : MonoBehaviour
     public Slider healthBar;
     public Slider bitpointBar;
 
+    [Header("Character Sprites")]
+    public GameObject estherSprite;
+    public GameObject michaelSprite;
+
     public void Setup(CharacterStats stats, string charName)
     {
         characterName = charName;
         currentHealth = stats.health;
         bitpointRate = stats.bitpointRate;
         specialAttack = SaveLoadManager.Instance.GetSpecialAttack(characterName);
+
+        // Show correct character sprite
+        if (estherSprite != null) estherSprite.SetActive(charName == "Esther");
+        if (michaelSprite != null) michaelSprite.SetActive(charName == "Michael");
 
         if (healthBar != null) { healthBar.minValue = 0; healthBar.maxValue = 100; healthBar.value = currentHealth; }
         if (bitpointBar != null) { bitpointBar.minValue = 0; bitpointBar.maxValue = 100; bitpointBar.value = 0; }
@@ -44,7 +51,6 @@ public class PlayerBattle : MonoBehaviour
     public void UseAttack(AttackData attack)
     {
         currentAttack = attack;
-        // Hook your puzzle prefab here, then call BattleManager.Instance.OnPlayerAttackResult()
     }
 
     public void UseSpecial()

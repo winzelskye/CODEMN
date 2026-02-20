@@ -12,7 +12,7 @@ TagManager:
   - Water
   - UI
   - menu
-  - 
+  - Prefabs
   - 
   - 
   - 
@@ -46,6 +46,9 @@ TagManager:
     locked: 0
   - name: ui
     uniqueID: 3365742015
+    locked: 0
+  - name: Prefabs
+    uniqueID: 3996511845
     locked: 0
   - name: border
     uniqueID: 2128163375
