@@ -833,19 +833,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: -828, y: -291.28}
-  m_SizeDelta: {x: 164.21, y: 58.335}
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-  m_AnchoredPosition: {x: -201, y: -72}
-  m_SizeDelta: {x: 76.54, y: 29.82}
->>>>>>> Stashed changes
+  m_AnchoredPosition: {x: -847, y: -297}
+  m_SizeDelta: {x: 169.18, y: 55.39}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &263525553
 MonoBehaviour:
@@ -869,8 +858,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Esther
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -894,30 +883,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  m_fontSize: 52.2
-  m_fontSizeBase: 36
-=======
-  m_fontSize: 15
-  m_fontSizeBase: 15
->>>>>>> Stashed changes
-=======
-  m_fontSize: 15
-  m_fontSizeBase: 15
->>>>>>> Stashed changes
-=======
-  m_fontSize: 15
-  m_fontSizeBase: 15
->>>>>>> Stashed changes
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 0
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_fontStyle: 1
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -1183,7 +1157,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 140.45
+  m_fontSize: 166.05
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2883,20 +2857,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: 838, y: -295.66}
-=======
-  m_AnchoredPosition: {x: 203, y: -72}
->>>>>>> Stashed changes
-=======
-  m_AnchoredPosition: {x: 203, y: -72}
->>>>>>> Stashed changes
-=======
-  m_AnchoredPosition: {x: 203, y: -72}
->>>>>>> Stashed changes
-  m_SizeDelta: {x: 164.21, y: 67.09}
+  m_AnchoredPosition: {x: 861, y: -297}
+  m_SizeDelta: {x: 214.38, y: 68.86}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1204508486
 MonoBehaviour:
@@ -2920,8 +2882,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Michael
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 2e498d1c8094910479dc3e1b768306a4, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
+  m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2945,30 +2907,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  m_fontSize: 47.5
-  m_fontSizeBase: 36
-=======
-  m_fontSize: 15
-  m_fontSizeBase: 15
->>>>>>> Stashed changes
-=======
-  m_fontSize: 15
-  m_fontSizeBase: 15
->>>>>>> Stashed changes
-=======
-  m_fontSize: 15
-  m_fontSizeBase: 15
->>>>>>> Stashed changes
+  m_fontSize: 52
+  m_fontSizeBase: 52
   m_fontWeight: 400
-  m_enableAutoSizing: 1
-  m_fontSizeMin: 0
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 2
-  m_VerticalAlignment: 512
+  m_fontStyle: 1
+  m_HorizontalAlignment: 1
+  m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -2999,7 +2946,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: -3.7531433, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3496,19 +3443,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-  m_AnchoredPosition: {x: 0, y: -620.83}
-  m_SizeDelta: {x: 396.17, y: 198.34}
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-  m_AnchoredPosition: {x: 0, y: -163}
-  m_SizeDelta: {x: 257.41, y: 48.455}
->>>>>>> Stashed changes
+  m_AnchoredPosition: {x: 44.26, y: -551}
+  m_SizeDelta: {x: 468.29, y: 195.22}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1583746770
 MonoBehaviour:
