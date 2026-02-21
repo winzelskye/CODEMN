@@ -3,8 +3,7 @@ using UnityEngine;
 public class DragBoundary : MonoBehaviour
 {
     [SerializeField] private RectTransform boundary;
-    [SerializeField] private float padding = 50f;
-
+    [SerializeField] private float padding = 1f;
     private RectTransform rectTransform;
     private Canvas canvas;
 
@@ -16,11 +15,9 @@ public class DragBoundary : MonoBehaviour
 
     void LateUpdate()
     {
-        // Only apply when this specific object is being dragged
+        if (canvas == null) return;
         if (rectTransform.parent == canvas.transform)
-        {
             ApplyBoundary();
-        }
     }
 
     private void ApplyBoundary()
@@ -28,7 +25,6 @@ public class DragBoundary : MonoBehaviour
         if (boundary == null) return;
 
         Vector2 pos = rectTransform.anchoredPosition;
-
         float minX = boundary.anchoredPosition.x - boundary.rect.width / 2 + padding;
         float maxX = boundary.anchoredPosition.x + boundary.rect.width / 2 - padding;
         float minY = boundary.anchoredPosition.y - boundary.rect.height / 2 + padding;
@@ -36,7 +32,6 @@ public class DragBoundary : MonoBehaviour
 
         pos.x = Mathf.Clamp(pos.x, minX, maxX);
         pos.y = Mathf.Clamp(pos.y, minY, maxY);
-
         rectTransform.anchoredPosition = pos;
     }
 }
