@@ -6,8 +6,10 @@ public class AttackListManager : MonoBehaviour
     [Header("Attacks")]
     public List<AttackPrefabEntry> attacks = new List<AttackPrefabEntry>();
 
-    [Header("Battle UI to hide")]
-    public GameObject battleUI;
+    [Header("Player Action Buttons")]
+    public GameObject fightButtons;
+    public GameObject skillsButtons;
+    public GameObject itemsButtons;
 
     private List<AttackData> availableAttacks;
 
@@ -47,14 +49,9 @@ public class AttackListManager : MonoBehaviour
         AttackData attack = availableAttacks[index];
         BattleManager.Instance.player.UseAttack(attack);
 
-        // Hide all attacks first
         foreach (var a in attacks)
             if (a.attackObject != null) a.attackObject.SetActive(false);
 
-        // Hide battle UI
-        if (battleUI != null) battleUI.SetActive(false);
-
-        // Show selected attack
         if (attacks[index].attackObject != null)
             attacks[index].attackObject.SetActive(true);
 
@@ -63,6 +60,8 @@ public class AttackListManager : MonoBehaviour
 
     public void ShowBattleUI()
     {
-        if (battleUI != null) battleUI.SetActive(true);
+        if (fightButtons != null) fightButtons.SetActive(true);
+        if (skillsButtons != null) skillsButtons.SetActive(true);
+        if (itemsButtons != null) itemsButtons.SetActive(true);
     }
 }
