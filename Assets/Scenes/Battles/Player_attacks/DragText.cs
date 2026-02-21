@@ -7,32 +7,34 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private RectTransform rectTransform;
     private Canvas canvas;
     private Vector2 offset;
-    private Vector2 originalPosition; // Store original position
-    private Transform originalParent; // Store original parent
-    private int originalSiblingIndex; // Store original sibling index
+    private Vector2 originalPosition;
+    private Transform originalParent;
+    private int originalSiblingIndex;
 
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
         canvasGroup = GetComponent<CanvasGroup>();
+        if (canvasGroup == null)
+            canvasGroup = gameObject.AddComponent<CanvasGroup>();
         canvas = GetComponentInParent<Canvas>();
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
-        // Store the original position and parent before dragging
+        canvas = GetComponentInParent<Canvas>();
+        if (canvas == null) return;
+
         originalPosition = rectTransform.anchoredPosition;
         originalParent = rectTransform.parent;
         originalSiblingIndex = rectTransform.GetSiblingIndex();
 
-        canvasGroup.alpha = 0.8f; // Make the item slightly transparent while dragging
-        canvasGroup.blocksRaycasts = false; // Allow raycasts to pass through the item
+        canvasGroup.alpha = 0.8f;
+        canvasGroup.blocksRaycasts = false;
 
-        // Move to canvas root so it appears above everything
         rectTransform.SetParent(canvas.transform);
-        rectTransform.SetAsLastSibling(); // Bring to front
+        rectTransform.SetAsLastSibling();
 
-        // Calculate offset between mouse position and object position
         Vector2 mousePos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
@@ -44,7 +46,8 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnDrag(PointerEventData eventData)
     {
-        // Convert screen position to canvas position and apply offset
+        if (canvas == null) return;
+
         Vector2 mousePos;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
@@ -56,19 +59,19 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        canvasGroup.alpha = 1f; // Restore the item's opacity
-        canvasGroup.blocksRaycasts = true; // Re-enable raycasts
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
 
-        // If not dropped in a valid drop zone, return to original parent and position
         if (rectTransform.parent == canvas.transform)
         {
             rectTransform.SetParent(originalParent);
             rectTransform.SetSiblingIndex(originalSiblingIndex);
             rectTransform.anchoredPosition = originalPosition;
         }
+
+        transform.SetAsLastSibling();
     }
 
-    // Method to return to original position
     public void ReturnToOriginalPosition()
     {
         if (originalParent != null)
@@ -77,5 +80,12 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             rectTransform.SetSiblingIndex(originalSiblingIndex);
         }
         rectTransform.anchoredPosition = originalPosition;
+    }
+
+    public void ResetOriginalPosition(Transform newParent, Vector2 newPosition)
+    {
+        originalParent = newParent;
+        originalPosition = newPosition;
+        originalSiblingIndex = rectTransform.GetSiblingIndex();
     }
 }

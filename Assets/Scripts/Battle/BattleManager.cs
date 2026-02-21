@@ -11,6 +11,9 @@ public class BattleManager : MonoBehaviour
     public EnemyBattle enemy;
     public SimpleTextController dialogueController;
 
+    [Header("Game Over")]
+    public GameOverManager gameOverManager;
+
     void Awake()
     {
         if (Instance == null) Instance = this;
@@ -58,14 +61,22 @@ public class BattleManager : MonoBehaviour
     {
         if (success)
         {
-            // Deal damage to enemy
             int damage = isSpecial ? player.specialAttack.damage : player.currentAttack.damage;
-            enemy.TakeDamage(damage);
 
-            // Add bitpoints on success
+            if (damage < 0)
+            {
+                // Negative damage = healing
+                player.TakeDamage(damage);
+                Debug.Log($"Player healed! HP: {player.currentHealth}");
+            }
+            else
+            {
+                // Normal attack
+                enemy.TakeDamage(damage);
+                Debug.Log($"Player hit! Damage: {damage}, Bitpoints: {player.bitpoints}");
+            }
+
             player.AddBitpoints(player.bitpointRate);
-
-            Debug.Log($"Player hit! Damage: {damage}, Bitpoints: {player.bitpoints}");
 
             if (dialogueController != null)
             {
@@ -73,7 +84,6 @@ public class BattleManager : MonoBehaviour
                 dialogueController.SetCondition("Hit", true);
             }
 
-            // Check win condition
             if (enemy.currentHealth >= 100)
             {
                 WinBattle();
@@ -87,7 +97,6 @@ public class BattleManager : MonoBehaviour
                 dialogueController.ClearAllConditions();
         }
 
-        // Enemy attacks after player turn
         state = BattleState.EnemyTurn;
         Invoke(nameof(EnemyTurn), 2f);
     }
@@ -118,6 +127,7 @@ public class BattleManager : MonoBehaviour
         SaveLoadManager.Instance.SaveBattleResult(currentLevelId, true);
         SaveLoadManager.Instance.CompleteLevel(currentLevelId);
         Debug.Log("=== YOU WIN! ===");
+        if (gameOverManager != null) gameOverManager.ShowWin();
     }
 
     void LoseBattle()
@@ -125,5 +135,6 @@ public class BattleManager : MonoBehaviour
         state = BattleState.Lost;
         SaveLoadManager.Instance.SaveBattleResult(currentLevelId, false);
         Debug.Log("=== YOU LOSE! ===");
+        if (gameOverManager != null) gameOverManager.ShowLose();
     }
 }

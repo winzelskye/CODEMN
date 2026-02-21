@@ -27,6 +27,15 @@ public class TimerComponent : MonoBehaviour
     void Start()
     {
         currentTime = countUp ? 0 : startTime;
+        isRunning = true;
+        UpdateTimerDisplay();
+    }
+
+    void OnEnable()
+    {
+        currentTime = countUp ? 0 : startTime;
+        isRunning = true;
+        preventReset = false;
         UpdateTimerDisplay();
     }
 
