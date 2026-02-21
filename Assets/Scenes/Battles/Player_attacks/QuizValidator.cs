@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
 
 [System.Serializable]
@@ -28,45 +29,45 @@ public class QuizValidator : MonoBehaviour
     private void Start()
     {
         if (doneButton != null)
-        {
             doneButton.onClick.AddListener(OnDoneClicked);
-        }
 
-        // Try to auto-find TimerComponent if not assigned
         if (timerComponent == null && popupCanvas != null)
-        {
             timerComponent = popupCanvas.GetComponentInChildren<TimerComponent>();
-        }
+    }
+
+    private void OnEnable()
+    {
+        if (scatterScript != null)
+            scatterScript.ScatterObjects();
     }
 
     private void OnDoneClicked()
     {
+        StartCoroutine(CheckWithDelay());
+    }
+
+    private IEnumerator CheckWithDelay()
+    {
+        yield return new WaitForEndOfFrame();
+
         if (CheckAllCorrect())
         {
-            // All correct - hide the popup
             if (popupCanvas != null)
-            {
                 popupCanvas.SetActive(false);
-            }
 
+            FindFirstObjectByType<AttackListManager>()?.ShowBattleUI();
             BattleManager.Instance.OnPlayerAttackResult(true, false);
             Debug.Log("Quiz completed correctly!");
         }
         else
         {
-            // Wrong answer - apply time penalty FIRST
             if (timerComponent != null)
-            {
                 timerComponent.ApplyTimePenalty(timePenalty);
-            }
 
-            // THEN scatter all objects
             if (scatterScript != null)
-            {
                 scatterScript.ScatterObjects();
-            }
 
-            Debug.Log("Incorrect! Time penalty applied and objects scattered.");
+            Debug.Log("Incorrect! Time penalty applied.");
         }
     }
 
@@ -77,19 +78,21 @@ public class QuizValidator : MonoBehaviour
             if (answer.dropZone == null || answer.correctItem == null)
                 continue;
 
-            // Check if the correct item is a child of this drop zone
-            Transform itemParent = answer.correctItem.transform.parent;
-            if (itemParent != answer.dropZone)
+            Transform parent = answer.correctItem.transform.parent;
+            bool found = false;
+            while (parent != null)
             {
-                return false;
+                if (parent == answer.dropZone)
+                {
+                    found = true;
+                    break;
+                }
+                parent = parent.parent;
             }
-        }
 
-        // Check if any drop zones are empty
-        foreach (DropZoneAnswer answer in answers)
-        {
-            if (answer.dropZone != null && answer.dropZone.childCount == 0)
+            if (!found)
             {
+                Debug.Log($"FAILED: {answer.correctItem.name} parent is {answer.correctItem.transform.parent?.name}, expected under {answer.dropZone.name}");
                 return false;
             }
         }
@@ -100,8 +103,6 @@ public class QuizValidator : MonoBehaviour
     private void OnDestroy()
     {
         if (doneButton != null)
-        {
             doneButton.onClick.RemoveListener(OnDoneClicked);
-        }
     }
 }

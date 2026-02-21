@@ -5,13 +5,11 @@ public enum BattleState { Start, PlayerTurn, EnemyTurn, Won, Lost }
 public class BattleManager : MonoBehaviour
 {
     public static BattleManager Instance;
-
     public BattleState state;
     public int currentLevelId = 1;
-
     public PlayerBattle player;
     public EnemyBattle enemy;
-    public SimpleTextController dialogueController; // ← changed this
+    public SimpleTextController dialogueController;
 
     void Awake()
     {
@@ -29,15 +27,22 @@ public class BattleManager : MonoBehaviour
         state = BattleState.Start;
 
         var enemyData = SaveLoadManager.Instance.GetEnemyForLevel(currentLevelId);
+        if (enemyData == null) { Debug.LogError($"No enemy found for level {currentLevelId}!"); return; }
         enemy.Setup(enemyData);
 
         var playerData = SaveLoadManager.Instance.LoadPlayer();
+        if (playerData == null) { Debug.LogError("No player data found!"); return; }
+
         var stats = SaveLoadManager.Instance.LoadCharacterStats(playerData.selectedCharacter);
+        if (stats == null) { Debug.LogError($"No stats found for {playerData.selectedCharacter}!"); return; }
+
         player.Setup(stats, playerData.selectedCharacter);
 
-        // Set condition and start dialogue
-        dialogueController.SetCondition("TurnStart", true);
-        dialogueController.StartMessages();
+        if (dialogueController != null)
+        {
+            dialogueController.SetCondition("TurnStart", true);
+            dialogueController.StartMessages();
+        }
 
         Invoke(nameof(PlayerTurn), 3f);
     }
@@ -45,45 +50,66 @@ public class BattleManager : MonoBehaviour
     public void PlayerTurn()
     {
         state = BattleState.PlayerTurn;
-        dialogueController.SetCondition("TurnStart", true);
+        if (dialogueController != null)
+            dialogueController.SetCondition("TurnStart", true);
     }
 
     public void OnPlayerAttackResult(bool success, bool isSpecial)
     {
         if (success)
         {
+            // Deal damage to enemy
             int damage = isSpecial ? player.specialAttack.damage : player.currentAttack.damage;
             enemy.TakeDamage(damage);
 
-            dialogueController.ClearAllConditions();
-            dialogueController.SetCondition("Hit", true);
+            // Add bitpoints on success
+            player.AddBitpoints(player.bitpointRate);
+
+            Debug.Log($"Player hit! Damage: {damage}, Bitpoints: {player.bitpoints}");
+
+            if (dialogueController != null)
+            {
+                dialogueController.ClearAllConditions();
+                dialogueController.SetCondition("Hit", true);
+            }
+
+            // Check win condition
+            if (enemy.currentHealth >= 100)
+            {
+                WinBattle();
+                return;
+            }
         }
         else
         {
-            dialogueController.ClearAllConditions();
+            Debug.Log("Player missed! Enemy turn.");
+            if (dialogueController != null)
+                dialogueController.ClearAllConditions();
         }
 
-        if (enemy.currentHealth >= 100)
-            WinBattle();
-        else
-        {
-            state = BattleState.EnemyTurn;
-            Invoke(nameof(EnemyTurn), 2f);
-        }
+        // Enemy attacks after player turn
+        state = BattleState.EnemyTurn;
+        Invoke(nameof(EnemyTurn), 2f);
     }
 
     void EnemyTurn()
     {
         enemy.Attack(player);
+        Debug.Log($"Enemy attacked! Player HP: {player.currentHealth}");
 
-        // Check low health
-        if (player.currentHealth >= 75)
-            dialogueController.SetCondition("LowHealth", true);
+        if (dialogueController != null)
+        {
+            if (player.currentHealth >= 75)
+                dialogueController.SetCondition("LowHealth", true);
+        }
 
         if (player.currentHealth >= 100)
+        {
             LoseBattle();
-        else
-            Invoke(nameof(PlayerTurn), 1.5f);
+            return;
+        }
+
+        Invoke(nameof(PlayerTurn), 1.5f);
     }
 
     void WinBattle()
@@ -91,13 +117,13 @@ public class BattleManager : MonoBehaviour
         state = BattleState.Won;
         SaveLoadManager.Instance.SaveBattleResult(currentLevelId, true);
         SaveLoadManager.Instance.CompleteLevel(currentLevelId);
-        Debug.Log("You Win!");
+        Debug.Log("=== YOU WIN! ===");
     }
 
     void LoseBattle()
     {
         state = BattleState.Lost;
         SaveLoadManager.Instance.SaveBattleResult(currentLevelId, false);
-        Debug.Log("You Lose!");
+        Debug.Log("=== YOU LOSE! ===");
     }
 }

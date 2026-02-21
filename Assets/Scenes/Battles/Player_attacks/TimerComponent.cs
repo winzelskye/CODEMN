@@ -20,9 +20,6 @@ public class TimerComponent : MonoBehaviour
     [SerializeField] private float warningThreshold = 10f;
     [SerializeField] private float dangerThreshold = 5f;
 
-    [Header("Scatter Reference")]
-    [SerializeField] private ScatterDragObjects scatterScript;
-
     private float currentTime;
     private bool isRunning = true;
     private bool preventReset = false;
@@ -31,11 +28,6 @@ public class TimerComponent : MonoBehaviour
     {
         currentTime = countUp ? 0 : startTime;
         UpdateTimerDisplay();
-
-        if (resetButton != null)
-        {
-            resetButton.onClick.AddListener(ResetTimer);
-        }
     }
 
     void Update()
@@ -79,46 +71,28 @@ public class TimerComponent : MonoBehaviour
         }
     }
 
-    public void StartTimer()
-    {
-        isRunning = true;
-    }
-
-    public void StopTimer()
-    {
-        isRunning = false;
-    }
+    public void StartTimer() { isRunning = true; }
+    public void StopTimer() { isRunning = false; }
 
     public void ResetTimer()
     {
-        // Block reset if we're applying a penalty
         if (preventReset)
         {
-            Debug.Log("ResetTimer BLOCKED - penalty in progress");
+            Debug.Log("ResetTimer BLOCKED");
             return;
         }
-
-        Debug.Log("ResetTimer executed");
-        currentTime = countUp ? 0 : startTime;
         isRunning = true;
         UpdateTimerDisplay();
-
-        // Scatter objects when timer resets
-        if (scatterScript != null)
-        {
-            scatterScript.ScatterObjects();
-        }
     }
 
     public void ApplyTimePenalty(float penalty)
     {
-        preventReset = true; // Block any ResetTimer calls
+        preventReset = true;
 
         Debug.Log($"Penalty applied: {currentTime} -> {currentTime - penalty}");
         currentTime = Mathf.Max(0, currentTime - penalty);
         UpdateTimerDisplay();
 
-        // Check if penalty brought timer to 0
         if (!countUp && currentTime <= 0)
         {
             currentTime = 0;
@@ -126,8 +100,7 @@ public class TimerComponent : MonoBehaviour
             OnTimerComplete();
         }
 
-        // Use Invoke to unblock reset after a short delay (to ensure scatter completes)
-        Invoke(nameof(UnblockReset), 0.1f);
+        Invoke(nameof(UnblockReset), 0.5f);
     }
 
     private void UnblockReset()
@@ -139,29 +112,19 @@ public class TimerComponent : MonoBehaviour
     private void OnTimerComplete()
     {
         if (popupCanvas != null)
-        {
             popupCanvas.SetActive(false);
-        }
 
+        FindFirstObjectByType<AttackListManager>()?.ShowBattleUI();
         BattleManager.Instance.OnPlayerAttackResult(false, false);
         Debug.Log("Timer completed!");
     }
 
-    public float GetCurrentTime()
-    {
-        return currentTime;
-    }
-
-    public bool IsRunning()
-    {
-        return isRunning;
-    }
+    public float GetCurrentTime() { return currentTime; }
+    public bool IsRunning() { return isRunning; }
 
     private void OnDestroy()
     {
         if (resetButton != null)
-        {
             resetButton.onClick.RemoveListener(ResetTimer);
-        }
     }
 }
