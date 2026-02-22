@@ -21,9 +21,10 @@ public class AttackListManager : MonoBehaviour
     void LoadAttacks()
     {
         var player = SaveLoadManager.Instance.LoadPlayer();
-        if (player == null) return;
+        if (player == null) { Debug.LogError("No player found!"); return; }
 
         availableAttacks = SaveLoadManager.Instance.GetNormalAttacks(player.selectedCharacter);
+        Debug.Log($"Found {availableAttacks.Count} attacks for {player.selectedCharacter}");
 
         for (int i = 0; i < attacks.Count; i++)
         {

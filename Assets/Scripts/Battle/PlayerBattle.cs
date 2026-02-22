@@ -10,7 +10,6 @@ public class PlayerBattle : MonoBehaviour
     public AttackData currentAttack;
     public AttackData specialAttack;
     private string characterName;
-
     public Slider healthBar;
     public Slider bitpointBar;
 
@@ -25,7 +24,6 @@ public class PlayerBattle : MonoBehaviour
         bitpointRate = stats.bitpointRate;
         specialAttack = SaveLoadManager.Instance.GetSpecialAttack(characterName);
 
-        // Show correct character sprite
         if (estherSprite != null) estherSprite.SetActive(charName == "Esther");
         if (michaelSprite != null) michaelSprite.SetActive(charName == "Michael");
 
@@ -35,9 +33,11 @@ public class PlayerBattle : MonoBehaviour
 
     public void TakeDamage(int amount)
     {
+        Debug.Log($"TakeDamage called! Amount: {amount}, Before: {currentHealth}");
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, 100);
         if (healthBar != null) healthBar.value = currentHealth;
+        Debug.Log($"After: {currentHealth}, Bar value: {healthBar?.value}");
     }
 
     public void AddBitpoints(float amount)

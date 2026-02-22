@@ -17,7 +17,7 @@ public class GameOverManager : MonoBehaviour
     public string levelSelectScene = "Level Select";
     public string mainMenuScene = "CODEMN(GAME)";
 
-    void Start()
+    void Awake()
     {
         if (proceedButton != null)
             proceedButton.onClick.AddListener(Proceed);
@@ -26,15 +26,7 @@ public class GameOverManager : MonoBehaviour
         if (mainMenuButton != null)
             mainMenuButton.onClick.AddListener(GoToMainMenu);
 
-        // Hide both panels by default
         if (winPanel != null) winPanel.SetActive(false);
-        if (losePanel != null) losePanel.SetActive(false);
-    }
-
-    public void ShowWin()
-    {
-        gameObject.SetActive(true);
-        if (winPanel != null) winPanel.SetActive(true);
         if (losePanel != null) losePanel.SetActive(false);
     }
 
@@ -43,6 +35,13 @@ public class GameOverManager : MonoBehaviour
         gameObject.SetActive(true);
         if (losePanel != null) losePanel.SetActive(true);
         if (winPanel != null) winPanel.SetActive(false);
+    }
+
+    public void ShowWin()
+    {
+        gameObject.SetActive(true);
+        if (winPanel != null) winPanel.SetActive(true);
+        if (losePanel != null) losePanel.SetActive(false);
     }
 
     void Proceed()

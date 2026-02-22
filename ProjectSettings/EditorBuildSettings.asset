@@ -14,7 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Level Select.unity
     guid: 140a4b4632fd1ac4fb65725a6bdb9f52
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dialogue/tutorchat.unity
     guid: 3b79198d61685f14eaa622cc1b3873e8
   - enabled: 1
