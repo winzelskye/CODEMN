@@ -84,6 +84,8 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void ResetOriginalPosition(Transform newParent, Vector2 newPosition)
     {
+        if (rectTransform == null)
+            rectTransform = GetComponent<RectTransform>();
         originalParent = newParent;
         originalPosition = newPosition;
         originalSiblingIndex = rectTransform.GetSiblingIndex();

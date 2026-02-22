@@ -26,7 +26,7 @@ public class QuizManager : MonoBehaviour
     [Header("Timer Settings")]
     public float totalQuizTime = 60f;
     public bool hideCanvasOnTimeout = true;
-    public float timePenaltyForWrongAnswer = 5f; // New: Time penalty in seconds
+    public float timePenaltyForWrongAnswer = 5f;
 
     [Header("Questions")]
     public List<QuizQuestion> questions = new List<QuizQuestion>();
@@ -36,8 +36,8 @@ public class QuizManager : MonoBehaviour
     public bool caseSensitiveAnswers = false;
     public float feedbackDisplayTime = 1.5f;
     public KeyCode submitKey = KeyCode.Return;
-    public bool hideCanvasOnCorrectAnswer = true; // New: Hide canvas when answer is correct
-    public bool stayOnQuestionUntilCorrect = true; // New: Don't move to next question if wrong
+    public bool hideCanvasOnCorrectAnswer = true;
+    public bool stayOnQuestionUntilCorrect = true;
 
     private List<QuizQuestion> currentQuestions;
     private int currentQuestionIndex;
@@ -46,16 +46,16 @@ public class QuizManager : MonoBehaviour
     private bool quizActive;
     private bool waitingForNextQuestion;
 
-    void Start()
+    void OnEnable()
     {
-        StartQuiz();
+        // Reset and restart every time the prefab is activated
+        RestartQuiz();
     }
 
     void Update()
     {
         if (!quizActive) return;
 
-        // Timer countdown
         timeRemaining -= Time.deltaTime;
         UpdateTimerDisplay();
 
@@ -65,11 +65,8 @@ public class QuizManager : MonoBehaviour
             return;
         }
 
-        // Submit answer with Enter key
         if (Input.GetKeyDown(submitKey) && !waitingForNextQuestion)
-        {
             SubmitAnswer();
-        }
     }
 
     public void StartQuiz()
@@ -89,7 +86,6 @@ public class QuizManager : MonoBehaviour
         if (quizCanvas != null)
             quizCanvas.SetActive(true);
 
-        // Setup questions
         if (randomizeQuestions)
             currentQuestions = questions.OrderBy(x => Random.value).ToList();
         else
@@ -114,6 +110,7 @@ public class QuizManager : MonoBehaviour
         if (answerInputField != null)
         {
             answerInputField.text = "";
+            answerInputField.interactable = true;
             answerInputField.ActivateInputField();
         }
 
@@ -132,7 +129,6 @@ public class QuizManager : MonoBehaviour
         QuizQuestion q = currentQuestions[currentQuestionIndex];
         string correctAnswer = q.correctAnswer;
 
-        // Check answer
         bool isCorrect = caseSensitiveAnswers
             ? userAnswer == correctAnswer
             : userAnswer.Equals(correctAnswer, System.StringComparison.OrdinalIgnoreCase);
@@ -141,25 +137,19 @@ public class QuizManager : MonoBehaviour
         {
             score++;
             ShowFeedback("Correct!", Color.green);
+            quizActive = false;
 
-            // Hide canvas on correct answer
             if (hideCanvasOnCorrectAnswer && quizCanvas != null)
-            {
                 quizCanvas.SetActive(false);
-                quizActive = false;
-                BattleManager.Instance.OnPlayerAttackResult(true, false);
-            }
-            else
-            {
-                UpdateScoreDisplay();
-                waitingForNextQuestion = true;
-                answerInputField.interactable = false;
-                Invoke(nameof(NextQuestion), feedbackDisplayTime);
-            }
+
+            // Show battle UI and notify BattleManager
+            FindFirstObjectByType<AttackListManager>()?.ShowBattleUI();
+            FindFirstObjectByType<SkillListManager>()?.ShowBattleUI();
+            BattleManager.Instance.OnPlayerAttackResult(true, false);
         }
         else
         {
-            // Apply time penalty for wrong answer
+            // Apply time penalty
             timeRemaining -= timePenaltyForWrongAnswer;
             if (timeRemaining < 0) timeRemaining = 0;
 
@@ -167,14 +157,12 @@ public class QuizManager : MonoBehaviour
 
             if (stayOnQuestionUntilCorrect)
             {
-                // Stay on same question - just clear the input and let them try again
                 waitingForNextQuestion = true;
                 answerInputField.interactable = false;
                 Invoke(nameof(RetryQuestion), feedbackDisplayTime);
             }
             else
             {
-                // Move to next question even if wrong
                 UpdateScoreDisplay();
                 waitingForNextQuestion = true;
                 answerInputField.interactable = false;
@@ -194,7 +182,6 @@ public class QuizManager : MonoBehaviour
 
     void RetryQuestion()
     {
-        // Clear input and let player try the same question again
         waitingForNextQuestion = false;
 
         if (answerInputField != null)
@@ -233,7 +220,6 @@ public class QuizManager : MonoBehaviour
             int seconds = Mathf.FloorToInt(timeRemaining % 60);
             timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
 
-            // Change color when time is low
             if (timeRemaining <= 10f)
                 timerText.color = Color.red;
             else if (timeRemaining <= 30f)
@@ -246,22 +232,22 @@ public class QuizManager : MonoBehaviour
     void EndQuizByTimeout()
     {
         quizActive = false;
-        BattleManager.Instance.OnPlayerAttackResult(false, false);
 
         if (hideCanvasOnTimeout && quizCanvas != null)
-        {
             quizCanvas.SetActive(false);
-        }
         else
         {
             if (questionText != null)
                 questionText.text = "Time's Up!";
-
             if (answerInputField != null)
                 answerInputField.interactable = false;
-
             ShowFinalScore();
         }
+
+        // Show battle UI and notify BattleManager
+        FindFirstObjectByType<AttackListManager>()?.ShowBattleUI();
+        FindFirstObjectByType<SkillListManager>()?.ShowBattleUI();
+        BattleManager.Instance.OnPlayerAttackResult(false, false);
     }
 
     void EndQuiz()
@@ -270,7 +256,6 @@ public class QuizManager : MonoBehaviour
 
         if (questionText != null)
             questionText.text = "Quiz Complete!";
-
         if (answerInputField != null)
             answerInputField.interactable = false;
 
@@ -280,7 +265,6 @@ public class QuizManager : MonoBehaviour
     void ShowFinalScore()
     {
         float percentage = (float)score / currentQuestions.Count * 100;
-
         if (feedbackText != null)
         {
             feedbackText.text = $"Final Score: {score}/{currentQuestions.Count} ({percentage:F0}%)";
@@ -288,14 +272,12 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    // Public method to restart quiz
     public void RestartQuiz()
     {
         CancelInvoke();
         StartQuiz();
     }
 
-    // Public method to add time
     public void AddTime(float seconds)
     {
         timeRemaining += seconds;

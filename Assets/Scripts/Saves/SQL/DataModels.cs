@@ -34,7 +34,9 @@ public class AttackData
     public int unlockLevel { get; set; }
     public int isUnlocked { get; set; }
     public int isSpecial { get; set; }
+    public int isSkill { get; set; }
     public string forCharacter { get; set; }
+    public int bitpointCost { get; set; }
 }
 
 [System.Serializable]
@@ -45,7 +47,9 @@ public class EnemyData
     public int levelId { get; set; }
     public string enemyName { get; set; }
     public int attackDamage { get; set; }
+    public int maxAttackDamage { get; set; }
     public int defense { get; set; }
+    public int currencyReward { get; set; }
 }
 
 [System.Serializable]
@@ -66,4 +70,24 @@ public class BattleResult
     public int levelId { get; set; }
     public int isCleared { get; set; }
     public int attempts { get; set; }
+}
+
+[System.Serializable]
+public class InventoryItem
+{
+    [PrimaryKey, AutoIncrement]
+    public int id { get; set; }
+    public string itemName { get; set; }
+    public int quantity { get; set; }
+    public int hpHealing { get; set; }
+    public int bitPointsAdded { get; set; }
+    public int damageReduction { get; set; }
+}
+
+[System.Serializable]
+public class PlayerCurrency
+{
+    [PrimaryKey]
+    public int id { get; set; }
+    public int amount { get; set; }
 }

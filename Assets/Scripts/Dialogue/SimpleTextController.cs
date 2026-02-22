@@ -574,6 +574,11 @@ public class SimpleTextController : MonoBehaviour
         }
     }
 
+    public string GetCurrentText()
+    {
+        return textComponent != null ? textComponent.text : "";
+    }
+
     public void AddMessage(string text, bool useTypewriter = true)
     {
         messages.Add(new TextMessage
@@ -962,6 +967,7 @@ public class TextMessage
 }
 
 [System.Serializable]
+
 public class MessageCondition
 {
     public string conditionName = "";

@@ -1824,7 +1824,7 @@ MonoBehaviour:
   - {fileID: 2711771493520749432}
   scatterBounds: {fileID: 5737192390330523365}
   edgePadding: 1
-  autoFindDragObjects: 0
+  autoFindDragObjects: 1
 --- !u!1 &5410604585083488078
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,57 +1,81 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
+
+[Serializable]
+public class LevelEntry
+{
+    public Button button;
+    public string convoScene;
+}
 
 public class LevelSelector : MonoBehaviour
 {
-    [Header("Level Buttons")]
-    public Button[] levelButtons;
+    [Header("Levels")]
+    public LevelEntry[] levels;
 
-    [Header("Scene Names")]
-    public string[] sceneNames;
+    [Header("Run Button")]
+    public Button runButton;
 
     [Header("Unlock Settings")]
     public bool unlockAllLevels = false;
 
+    private int selectedLevelIndex = -1;
+
     void Start()
     {
-        var levels = SaveLoadManager.Instance.GetAllLevels();
+        var levelData = SaveLoadManager.Instance.GetAllLevels();
 
-        for (int i = 0; i < levelButtons.Length; i++)
+        if (runButton != null)
+            runButton.interactable = false; // disabled until a level is selected
+
+        for (int i = 0; i < levels.Length; i++)
         {
-            int levelIndex = i;
-
-            levelButtons[i].onClick.AddListener(() => LoadLevel(levelIndex));
-
-            if (unlockAllLevels)
-            {
-                levelButtons[i].interactable = true;
-            }
-            else
-            {
-                // Check SQLite for unlock status
-                bool isUnlocked = i < levels.Count && levels[i].isUnlocked == 1;
-                levelButtons[i].interactable = isUnlocked;
-            }
+            int index = i;
+            bool isUnlocked = unlockAllLevels || (i < levelData.Count && levelData[i].isUnlocked == 1);
+            levels[i].button.interactable = isUnlocked;
+            levels[i].button.onClick.AddListener(() => SelectLevel(index));
         }
+
+        if (runButton != null)
+            runButton.onClick.AddListener(OnRunClicked);
     }
 
-    public void LoadLevel(int levelIndex)
+    void SelectLevel(int index)
     {
-        if (levelIndex < sceneNames.Length)
+        selectedLevelIndex = index;
+        if (runButton != null)
+            runButton.interactable = true;
+        Debug.Log($"Level {index + 1} selected");
+    }
+
+    void OnRunClicked()
+    {
+        if (selectedLevelIndex == -1)
         {
-            // Save current level to player record
-            var player = SaveLoadManager.Instance.LoadPlayer();
-            if (player != null)
-                SaveLoadManager.Instance.SavePlayer(player.playerName, player.selectedCharacter, levelIndex + 1);
-
-            Debug.Log("Loading: " + sceneNames[levelIndex]);
-
-            SceneController sceneController = FindFirstObjectByType<SceneController>();
-            if (sceneController != null)
-                sceneController.ChangeScene(sceneNames[levelIndex]);
-            else
-                SceneManager.LoadScene(sceneNames[levelIndex]);
+            Debug.LogWarning("No level selected!");
+            return;
         }
+
+        var levelData = SaveLoadManager.Instance.GetAllLevels();
+        int levelId = selectedLevelIndex < levelData.Count ? levelData[selectedLevelIndex].id : selectedLevelIndex + 1;
+
+        var player = SaveLoadManager.Instance.LoadPlayer();
+        if (player != null)
+            SaveLoadManager.Instance.SavePlayer(player.playerName, player.selectedCharacter, levelId);
+        else
+            SaveLoadManager.Instance.SavePlayer("Player", "Esther", levelId);
+
+        string sceneName = levels[selectedLevelIndex].convoScene;
+        if (string.IsNullOrEmpty(sceneName))
+        {
+            Debug.LogError($"No scene set for level {selectedLevelIndex + 1}!");
+            return;
+        }
+
+        SceneController sc = FindFirstObjectByType<SceneController>();
+        if (sc != null) sc.ChangeScene(sceneName);
+        else SceneManager.LoadScene(sceneName);
     }
 }
