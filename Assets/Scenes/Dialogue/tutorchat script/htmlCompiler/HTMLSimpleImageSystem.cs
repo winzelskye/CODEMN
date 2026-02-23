@@ -1,22 +1,33 @@
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Text.RegularExpressions;
 
 /// <summary>
-/// Loads images from the Resources folder automatically.
-/// 
-/// SETUP:
-///   1. In your Unity Assets, create a folder named exactly: Resources
-///   2. Place your image files inside it (png, jpg, etc.)
-///   3. Select each image in the Inspector → set Texture Type to "Sprite (2D and UI)"
-///   4. Reference in HTML by filename WITHOUT extension:
-///        <img src="cat">          ← loads Resources/cat.png
-///        <img src="cat" style="float:left">   ← loads and places left
-///        <img src="cat" style="float:right">  ← loads and places right
+/// Handles ALL image display — both static images and animated GIFs.
 ///
-///   Subfolders work too:
-///        <img src="animals/cat">  ← loads Resources/animals/cat.png
+/// STATIC IMAGES (.png, .jpg, etc.):
+///   Put them in Assets/Resources/
+///   Set Texture Type to "Sprite (2D and UI)" in Inspector
+///   Use in HTML: <img src="cat.png"> or <img src="cat">
+///
+/// ANIMATED GIFS (.gif):
+///   Put them in Assets/StreamingAssets/ (keep .gif extension, no renaming needed)
+///   Use in HTML: <img src="confusedjohn.gif">
+///   Requires UniGif: https://github.com/WestHillApps/UniGif
+///
+/// SIZE CONTROL (per image in HTML):
+///   <img src="cat.png" width="300" height="200">
+///   <img src="cat.png" width="300">          (height auto from aspect ratio)
+///   <img src="cat.png" height="200">         (width auto from aspect ratio)
+///   <img src="cat.png">                      (clamped to Max Image Width/Height in Inspector)
+///
+/// ALIGNMENT:
+///   <img src="cat.png" style="float:left">
+///   <img src="cat.png" style="float:right">
+///   <img src="cat.png">                      (default center)
 /// </summary>
 public class HTMLSimpleImageSystem : MonoBehaviour
 {
@@ -36,8 +47,11 @@ public class HTMLSimpleImageSystem : MonoBehaviour
     public int maxImageWidth = 400;
     public int maxImageHeight = 300;
 
-    // Runtime cache so we don't call Resources.Load repeatedly for the same image
+    // Cache for static sprites
     private Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
+
+    // Track all active GIF coroutines so we can stop them on clear
+    private List<Coroutine> activeGifCoroutines = new List<Coroutine>();
 
     void Start()
     {
@@ -47,18 +61,16 @@ public class HTMLSimpleImageSystem : MonoBehaviour
             htmlSystem.OnSystemCleared += ClearImages;
         }
         else
-        {
-            Debug.LogWarning("[ImageSystem] htmlSystem is not assigned in the Inspector!");
-        }
+            Debug.LogWarning("[ImageSystem] htmlSystem not assigned!");
 
         if (imageDisplayAreaCenter == null)
-            Debug.LogWarning("[ImageSystem] imageDisplayAreaCenter is not assigned! Images won't display.");
+            Debug.LogWarning("[ImageSystem] imageDisplayAreaCenter not assigned!");
 
         if (imagePrefab == null)
-            Debug.LogWarning("[ImageSystem] imagePrefab is not assigned! Images won't display.");
+            Debug.LogWarning("[ImageSystem] imagePrefab not assigned!");
     }
 
-    // ── Called when HTML is executed ────────────────────────────────────────
+    // ── Called when HTML is run ─────────────────────────────────────────────
 
     void OnHTMLExecuted(string html)
     {
@@ -74,41 +86,121 @@ public class HTMLSimpleImageSystem : MonoBehaviour
             Match srcMatch = Regex.Match(attrs, @"src=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
             if (!srcMatch.Success)
             {
-                Debug.LogWarning("[ImageSystem] <img> tag is missing a src attribute, skipping.");
+                Debug.LogWarning("[ImageSystem] <img> tag missing src, skipping.");
                 continue;
             }
 
-            string imageName = srcMatch.Groups[1].Value.Trim();
+            string filename = srcMatch.Groups[1].Value.Trim();
             Alignment alignment = GetAlignment(attrs);
+            string ext = Path.GetExtension(filename).ToLower();
+            int w = GetIntAttr(attrs, "width");
+            int h = GetIntAttr(attrs, "height");
 
-            Debug.Log($"[ImageSystem] Loading '{imageName}' ({alignment})");
-            DisplayImage(imageName, alignment);
+            Transform container = GetContainer(alignment);
+            if (container == null)
+            {
+                Debug.LogWarning("[ImageSystem] No container assigned, skipping image.");
+                continue;
+            }
+
+            if (ext == ".gif")
+            {
+                string nameNoExt = Path.GetFileNameWithoutExtension(filename);
+                Coroutine c = StartCoroutine(LoadAndDisplayGif(nameNoExt, container, w, h));
+                activeGifCoroutines.Add(c);
+            }
+            else
+            {
+                StartCoroutine(LoadAndDisplayStatic(filename, container, w, h));
+            }
         }
     }
 
-    // ── Sprite loading from Resources ───────────────────────────────────────
+    // ── Attribute helpers ───────────────────────────────────────────────────
 
-    private Sprite LoadSprite(string name)
+    private int GetIntAttr(string attrs, string attrName)
     {
-        // Strip extension if present — Resources.Load doesn't use extensions
-        // This means <img src="cat.png"> and <img src="cat"> both work
-        string nameNoExt = System.IO.Path.GetFileNameWithoutExtension(name);
+        Match m = Regex.Match(attrs,
+            $@"{attrName}=[""']?(\d+)[""']?", RegexOptions.IgnoreCase);
+        if (m.Success && int.TryParse(m.Groups[1].Value, out int val))
+            return val;
+        return -1; // not specified
+    }
 
+    // ── Size calculation ────────────────────────────────────────────────────
+
+    private Vector2 GetImageSize(int texW, int texH, int forceWidth, int forceHeight)
+    {
+        // Both explicitly set in HTML
+        if (forceWidth > 0 && forceHeight > 0)
+            return new Vector2(forceWidth, forceHeight);
+
+        float aspect = (float)texW / texH;
+
+        // Only width set — derive height
+        if (forceWidth > 0)
+            return new Vector2(forceWidth, forceWidth / aspect);
+
+        // Only height set — derive width
+        if (forceHeight > 0)
+            return new Vector2(forceHeight * aspect, forceHeight);
+
+        // Neither set — clamp to Inspector max
+        if (texW > maxImageWidth) return new Vector2(maxImageWidth, maxImageWidth / aspect);
+        if (texH > maxImageHeight) return new Vector2(maxImageHeight * aspect, maxImageHeight);
+        return new Vector2(texW, texH);
+    }
+
+    // ── Static image loading (Resources) ───────────────────────────────────
+
+    private IEnumerator LoadAndDisplayStatic(string filename, Transform container,
+        int forceWidth = -1, int forceHeight = -1)
+    {
+        Sprite sprite = LoadSprite(filename);
+        if (sprite != null)
+            DisplaySprite(sprite, container, forceWidth, forceHeight);
+        yield break;
+    }
+
+    private void DisplaySprite(Sprite sprite, Transform container,
+        int forceWidth = -1, int forceHeight = -1)
+    {
+        if (imagePrefab == null || container == null) return;
+
+        GameObject imgObj = Instantiate(imagePrefab, container);
+        Image imgComp = imgObj.GetComponent<Image>();
+
+        if (imgComp == null)
+        {
+            Debug.LogWarning("[ImageSystem] imagePrefab has no Image component!");
+            Destroy(imgObj);
+            return;
+        }
+
+        imgComp.sprite = sprite;
+        imgComp.preserveAspect = (forceWidth <= 0 || forceHeight <= 0);
+
+        RectTransform rt = imgComp.GetComponent<RectTransform>();
+        rt.sizeDelta = GetImageSize(
+            sprite.texture.width, sprite.texture.height, forceWidth, forceHeight);
+    }
+
+    private Sprite LoadSprite(string filename)
+    {
+        string nameNoExt = Path.GetFileNameWithoutExtension(filename);
         string key = nameNoExt.ToLower();
+
         if (spriteCache.TryGetValue(key, out Sprite cached))
             return cached;
 
-        // Try loading directly as Sprite first
         Sprite sprite = Resources.Load<Sprite>(nameNoExt);
         if (sprite != null)
         {
             spriteCache[key] = sprite;
-            Debug.Log($"[ImageSystem] Loaded Sprite from Resources/{nameNoExt}");
+            Debug.Log($"[ImageSystem] Loaded sprite: Resources/{nameNoExt}");
             return sprite;
         }
 
-        // Try loading as Texture2D and converting (handles cases where
-        // the texture type isn't set to Sprite in the Inspector)
         Texture2D tex = Resources.Load<Texture2D>(nameNoExt);
         if (tex != null)
         {
@@ -116,78 +208,114 @@ public class HTMLSimpleImageSystem : MonoBehaviour
                 new Rect(0, 0, tex.width, tex.height),
                 new Vector2(0.5f, 0.5f));
             spriteCache[key] = sprite;
-            Debug.Log($"[ImageSystem] Loaded Texture2D and converted from Resources/{nameNoExt}");
+            Debug.Log($"[ImageSystem] Loaded texture: Resources/{nameNoExt}");
             return sprite;
         }
 
-        // Not found — give a clear error with instructions
         Debug.LogError(
-            $"[ImageSystem] Could not find '{nameNoExt}' in the Resources folder!\n" +
-            $"  Make sure:\n" +
-            $"  1. The file exists at:  Assets/Resources/{nameNoExt}.png  (or .jpg)\n" +
-            $"  2. Its Texture Type is set to 'Sprite (2D and UI)' in the Inspector\n" +
-            $"  3. The name in your HTML matches (with or without extension):\n" +
-            $"     <img src=\"{nameNoExt}.png\">  or  <img src=\"{nameNoExt}\">"
+            $"[ImageSystem] Could not find '{nameNoExt}' in Resources!\n" +
+            $"  → Assets/Resources/{nameNoExt}.png (or .jpg)\n" +
+            $"  → Texture Type must be 'Sprite (2D and UI)'"
         );
         return null;
     }
 
-    // ── Display ─────────────────────────────────────────────────────────────
+    // ── GIF loading (StreamingAssets) ───────────────────────────────────────
 
-    private void DisplayImage(string imageName, Alignment alignment)
+    private IEnumerator LoadAndDisplayGif(string nameNoExt, Transform container,
+        int forceWidth = -1, int forceHeight = -1)
     {
-        Sprite sprite = LoadSprite(imageName);
-        if (sprite == null) return;
+        string gifPath = Path.Combine(Application.streamingAssetsPath, nameNoExt + ".gif");
 
-        Transform container = GetContainer(alignment);
-        if (container == null)
+        if (!File.Exists(gifPath))
         {
-            Debug.LogWarning("[ImageSystem] No display container found. " +
-                "Please assign imageDisplayAreaCenter in the Inspector.");
-            return;
+            Debug.LogError(
+                $"[ImageSystem] GIF not found: {gifPath}\n" +
+                $"  → Put '{nameNoExt}.gif' in Assets/StreamingAssets/"
+            );
+            yield break;
         }
 
-        if (imagePrefab == null)
+        byte[] gifBytes = File.ReadAllBytes(gifPath);
+        Debug.Log($"[ImageSystem] Loaded GIF '{nameNoExt}' ({gifBytes.Length} bytes)");
+
+        List<UniGif.GifTexture> frames = null;
+        int loopCount = 0;
+
+        yield return StartCoroutine(
+            UniGif.GetTextureListCoroutine(gifBytes,
+                (textureList, loops, w, h) =>
+                {
+                    frames = textureList;
+                    loopCount = loops;
+                })
+        );
+
+        if (frames == null || frames.Count == 0)
         {
-            Debug.LogWarning("[ImageSystem] imagePrefab not assigned.");
-            return;
+            Debug.LogError($"[ImageSystem] Failed to decode GIF '{nameNoExt}'");
+            yield break;
         }
+
+        if (imagePrefab == null) yield break;
 
         GameObject imgObj = Instantiate(imagePrefab, container);
         Image imgComp = imgObj.GetComponent<Image>();
 
         if (imgComp == null)
         {
-            Debug.LogWarning("[ImageSystem] imagePrefab has no Image component.");
             Destroy(imgObj);
-            return;
+            yield break;
         }
 
-        imgComp.sprite = sprite;
-        imgComp.preserveAspect = true;
+        imgComp.preserveAspect = (forceWidth <= 0 || forceHeight <= 0);
 
-        // Size to fit within max dimensions while preserving aspect ratio
+        // Size from first frame
+        UniGif.GifTexture firstFrame = frames[0];
         RectTransform rt = imgComp.GetComponent<RectTransform>();
-        float aspect = (float)sprite.texture.width / sprite.texture.height;
+        rt.sizeDelta = GetImageSize(
+            firstFrame.m_texture2d.width, firstFrame.m_texture2d.height,
+            forceWidth, forceHeight);
 
-        if (sprite.texture.width > maxImageWidth)
-            rt.sizeDelta = new Vector2(maxImageWidth, maxImageWidth / aspect);
-        else if (sprite.texture.height > maxImageHeight)
-            rt.sizeDelta = new Vector2(maxImageHeight * aspect, maxImageHeight);
-        else
-            rt.sizeDelta = new Vector2(sprite.texture.width, sprite.texture.height);
-
-        Debug.Log($"[ImageSystem] Displayed '{imageName}' at size {rt.sizeDelta}");
+        Coroutine c = StartCoroutine(AnimateGif(imgComp, frames, loopCount, imgObj));
+        activeGifCoroutines.Add(c);
     }
 
-    // ── Alignment helpers ───────────────────────────────────────────────────
+    private IEnumerator AnimateGif(Image imgComp, List<UniGif.GifTexture> frames,
+        int loopCount, GameObject imgObj)
+    {
+        int loops = 0;
+
+        while (true)
+        {
+            for (int i = 0; i < frames.Count; i++)
+            {
+                if (imgObj == null || imgComp == null) yield break;
+
+                UniGif.GifTexture frame = frames[i];
+                Sprite frameSprite = Sprite.Create(
+                    frame.m_texture2d,
+                    new Rect(0, 0, frame.m_texture2d.width, frame.m_texture2d.height),
+                    new Vector2(0.5f, 0.5f)
+                );
+                imgComp.sprite = frameSprite;
+
+                yield return new WaitForSeconds(frame.m_delaySec > 0 ? frame.m_delaySec : 0.1f);
+            }
+
+            loops++;
+            if (loopCount > 0 && loops >= loopCount) break;
+        }
+    }
+
+    // ── Alignment ───────────────────────────────────────────────────────────
 
     private enum Alignment { Left, Right, Center }
 
     private Alignment GetAlignment(string attrs)
     {
-        // style="float:left" or style="float:right"
-        Match styleMatch = Regex.Match(attrs, @"style=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
+        Match styleMatch = Regex.Match(attrs,
+            @"style=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
         if (styleMatch.Success)
         {
             string style = styleMatch.Groups[1].Value;
@@ -195,8 +323,8 @@ public class HTMLSimpleImageSystem : MonoBehaviour
             if (Regex.IsMatch(style, @"float\s*:\s*right", RegexOptions.IgnoreCase)) return Alignment.Right;
         }
 
-        // Legacy: align="left" / align="right"
-        Match alignMatch = Regex.Match(attrs, @"align=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
+        Match alignMatch = Regex.Match(attrs,
+            @"align=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
         if (alignMatch.Success)
         {
             switch (alignMatch.Groups[1].Value.ToLower())
@@ -221,15 +349,56 @@ public class HTMLSimpleImageSystem : MonoBehaviour
 
     // ── Public API ──────────────────────────────────────────────────────────
 
-    /// <summary>Used by HTMLCodingSystem for background-image on the body tag.</summary>
     public Sprite GetSprite(string name) => LoadSprite(name);
+
+    public bool IsGif(string filename) =>
+        Path.GetExtension(filename).ToLower() == ".gif";
+
+    public Coroutine StartGifOnImage(string nameNoExt, Image target)
+    {
+        return StartCoroutine(LoadAndPlayGifOnImage(nameNoExt, target));
+    }
+
+    private IEnumerator LoadAndPlayGifOnImage(string nameNoExt, Image target)
+    {
+        string gifPath = Path.Combine(Application.streamingAssetsPath, nameNoExt + ".gif");
+
+        if (!File.Exists(gifPath))
+        {
+            Debug.LogError($"[ImageSystem] GIF not found for background: {gifPath}");
+            yield break;
+        }
+
+        byte[] gifBytes = File.ReadAllBytes(gifPath);
+        List<UniGif.GifTexture> frames = null;
+        int loopCount = 0;
+
+        yield return StartCoroutine(
+            UniGif.GetTextureListCoroutine(gifBytes,
+                (textureList, loops, w, h) =>
+                {
+                    frames = textureList;
+                    loopCount = loops;
+                })
+        );
+
+        if (frames == null || frames.Count == 0) yield break;
+
+        Coroutine c = StartCoroutine(AnimateGif(target, frames, loopCount, target.gameObject));
+        activeGifCoroutines.Add(c);
+    }
+
+    // ── Clear ───────────────────────────────────────────────────────────────
 
     public void ClearImages()
     {
+        foreach (Coroutine c in activeGifCoroutines)
+            if (c != null) StopCoroutine(c);
+        activeGifCoroutines.Clear();
+
         ClearContainer(imageDisplayAreaLeft);
         ClearContainer(imageDisplayAreaRight);
         ClearContainer(imageDisplayAreaCenter);
-        // Don't clear the cache — sprites are already loaded, no need to reload
     }
 
     private void ClearContainer(Transform container)
@@ -247,4 +416,11 @@ public class HTMLSimpleImageSystem : MonoBehaviour
             htmlSystem.OnSystemCleared -= ClearImages;
         }
     }
+}
+
+[System.Serializable]
+public class NamedSprite
+{
+    public string name;
+    public Sprite sprite;
 }
