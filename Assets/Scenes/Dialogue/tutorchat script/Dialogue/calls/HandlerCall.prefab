@@ -34,8 +34,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -97}
-  m_SizeDelta: {x: 298.32, y: 102.9291}
+  m_AnchoredPosition: {x: 0.00005865097, y: -97}
+  m_SizeDelta: {x: 380.2119, y: 102.9291}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7212222221138999849
 CanvasRenderer:
@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name
+  m_text: Handler
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
   m_sharedMaterial: {fileID: 2164040, guid: 5302535af1044152a457ed104f1f4b91, type: 2}
@@ -479,7 +479,7 @@ GameObject:
   - component: {fileID: 4889553982703266946}
   - component: {fileID: 9025344222489773160}
   m_Layer: 5
-  m_Name: Call
+  m_Name: HandlerCall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -501,7 +501,7 @@ RectTransform:
   - {fileID: 5286596840956431248}
   - {fileID: 5776997682669472875}
   - {fileID: 4069446339385237766}
-  - {fileID: 6368036776849694852}
+  - {fileID: 8986683183623172013}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -570,7 +570,7 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 100
   m_TargetDisplay: 0
---- !u!1001 &5361826343937363359
+--- !u!1001 &7962887159589749430
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -627,8 +627,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 035195bc5b9f0c9458daf9c4e5a3e240, type: 3}
---- !u!4 &6368036776849694852 stripped
+--- !u!4 &8986683183623172013 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1312455226934439195, guid: 035195bc5b9f0c9458daf9c4e5a3e240, type: 3}
-  m_PrefabInstance: {fileID: 5361826343937363359}
+  m_PrefabInstance: {fileID: 7962887159589749430}
   m_PrefabAsset: {fileID: 0}
