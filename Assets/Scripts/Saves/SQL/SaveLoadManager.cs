@@ -143,37 +143,29 @@ public class SaveLoadManager : MonoBehaviour
 
     public void AddToInventory(shopItem item)
     {
-        var existing = db.Table<InventoryItem>().Where(i => i.itemName == item.itemName).FirstOrDefault();
-        if (existing != null)
+        db.Insert(new InventoryItem
         {
-            existing.quantity += 1;
-            db.Update(existing);
-        }
-        else
-        {
-            db.Insert(new InventoryItem
-            {
-                itemName = item.itemName,
-                quantity = 1,
-                hpHealing = item.hpHealing,
-                bitPointsAdded = item.bitPointsAdded,
-                damageReduction = item.damageReduction
-            });
-        }
+            itemName = item.itemName,
+            quantity = 1,
+            hpHealing = item.hpHealing,
+            bitPointsAdded = item.bitPointsAdded,
+            damageReduction = item.damageReduction
+        });
         Debug.Log($"Added {item.itemName} to inventory!");
+    }
+
+    public void DeleteInventoryItem(int id)
+    {
+        var item = db.Find<InventoryItem>(id);
+        if (item != null)
+            db.Delete(item);
     }
 
     public bool UseItem(string itemName)
     {
         var item = db.Table<InventoryItem>().Where(i => i.itemName == itemName).FirstOrDefault();
-        if (item == null || item.quantity <= 0) return false;
-
-        item.quantity -= 1;
-        if (item.quantity <= 0)
-            db.Delete(item);
-        else
-            db.Update(item);
-
+        if (item == null) return false;
+        db.Delete(item);
         return true;
     }
 }

@@ -45,11 +45,21 @@ public class QuizManager : MonoBehaviour
     private float timeRemaining;
     private bool quizActive;
     private bool waitingForNextQuestion;
+    private bool initialized = false; // ← new
+
+    void Start()
+    {
+        // First time setup — guaranteed to run after Inspector values are assigned
+        initialized = true;
+        RestartQuiz();
+    }
 
     void OnEnable()
     {
-        // Reset and restart every time the prefab is activated
-        RestartQuiz();
+        // Only re-randomize and restart if already initialized
+        // Prevents running before questions are assigned
+        if (initialized)
+            RestartQuiz();
     }
 
     void Update()
@@ -142,14 +152,12 @@ public class QuizManager : MonoBehaviour
             if (hideCanvasOnCorrectAnswer && quizCanvas != null)
                 quizCanvas.SetActive(false);
 
-            // Show battle UI and notify BattleManager
             FindFirstObjectByType<AttackListManager>()?.ShowBattleUI();
             FindFirstObjectByType<SkillListManager>()?.ShowBattleUI();
             BattleManager.Instance.OnPlayerAttackResult(true, false);
         }
         else
         {
-            // Apply time penalty
             timeRemaining -= timePenaltyForWrongAnswer;
             if (timeRemaining < 0) timeRemaining = 0;
 
@@ -244,7 +252,6 @@ public class QuizManager : MonoBehaviour
             ShowFinalScore();
         }
 
-        // Show battle UI and notify BattleManager
         FindFirstObjectByType<AttackListManager>()?.ShowBattleUI();
         FindFirstObjectByType<SkillListManager>()?.ShowBattleUI();
         BattleManager.Instance.OnPlayerAttackResult(false, false);

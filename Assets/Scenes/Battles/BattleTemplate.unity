@@ -913,8 +913,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.410964, y: -0.77888995}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: -0.5033, y: -0.77888995}
+  m_SizeDelta: {x: 468.9196, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &237604104
 MonoBehaviour:
@@ -959,7 +959,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 237604105}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1185589482}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1253333589}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1181796473}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &237604105
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1034,8 +1070,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.8599997, y: 0.7100469}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: 5.5594, y: 0.7100469}
+  m_SizeDelta: {x: 425.7399, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &260039030
 MonoBehaviour:
@@ -1080,7 +1116,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 260039031}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1185589482}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1253333589}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1181796473}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &260039031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1516,8 +1588,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -722, y: -525}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: -624.91, y: -525}
+  m_SizeDelta: {x: 474.96, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &309518128
 MonoBehaviour:
@@ -1673,8 +1745,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.8599987, y: -0.03935257}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: 5.5594, y: -0.03935257}
+  m_SizeDelta: {x: 425.7399, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &325765070
 MonoBehaviour:
@@ -1719,7 +1791,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 325765071}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1185589482}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1253333589}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1181796473}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &325765071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1886,6 +1994,10 @@ MonoBehaviour:
   gameOverManager: {fileID: 1287225776}
   glitchEffect: {fileID: 124010166}
   battleStartButton: {fileID: 1877175561}
+  fightButton: {fileID: 1185589483}
+  skillsButton: {fileID: 1253333590}
+  itemsButton: {fileID: 1181796474}
+  systemTextColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &488684864
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,8 +2365,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -722, y: -450}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: -624.91, y: -450}
+  m_SizeDelta: {x: 474.96, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &569659453
 MonoBehaviour:
@@ -2408,7 +2520,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.5106964, y: 0.5719986}
+  m_AnchoredPosition: {x: -5.5107117, y: 0.5719986}
   m_SizeDelta: {x: -11.0213, y: -5.0154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &580071603
@@ -2872,8 +2984,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.410964, y: 0.7100469}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: -0.5033, y: 0.7100469}
+  m_SizeDelta: {x: 468.9196, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &665829704
 MonoBehaviour:
@@ -2918,7 +3030,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 665829705}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1185589482}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1253333589}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1181796473}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &665829705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2991,7 +3139,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.5106964, y: 0.5719986}
+  m_AnchoredPosition: {x: -5.5107117, y: 0.5719986}
   m_SizeDelta: {x: -11.0213, y: -5.0154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &675769258
@@ -3390,8 +3538,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.410964, y: -0.039352566}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: -0.4735, y: -0.039352566}
+  m_SizeDelta: {x: 475.0881, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &730877819
 MonoBehaviour:
@@ -3561,6 +3709,7 @@ MonoBehaviour:
   specialReady: 0
   healthBar: {fileID: 1264445003}
   bitpointBar: {fileID: 89233057}
+  hpText: {fileID: 1967569118}
   estherSprite: {fileID: 1497550641}
   michaelSprite: {fileID: 2106134887}
 --- !u!1 &780507228
@@ -4198,6 +4347,7 @@ GameObject:
   - component: {fileID: 1065202258}
   - component: {fileID: 1065202257}
   - component: {fileID: 1065202256}
+  - component: {fileID: 1065202259}
   m_Layer: 5
   m_Name: ItemList
   m_TagString: Untagged
@@ -4313,6 +4463,34 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1065202254}
   m_CullTransparentMesh: 1
+--- !u!114 &1065202259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065202254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 605d2cfeab097dc46a72f8ae030db5c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemListManager
+  itemSlots:
+  - button: {fileID: 665829704}
+    itemNameText: {fileID: 1705783626}
+  - button: {fileID: 1839500243}
+    itemNameText: {fileID: 488684866}
+  - button: {fileID: 237604104}
+    itemNameText: {fileID: 1261991692}
+  - button: {fileID: 260039030}
+    itemNameText: {fileID: 675769258}
+  - button: {fileID: 325765070}
+    itemNameText: {fileID: 1508097031}
+  - button: {fileID: 1251848262}
+    itemNameText: {fileID: 580071603}
+  fightButtons: {fileID: 0}
+  skillsButtons: {fileID: 0}
+  itemsButtons: {fileID: 0}
 --- !u!1001 &1119586062
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5777,8 +5955,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.8599987, y: -0.77889}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: 5.5594, y: -0.77889}
+  m_SizeDelta: {x: 425.7399, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1251848262
 MonoBehaviour:
@@ -5823,7 +6001,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1251848263}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1185589482}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1253333589}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1181796473}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1251848263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6892,6 +7106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyBattle
   currentHealth: 0
   healthBar: {fileID: 606458750}
+  hpText: {fileID: 780507230}
 --- !u!114 &1459384721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6904,47 +7119,75 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6c0b6cf9fe66b4793fbdf06166f9fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyDialogue
+  enemyTextColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   preBattleLines:
   - line: Greetings.
-  - line: I had muted you for the time being so listen to my lesson.
+    condition: 0
+  - line: I had muted you for the time being so i'll explain how things works.
+    condition: 0
   - line: 'Battles will take place during calls. '
+    condition: 0
   - line: 'Your User Interface will be filled with buttons for you to click. '
+    condition: 0
   - line: Puzzles for you to solve.
+    condition: 0
   - line: But this is different from normal games.
+    condition: 0
   - line: 'Instead of having having an "HP" which once hit 0 will result to game
       over... '
+    condition: 0
   - line: You have Progress bar instead.
+    condition: 0
   - line: Progress bars works the opossite of "HP". It shows you how far your progress
       on hacking your enemy's system is.
+    condition: 0
   - line: 'Yes, battling means you are hacking your enemy''s system or computer if
       you ever encounter a hacker. '
+    condition: 0
   - line: Once your bar hit 100, that's when game over will happen.
+    condition: 0
   - line: And of course it's the same to them.
+    condition: 0
   - line: Although I do want to warn you that our interface is a bit... Messy.
+    condition: 0
   - line: Once you use your first attack, there will be lines of code that you need
       to arrange to its proper position.
+    condition: 0
   - line: All you need to do is to DRAG the specific lines of code into its proper
       position.
+    condition: 0
   - line: But most of the time, the codes will be hiding behind specific areas. Like
       behind the instruction text or the drop target.
+    condition: 0
   - line: So in the meantime, use the shuffle button to shuffle all of the codes.
+    condition: 0
   - line: But doing so will scatter even the codes you had already placed and can
       be a huge waste of time. So use it responsibly.
+    condition: 0
   - line: How about you give it a try?
+    condition: 0
   - line: Are you ready?
+    condition: 0
   turnLines:
   - line: Alright, let's see what you are made off.
+    condition: 0
   - line: Good. You managed to damage my system. Now, try to do it 2 more times to
       fill your "BITPOINTS" up to 30.
+    condition: 1
   - line: Last one.
+    condition: 1
   - line: Great. Now, you are able to access one of your skills. Check your "SKILLS"
       below and try what's available.
+    condition: 1
   - line: That skill will reduce their hacking progress whenever you need it. But
       keep in mind, the enemy can AND WILL still attack you even after you recovered.
       So only use it when you are in deep need. Try attacking again to get more BITPOINTS
+    condition: 1
   - line: That would be everything for now. Let's see if you can hack my entire system.
+    condition: 1
   lowHealthLines:
   - line: Almost there.
+    condition: 0
   hitReactionLines: []
 --- !u!1 &1467963985
 GameObject:
@@ -7074,7 +7317,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.5106964, y: 0.5719986}
+  m_AnchoredPosition: {x: -5.5107117, y: 0.5719986}
   m_SizeDelta: {x: -11.0213, y: -5.0154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1508097031
@@ -8049,8 +8292,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.410964, y: -0.039352566}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: -0.5033, y: -0.039352566}
+  m_SizeDelta: {x: 468.9196, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1839500243
 MonoBehaviour:
@@ -8095,7 +8338,43 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1839500244}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1185589482}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1253333589}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
+      - m_Target: {fileID: 1181796473}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 1
 --- !u!114 &1839500244
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8591,7 +8870,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.5106964, y: 0.5719986}
+  m_AnchoredPosition: {x: -5.510681, y: 0.5719986}
   m_SizeDelta: {x: -11.0213, y: -5.0154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1919681925
@@ -8751,7 +9030,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 100/100%
+  m_text: 0/100%
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
   m_sharedMaterial: {fileID: 2100000, guid: 125cb55b44b24c4393181402bc6200e6, type: 2}
@@ -9328,8 +9607,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -722, y: -374}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: -624.91, y: -374}
+  m_SizeDelta: {x: 474.96, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2041411463
 GameObject:
@@ -9365,7 +9644,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -5.5106964, y: 0.5719986}
+  m_AnchoredPosition: {x: -5.510681, y: 0.5719986}
   m_SizeDelta: {x: -11.0213, y: -5.0154}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2041411465
@@ -9504,8 +9783,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1.410964, y: 0.7100469}
-  m_SizeDelta: {x: 280.78, y: 72.79}
+  m_AnchoredPosition: {x: -0.4735, y: 0.7100469}
+  m_SizeDelta: {x: 475.0881, y: 72.79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2097447191
 MonoBehaviour:

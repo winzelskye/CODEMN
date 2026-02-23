@@ -1512,7 +1512,7 @@ GameObject:
   - component: {fileID: 1366933030}
   - component: {fileID: 1366933033}
   m_Layer: 0
-  m_Name: Button
+  m_Name: Proceed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1582,19 +1582,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1366933031}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 409590081}
-        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
-        m_MethodName: ChangeScene
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: CharacterSelect
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1366933031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1646,7 +1634,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   confirmationDialog: {fileID: 1235027056}
-  sceneToLoad: MainMenu
+  sceneToLoad: CharacterSelect
   sceneIndex: 0
   useSceneIndex: 0
 --- !u!1 &1425083283

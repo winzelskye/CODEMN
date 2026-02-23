@@ -4,12 +4,18 @@ using System.Collections.Generic;
 public class ScatterDragObjects : MonoBehaviour
 {
     [Header("Scatter Settings")]
-    [SerializeField] private List<DragObject> draggableObjects = new List<DragObject>();
+    [SerializeField] private List<GameObject> draggableObjects = new List<GameObject>();
     [SerializeField] private RectTransform scatterBounds;
     [SerializeField] private float edgePadding = 50f;
 
-    [Header("Optional: Auto-find DragObjects")]
-    [SerializeField] private bool autoFindDragObjects = false;
+    [Header("Optional: Auto-find by Tag")]
+    [SerializeField] private bool autoFindByTag = false;
+    [SerializeField] private string draggableTag = "Draggable";
+
+    void OnEnable()
+    {
+        ScatterObjects();
+    }
 
     public void ScatterObjects()
     {
@@ -19,25 +25,29 @@ public class ScatterDragObjects : MonoBehaviour
             return;
         }
 
-        if (autoFindDragObjects)
+        if (autoFindByTag)
         {
-            DragObject[] foundObjects = FindObjectsByType<DragObject>(FindObjectsSortMode.None);
+            GameObject[] foundObjects = GameObject.FindGameObjectsWithTag(draggableTag);
             draggableObjects.Clear();
             draggableObjects.AddRange(foundObjects);
         }
 
-        foreach (DragObject dragObj in draggableObjects)
+        foreach (GameObject dragObj in draggableObjects)
         {
             if (dragObj == null) continue;
 
             RectTransform dragRect = dragObj.GetComponent<RectTransform>();
+            if (dragRect == null) continue;
+
             dragRect.SetParent(scatterBounds);
             Vector2 randomPos = GetRandomPositionInBounds(dragRect);
             dragRect.anchoredPosition = randomPos;
             dragRect.SetAsLastSibling();
 
-            // Reset stored original position to scatter bounds
-            dragObj.ResetOriginalPosition(scatterBounds, randomPos);
+            // Update DraggableWord if it exists
+            DraggableWord dw = dragObj.GetComponent<DraggableWord>();
+            if (dw != null)
+                dw.ResetOriginalPosition(scatterBounds, randomPos);
         }
 
         DropTarget[] dropTargets = FindObjectsByType<DropTarget>(FindObjectsSortMode.None);
@@ -47,33 +57,19 @@ public class ScatterDragObjects : MonoBehaviour
         Debug.Log("Objects scattered!");
     }
 
-    private Vector2 GetRandomPositionInBounds(RectTransform itemRect)
-    {
-        float minX = -scatterBounds.rect.width / 2 + edgePadding + itemRect.rect.width / 2;
-        float maxX = scatterBounds.rect.width / 2 - edgePadding - itemRect.rect.width / 2;
-        float minY = -scatterBounds.rect.height / 2 + edgePadding + itemRect.rect.height / 2;
-        float maxY = scatterBounds.rect.height / 2 - edgePadding - itemRect.rect.height / 2;
-
-        float randomX = Random.Range(minX, maxX);
-        float randomY = Random.Range(minY, maxY);
-
-        return new Vector2(randomX, randomY);
-    }
-
     public void ScatterObjectsEvenly()
     {
         if (scatterBounds == null || draggableObjects.Count == 0) return;
 
-        if (autoFindDragObjects)
+        if (autoFindByTag)
         {
-            DragObject[] foundObjects = FindObjectsByType<DragObject>(FindObjectsSortMode.None);
+            GameObject[] foundObjects = GameObject.FindGameObjectsWithTag(draggableTag);
             draggableObjects.Clear();
             draggableObjects.AddRange(foundObjects);
         }
 
         int columns = Mathf.CeilToInt(Mathf.Sqrt(draggableObjects.Count));
         int rows = Mathf.CeilToInt((float)draggableObjects.Count / columns);
-
         float cellWidth = (scatterBounds.rect.width - edgePadding * 2) / columns;
         float cellHeight = (scatterBounds.rect.height - edgePadding * 2) / rows;
 
@@ -82,6 +78,8 @@ public class ScatterDragObjects : MonoBehaviour
             if (draggableObjects[i] == null) continue;
 
             RectTransform dragRect = draggableObjects[i].GetComponent<RectTransform>();
+            if (dragRect == null) continue;
+
             dragRect.SetParent(scatterBounds);
 
             int col = i % columns;
@@ -96,7 +94,9 @@ public class ScatterDragObjects : MonoBehaviour
             dragRect.anchoredPosition = new Vector2(x, y);
             dragRect.SetAsLastSibling();
 
-            draggableObjects[i].ResetOriginalPosition(scatterBounds, new Vector2(x, y));
+            DraggableWord dw = draggableObjects[i].GetComponent<DraggableWord>();
+            if (dw != null)
+                dw.ResetOriginalPosition(scatterBounds, new Vector2(x, y));
         }
 
         DropTarget[] dropTargets = FindObjectsByType<DropTarget>(FindObjectsSortMode.None);
@@ -104,5 +104,15 @@ public class ScatterDragObjects : MonoBehaviour
             target.ClearDropZone();
 
         Debug.Log("Objects scattered evenly!");
+    }
+
+    private Vector2 GetRandomPositionInBounds(RectTransform itemRect)
+    {
+        float minX = -scatterBounds.rect.width / 2 + edgePadding + itemRect.rect.width / 2;
+        float maxX = scatterBounds.rect.width / 2 - edgePadding - itemRect.rect.width / 2;
+        float minY = -scatterBounds.rect.height / 2 + edgePadding + itemRect.rect.height / 2;
+        float maxY = scatterBounds.rect.height / 2 - edgePadding - itemRect.rect.height / 2;
+
+        return new Vector2(Random.Range(minX, maxX), Random.Range(minY, maxY));
     }
 }

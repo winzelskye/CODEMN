@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerBattle : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class PlayerBattle : MonoBehaviour
     private string characterName;
     public Slider healthBar;
     public Slider bitpointBar;
+    public TextMeshProUGUI hpText;
 
     [Header("Character Sprites")]
     public GameObject estherSprite;
@@ -29,15 +31,22 @@ public class PlayerBattle : MonoBehaviour
 
         if (healthBar != null) { healthBar.minValue = 0; healthBar.maxValue = 100; healthBar.value = currentHealth; }
         if (bitpointBar != null) { bitpointBar.minValue = 0; bitpointBar.maxValue = 100; bitpointBar.value = 0; }
+
+        UpdateHPText();
     }
 
     public void TakeDamage(int amount)
     {
-        Debug.Log($"TakeDamage called! Amount: {amount}, Before: {currentHealth}");
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, 100);
         if (healthBar != null) healthBar.value = currentHealth;
-        Debug.Log($"After: {currentHealth}, Bar value: {healthBar?.value}");
+        UpdateHPText();
+    }
+
+    void UpdateHPText()
+    {
+        if (hpText != null)
+            hpText.text = $"{(int)currentHealth}/100";
     }
 
     public void AddBitpoints(float amount)

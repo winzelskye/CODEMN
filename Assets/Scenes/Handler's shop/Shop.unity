@@ -202,7 +202,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2128163375
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -344,7 +344,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 2128163375
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
@@ -1523,8 +1523,8 @@ MonoBehaviour:
   itemNameText: {fileID: 1120493550}
   itemPriceText: {fileID: 1749974457}
   itemStatsText: {fileID: 1617977445}
+  inventoryFullText: {fileID: 0}
   buyButton: {fileID: 587461567}
-  playerCurrency: 100
 --- !u!4 &877742219
 Transform:
   m_ObjectHideFlags: 0
@@ -1754,7 +1754,6 @@ GameObject:
   - component: {fileID: 1018063054}
   - component: {fileID: 1018063053}
   - component: {fileID: 1018063052}
-  - component: {fileID: 1018063051}
   m_Layer: 5
   m_Name: ItemDispla
   m_TagString: Untagged
@@ -1782,18 +1781,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1018063051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1018063049}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b19ffa88d2e18804fad56af322a2ba6e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DraggableWindow
 --- !u!114 &1018063052
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2133,40 +2120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48a9521a65058d746a06499919e583da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BattleDialogueController
-  dialogueDisplay: {fileID: 0}
-  currentBattle:
-    id: dd4a37ff-cc54-4323-81fc-aacf4528104b
-    battleName: New Battle
-    description: Battle description
-    enemy:
-      enemyName: New Enemy
-      enemySprite: {fileID: 0}
-      animatorController: 
-      maxHealth: 100
-      attack: 10
-      defense: 5
-      speed: 5
-      enemyColor: {r: 1, g: 1, b: 1, a: 1}
-      scale: {x: 1, y: 1, z: 1}
-      battlePosition: {x: 0, y: 0, z: 0}
-      enableDamageTint: 1
-      damageTintColor: {r: 1, g: 0, b: 0, a: 1}
-      damageTintDuration: 0.2
-      enableDamageShake: 1
-      damageShakeIntensity: 0.5
-      damageShakeDuration: 0.3
-    dialogues: []
-    attacks: []
-    phases: []
-    distractions: []
-    backgroundScene: 
-    battleMusic: {fileID: 0}
-    isBossBattle: 0
-    experienceReward: 0
-    goldReward: 0
-    itemDrops: []
-    globalTimeModifier: 1
-    basePlayerHealth: 100
 --- !u!222 &1030544842
 CanvasRenderer:
   m_ObjectHideFlags: 0
