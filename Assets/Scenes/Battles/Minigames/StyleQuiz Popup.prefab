@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 1840572684430013985}
   - component: {fileID: 5192462810347176319}
   m_Layer: 5
-  m_Name: Quiz Popup
+  m_Name: StyleQuiz Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

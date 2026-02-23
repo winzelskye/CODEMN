@@ -23,7 +23,7 @@ MonoBehaviour:
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 1
-    attachedObjectPrefab: {fileID: 6464230234252360636, guid: 0e01ea45ba4eae14888448b1a170fbbd, type: 3}
+    attachedObjectPrefab: {fileID: 6464230234252360636, guid: 058ff246b7f737f4a982c8cf4efe9e36, type: 3}
     attachedObjectDelay: 5
     destroyOnNextMessage: 0
   playerChoices: []
