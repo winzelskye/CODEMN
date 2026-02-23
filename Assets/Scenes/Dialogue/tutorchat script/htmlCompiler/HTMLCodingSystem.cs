@@ -36,6 +36,13 @@ public class HTMLCodingSystem : MonoBehaviour
         // Auto-add link handler to output panel if missing
         if (outputPanel != null && outputPanel.GetComponent<HTMLLinkHandler>() == null)
             outputPanel.gameObject.AddComponent<HTMLLinkHandler>();
+
+        // Apply default background color immediately on start
+        if (outputPanelBackground != null)
+        {
+            outputPanelBackground.sprite = null;
+            outputPanelBackground.color = defaultBackgroundColor;
+        }
     }
 
     public void RunCode()
