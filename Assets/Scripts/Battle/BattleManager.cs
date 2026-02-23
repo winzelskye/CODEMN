@@ -31,6 +31,9 @@ public class BattleManager : MonoBehaviour
     [Header("Dialogue Colors")]
     public Color systemTextColor = Color.white;
 
+    [Header("Dialogue Prompt Image")]
+    public GameObject dialoguePromptImage;
+
     private bool defenseUpActive = false;
     private bool damageUpActive = false;
     private int itemDamageReduction = 0;
@@ -46,6 +49,9 @@ public class BattleManager : MonoBehaviour
 
     void Start()
     {
+        if (dialoguePromptImage != null)
+            dialoguePromptImage.SetActive(false);
+
         StartBattle();
     }
 
@@ -140,16 +146,37 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator WaitForKeyPress()
     {
+        // Wait for typewriter to finish first
+        while (typewriterCoroutine != null)
+            yield return null;
+
+        if (dialoguePromptImage != null)
+            dialoguePromptImage.SetActive(true);
+
         yield return null;
         while (!Input.GetKeyDown(KeyCode.Return) && !Input.GetKeyDown(KeyCode.KeypadEnter))
             yield return null;
+
+        if (dialoguePromptImage != null)
+            dialoguePromptImage.SetActive(false);
     }
 
     IEnumerator WaitForKeyThenDo(System.Action callback)
     {
+        // Wait for typewriter to finish first
+        while (typewriterCoroutine != null)
+            yield return null;
+
+        if (dialoguePromptImage != null)
+            dialoguePromptImage.SetActive(true);
+
         yield return null;
         while (!Input.GetKeyDown(KeyCode.Return) && !Input.GetKeyDown(KeyCode.KeypadEnter))
             yield return null;
+
+        if (dialoguePromptImage != null)
+            dialoguePromptImage.SetActive(false);
+
         callback?.Invoke();
     }
 
@@ -280,7 +307,7 @@ public class BattleManager : MonoBehaviour
             if (!string.IsNullOrEmpty(lowHealthLine))
             {
                 ShowEnemyDialogue(lowHealthLine);
-                yield return new WaitForSeconds(2.5f);
+                yield return StartCoroutine(WaitForKeyPress());
             }
         }
 
@@ -336,6 +363,7 @@ public class BattleManager : MonoBehaviour
             dialogueController.SetText(dialogueController.GetCurrentText() + c);
             yield return new WaitForSeconds(0.05f);
         }
+        typewriterCoroutine = null;
     }
 
     void WinBattle()
