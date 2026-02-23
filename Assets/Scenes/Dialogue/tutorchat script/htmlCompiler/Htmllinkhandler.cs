@@ -1,51 +1,66 @@
 using UnityEngine;
-using TMPro;
 using UnityEngine.EventSystems;
+using TMPro;
 
 /// <summary>
-/// Optional: Add this to your OutputText object to make links clickable
-/// Detects when user clicks on a link in the TextMeshPro text
+/// Attach to the same GameObject as your output TextMeshProUGUI.
+/// Detects clicks on TMP <link> tags and opens the URL in the browser.
+///
+/// REQUIREMENTS:
+///   - Output TextMeshProUGUI must have "Raycast Target" ON
+///   - Canvas must have a GraphicRaycaster component
+///   - Scene must have an EventSystem
+///   - Output TextMeshProUGUI must have "Rich Text" ON (so <link> tags work)
 /// </summary>
 [RequireComponent(typeof(TextMeshProUGUI))]
 public class HTMLLinkHandler : MonoBehaviour, IPointerClickHandler
 {
     private TextMeshProUGUI textMesh;
-    private Camera mainCamera;
 
-    void Start()
+    void Awake()
     {
         textMesh = GetComponent<TextMeshProUGUI>();
-        mainCamera = Camera.main;
+
+        // Rich text MUST be on for <link> tags to work in the output
+        if (!textMesh.richText)
+        {
+            textMesh.richText = true;
+            Debug.Log("[LinkHandler] Enabled Rich Text on output panel (required for clickable links).");
+        }
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         if (textMesh == null) return;
 
-        // Get the index of the character that was clicked
-        int linkIndex = TMP_TextUtilities.FindIntersectingLink(textMesh, eventData.position, mainCamera);
+        // Screen Space Overlay → pass null as the camera (correct for Overlay mode)
+        int linkIndex = TMP_TextUtilities.FindIntersectingLink(
+            textMesh, eventData.position, null);
 
-        if (linkIndex != -1)
+        if (linkIndex == -1) return; // Click wasn't on a link
+
+        TMP_LinkInfo linkInfo = textMesh.textInfo.linkInfo[linkIndex];
+        string url = linkInfo.GetLinkID();
+
+        if (string.IsNullOrEmpty(url))
         {
-            // Get the link info
-            TMP_LinkInfo linkInfo = textMesh.textInfo.linkInfo[linkIndex];
-            string url = linkInfo.GetLinkID();
-
-            // Open the URL
-            OpenURL(url);
+            Debug.LogWarning("[LinkHandler] Clicked a link but URL was empty.");
+            return;
         }
+
+        OpenURL(url);
     }
 
-    void OpenURL(string url)
+    private void OpenURL(string url)
     {
-        Debug.Log($"Opening URL: {url}");
-
-        // Add http:// if not present
-        if (!url.StartsWith("http://") && !url.StartsWith("https://"))
+        // Ensure there's a scheme — bare domains like "google.com" need https://
+        if (!url.StartsWith("http://", System.StringComparison.OrdinalIgnoreCase) &&
+            !url.StartsWith("https://", System.StringComparison.OrdinalIgnoreCase))
         {
             url = "https://" + url;
         }
 
+        Debug.Log($"[LinkHandler] Opening: {url}");
         Application.OpenURL(url);
     }
 }

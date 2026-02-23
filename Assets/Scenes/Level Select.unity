@@ -131,7 +131,6 @@ GameObject:
   - component: {fileID: 108772379}
   - component: {fileID: 108772378}
   - component: {fileID: 108772377}
-  - component: {fileID: 108772376}
   m_Layer: 0
   m_Name: Shop
   m_TagString: Untagged
@@ -158,20 +157,6 @@ RectTransform:
   m_AnchoredPosition: {x: 551, y: 299}
   m_SizeDelta: {x: 124.707, y: 68.418}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &108772376
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 108772374}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 892fefbf3ec724543b1573df63d76ef8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BackToMenuButton
-  backButton: {fileID: 0}
-  mainMenuSceneName: CODEMN(GAME)
 --- !u!114 &108772377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,18 +201,18 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 108772376}
-        m_TargetAssemblyTypeName: BackToMenuButton, Assembly-CSharp
-        m_MethodName: GoToMainMenu
-        m_Mode: 1
+      - m_Target: {fileID: 1467664401}
+        m_TargetAssemblyTypeName: SceneController, Assembly-CSharp
+        m_MethodName: ChangeScene
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: Shop
           m_BoolArgument: 0
-        m_CallState: 2
+        m_CallState: 1
 --- !u!114 &108772378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2650,6 +2635,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 035195bc5b9f0c9458daf9c4e5a3e240, type: 3}
+--- !u!114 &1467664401 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 667178379840981898, guid: 035195bc5b9f0c9458daf9c4e5a3e240, type: 3}
+  m_PrefabInstance: {fileID: 1467664400}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee589ad18a8045842b9948cb9b0bdcdd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneController
 --- !u!1 &1582544740
 GameObject:
   m_ObjectHideFlags: 0
@@ -2953,6 +2949,7 @@ MonoBehaviour:
   - button: {fileID: 1933698429}
     convoScene: 
   runButton: {fileID: 2013893682}
+  shopButton: {fileID: 108772377}
   unlockAllLevels: 0
 --- !u!4 &1799725183
 Transform:

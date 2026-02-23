@@ -16,8 +16,10 @@ public class ShopManager : MonoBehaviour
     public TextMeshProUGUI itemNameText;
     public TextMeshProUGUI itemPriceText;
     public TextMeshProUGUI itemStatsText;
+    public TextMeshProUGUI inventoryFullText;
     public Button buyButton;
 
+    private const int MAX_INVENTORY = 6;
     private ItemDisplay currentItemDisplay;
     private shopItem currentItem;
     private List<GameObject> currentSpawnedItems = new List<GameObject>();
@@ -29,6 +31,9 @@ public class ShopManager : MonoBehaviour
 
         if (buyButton != null)
             buyButton.onClick.AddListener(BuyCurrentItem);
+
+        if (inventoryFullText != null)
+            inventoryFullText.gameObject.SetActive(false);
     }
 
     public void LoadRandomItem()
@@ -75,6 +80,11 @@ public class ShopManager : MonoBehaviour
         currentItem = null;
     }
 
+    private int GetTotalInventoryCount()
+    {
+        return SaveLoadManager.Instance.GetInventory().Count;
+    }
+
     private void UpdateItemInfoDisplay()
     {
         if (currentItem == null) return;
@@ -97,18 +107,29 @@ public class ShopManager : MonoBehaviour
             itemStatsText.text = stats;
         }
 
+        bool inventoryFull = GetTotalInventoryCount() >= MAX_INVENTORY;
+        bool canAfford = SaveLoadManager.Instance.GetCurrency() >= currentItem.cost;
+
         if (buyButton != null)
-            buyButton.interactable = SaveLoadManager.Instance.GetCurrency() >= currentItem.cost;
+            buyButton.interactable = canAfford && !inventoryFull;
+
+        if (inventoryFullText != null)
+            inventoryFullText.gameObject.SetActive(inventoryFull);
     }
 
     public void BuyCurrentItem()
     {
         if (currentItem == null) return;
 
+        if (GetTotalInventoryCount() >= MAX_INVENTORY)
+        {
+            Debug.Log("Inventory full!");
+            return;
+        }
+
         if (SaveLoadManager.Instance.SpendCurrency(currentItem.cost))
         {
             SaveLoadManager.Instance.AddToInventory(currentItem);
-
             Debug.Log($"Purchased {currentItem.itemName}!");
             UpdateCurrencyDisplay();
 
@@ -125,6 +146,7 @@ public class ShopManager : MonoBehaviour
                 if (itemPriceText != null) itemPriceText.text = "";
                 if (itemStatsText != null) itemStatsText.text = "";
                 if (buyButton != null) buyButton.interactable = false;
+                if (inventoryFullText != null) inventoryFullText.gameObject.SetActive(false);
             }
         }
         else

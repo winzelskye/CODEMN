@@ -1816,15 +1816,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ScatterDragObjects
   draggableObjects:
-  - {fileID: 5537280071616965119}
-  - {fileID: 4273180685192717191}
-  - {fileID: 1448716186738849093}
-  - {fileID: 528372246161141268}
-  - {fileID: 8916667195807016063}
-  - {fileID: 2711771493520749432}
+  - {fileID: 4845993933270473795}
+  - {fileID: 6871096243786535095}
+  - {fileID: 5262766776685775253}
+  - {fileID: 4417524120470653787}
+  - {fileID: 6305332534602255791}
+  - {fileID: 5616729664634302213}
   scatterBounds: {fileID: 5737192390330523365}
   edgePadding: 1
-  autoFindDragObjects: 1
+  autoFindByTag: 0
+  draggableTag: Draggable
 --- !u!1 &5410604585083488078
 GameObject:
   m_ObjectHideFlags: 0

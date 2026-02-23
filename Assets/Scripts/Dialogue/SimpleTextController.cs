@@ -579,6 +579,12 @@ public class SimpleTextController : MonoBehaviour
         return textComponent != null ? textComponent.text : "";
     }
 
+    public void SetTextColor(Color color)
+    {
+        if (textComponent != null)
+            textComponent.color = color;
+    }
+
     public void AddMessage(string text, bool useTypewriter = true)
     {
         messages.Add(new TextMessage

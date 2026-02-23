@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class ProceedButton : MonoBehaviour
 {
     public GameObject confirmationDialog;
-    public string sceneToLoad = "CODEMN(GAME)";
+    public string sceneToLoad = "CharacterSelect"; // ← changed this
     public int sceneIndex = 0;
     public bool useSceneIndex = false;
 
@@ -62,13 +62,6 @@ public class ProceedButton : MonoBehaviour
         if (sceneController != null)
             sceneController.ChangeScene(sceneToLoad);
         else
-
             SceneManager.LoadScene(sceneToLoad);
-
-        {
-            // Load scene by name
-            SceneManager.LoadScene("CharacterSelect");
-        }
-
     }
 }

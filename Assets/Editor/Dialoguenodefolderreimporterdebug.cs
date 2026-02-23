@@ -1,37 +1,23 @@
 using UnityEngine;
 using UnityEditor;
-using System.Collections.Generic;
-using System.IO;
+using System;
+using System.Reflection;
 
-/// <summary>
-/// DEBUG VERSION - Shows detailed info about what it finds
-/// </summary>
 [InitializeOnLoad]
 public class DialogueNodeFolderReimporterDebug
 {
     static DialogueNodeFolderReimporterDebug()
     {
-        EditorApplication.delayCall += () =>
-        {
-            Debug.Log("[DEBUG Reimporter] Running diagnostics...");
-            DiagnoseDialogueNodes();
-        };
+        // No auto-run — triggered by DialogueNodeManualFolderReimporter
     }
 
-    private static void DiagnoseDialogueNodes()
+    public static void DiagnoseDialogueNodes()
     {
         Debug.Log("=== DIALOGUE NODE DIAGNOSTIC ===");
 
-        // Try multiple search methods
-        Debug.Log("Method 1: Searching for 't:DialogueNode'...");
-        string[] guids1 = AssetDatabase.FindAssets("t:DialogueNode");
-        Debug.Log($"Found {guids1.Length} assets with 't:DialogueNode'");
+        string[] guids = AssetDatabase.FindAssets("t:DialogueNode");
+        Debug.Log($"Found {guids.Length} assets with 't:DialogueNode'");
 
-        Debug.Log("Method 2: Searching for 't:ScriptableObject'...");
-        string[] guids2 = AssetDatabase.FindAssets("t:ScriptableObject");
-        Debug.Log($"Found {guids2.Length} ScriptableObjects total");
-
-        Debug.Log("Method 3: Searching for all assets...");
         string[] allAssets = AssetDatabase.GetAllAssetPaths();
         int dialogueNodeCount = 0;
 
@@ -39,26 +25,29 @@ public class DialogueNodeFolderReimporterDebug
         {
             if (path.Contains("DialogueNode") || path.EndsWith(".asset"))
             {
-                Debug.Log($"Found potential DialogueNode asset: {path}");
-
-                // Try to load it
-                Object obj = AssetDatabase.LoadAssetAtPath<Object>(path);
-                if (obj != null)
+                UnityEngine.Object obj = AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(path);
+                if (obj is DialogueNode node)
                 {
-                    Debug.Log($"  - Type: {obj.GetType().Name}");
-
-                    if (obj is DialogueNode)
-                    {
-                        dialogueNodeCount++;
-                        DialogueNode node = obj as DialogueNode;
-                        Debug.Log($"  - IS A DIALOGUENODE! Name: {node.name}, Character: {node.characterName}");
-                    }
+                    dialogueNodeCount++;
+                    Debug.Log($"  - DialogueNode: {node.name}, Character: {node.characterName}");
                 }
             }
         }
 
-        Debug.Log($"Total DialogueNode assets found by manual search: {dialogueNodeCount}");
+        Debug.Log($"Total DialogueNodes found: {dialogueNodeCount}");
         Debug.Log("=== END DIAGNOSTIC ===");
+
+        ClearConsole();
+    }
+
+    private static void ClearConsole()
+    {
+        Type logEntries = Type.GetType("UnityEditor.LogEntries, UnityEditor.CoreModule");
+        if (logEntries != null)
+        {
+            MethodInfo clearMethod = logEntries.GetMethod("Clear", BindingFlags.Static | BindingFlags.Public);
+            clearMethod?.Invoke(null, null);
+        }
     }
 
     [MenuItem("Tools/Dialogue/Run DialogueNode Diagnostic")]

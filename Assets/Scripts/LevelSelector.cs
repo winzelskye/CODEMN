@@ -18,6 +18,9 @@ public class LevelSelector : MonoBehaviour
     [Header("Run Button")]
     public Button runButton;
 
+    [Header("Shop Button")]
+    public Button shopButton;
+
     [Header("Unlock Settings")]
     public bool unlockAllLevels = false;
 
@@ -28,7 +31,7 @@ public class LevelSelector : MonoBehaviour
         var levelData = SaveLoadManager.Instance.GetAllLevels();
 
         if (runButton != null)
-            runButton.interactable = false; // disabled until a level is selected
+            runButton.interactable = false;
 
         for (int i = 0; i < levels.Length; i++)
         {
@@ -40,6 +43,14 @@ public class LevelSelector : MonoBehaviour
 
         if (runButton != null)
             runButton.onClick.AddListener(OnRunClicked);
+
+        // Show shop button only if Level 1 is completed
+        if (shopButton != null)
+        {
+            var level1 = levelData.Find(l => l.id == 1);
+            bool level1Completed = level1 != null && level1.isCompleted == 1;
+            shopButton.gameObject.SetActive(level1Completed);
+        }
     }
 
     void SelectLevel(int index)

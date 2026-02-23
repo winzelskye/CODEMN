@@ -1,68 +1,56 @@
 using UnityEngine;
 using UnityEditor;
+using UnityEditor.SceneManagement;
+using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
-/// <summary>
-/// Manual folder reimporter - YOU specify which folders to reimport
-/// Put this in Assets/Editor/ folder
-/// </summary>
 [InitializeOnLoad]
 public class DialogueNodeManualFolderReimporter
 {
-    // ===== EDIT THESE PATHS TO YOUR DIALOGUENODE FOLDERS =====
-    // Example: "Assets/Dialogue/Nodes"
-    // Example: "Assets/ScriptableObjects/DialogueNodes"
-    // Add as many folders as you need!
-    private static string[] dialogueNodeFolders = new string[]
-    {
-        "Assets/Scenes/Dialogue/tutorchat script/Dialogue/LEVEL1.Tutorial",  // CHANGE THIS to your actual folder!
-        // "Assets/AnotherFolder/Dialogue",  // Add more if needed
-    };
-    // ==========================================================
-
     static DialogueNodeManualFolderReimporter()
     {
-        // Autoload - Reimport on Unity startup
-        EditorApplication.delayCall += () =>
-        {
-            Debug.Log("[Manual Reimporter] Auto-reimporting DialogueNode folders on startup...");
-            ReimportDialogueNodeFolders();
-        };
-
-        // Also reimport when entering Play mode
         EditorApplication.playModeStateChanged += OnPlayModeStateChanged;
+        EditorSceneManager.sceneOpened += OnSceneOpened;
     }
 
     private static void OnPlayModeStateChanged(PlayModeStateChange state)
     {
         if (state == PlayModeStateChange.ExitingEditMode)
         {
-            Debug.Log("[Manual Reimporter] Reimporting DialogueNode folders before Play...");
-            ReimportDialogueNodeFolders();
+            Debug.Log("[Manual Reimporter] Running before Play...");
+            RunAll();
         }
     }
 
-    private static void ReimportDialogueNodeFolders()
+    private static void OnSceneOpened(Scene scene, OpenSceneMode mode)
     {
-        int reimportedCount = 0;
+        var settings = DialogueNodeReimportSettingsWindow.LoadOrCreateSettings();
+        if (settings == null) return;
 
-        foreach (string folder in dialogueNodeFolders)
+        if (settings.triggerScenes.Contains(scene.name))
         {
-            // Skip if path not set up yet
-            if (string.IsNullOrEmpty(folder) || folder.Contains("YOUR_FOLDER_PATH_HERE"))
-            {
-                Debug.LogWarning("[Manual Reimporter] Please edit the script and set your DialogueNode folder path!");
-                continue;
-            }
+            Debug.Log($"[Manual Reimporter] Scene '{scene.name}' matched — running reimport...");
+            RunAll();
+        }
+    }
 
-            // Check if folder exists
+    public static void ReimportDialogueNodeFolders(List<string> folders = null)
+    {
+        var settings = DialogueNodeReimportSettingsWindow.LoadOrCreateSettings();
+        var foldersToUse = folders ?? settings?.dialogueNodeFolders ?? new List<string>();
+
+        int reimportedCount = 0;
+        foreach (string folder in foldersToUse)
+        {
+            if (string.IsNullOrEmpty(folder)) continue;
+
             if (!AssetDatabase.IsValidFolder(folder))
             {
                 Debug.LogError($"[Manual Reimporter] Folder does not exist: {folder}");
                 continue;
             }
 
-            // Reimport the folder
-            Debug.Log($"[Manual Reimporter] Reimporting folder: {folder}");
+            Debug.Log($"[Manual Reimporter] Reimporting: {folder}");
             AssetDatabase.ImportAsset(folder, ImportAssetOptions.ImportRecursive | ImportAssetOptions.ForceUpdate);
             reimportedCount++;
         }
@@ -71,19 +59,24 @@ public class DialogueNodeManualFolderReimporter
         {
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh(ImportAssetOptions.ForceUpdate);
-            Debug.Log($"[Manual Reimporter] Successfully reimported {reimportedCount} folder(s)!");
+            Debug.Log($"[Manual Reimporter] Reimported {reimportedCount} folder(s).");
         }
         else
         {
-            Debug.LogWarning("[Manual Reimporter] No folders were reimported. Please check your folder paths!");
+            Debug.LogWarning("[Manual Reimporter] No folders reimported. Check paths in Configure Reimport Settings.");
         }
     }
 
-    // Manual button
+    public static void RunAll()
+    {
+        var settings = DialogueNodeReimportSettingsWindow.LoadOrCreateSettings();
+        ReimportDialogueNodeFolders(settings?.dialogueNodeFolders);
+        DialogueNodeFolderReimporterDebug.DiagnoseDialogueNodes();
+    }
+
     [MenuItem("Tools/Dialogue/Force Reimport DialogueNode Folders (Manual)")]
     private static void ManualReimport()
     {
-        ReimportDialogueNodeFolders();
-        Debug.Log("[Manual Reimporter] Manual folder reimport complete!");
+        RunAll();
     }
 }

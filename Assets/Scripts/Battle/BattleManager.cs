@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public enum BattleState { Start, PreBattle, EnemyDialogue, PlayerTurn, EnemyTurn, Won, Lost }
@@ -22,9 +23,20 @@ public class BattleManager : MonoBehaviour
     [Header("Battle Start Button")]
     public GameObject battleStartButton;
 
+    [Header("Player Action Buttons")]
+    public Button fightButton;
+    public Button skillsButton;
+    public Button itemsButton;
+
+    [Header("Dialogue Colors")]
+    public Color systemTextColor = Color.white;
+
     private bool defenseUpActive = false;
     private bool damageUpActive = false;
+    private int itemDamageReduction = 0;
     private int preBattleLineIndex = 0;
+    private bool enemyTookDamageThisTurn = false;
+    private Coroutine typewriterCoroutine;
 
     void Awake()
     {
@@ -35,6 +47,13 @@ public class BattleManager : MonoBehaviour
     void Start()
     {
         StartBattle();
+    }
+
+    void SetButtonsInteractable(bool interactable)
+    {
+        if (fightButton != null) fightButton.interactable = interactable;
+        if (skillsButton != null) skillsButton.interactable = interactable;
+        if (itemsButton != null) itemsButton.interactable = interactable;
     }
 
     void StartBattle()
@@ -56,6 +75,7 @@ public class BattleManager : MonoBehaviour
         if (battleStartButton != null)
             battleStartButton.SetActive(false);
 
+        SetButtonsInteractable(false);
         Invoke(nameof(StartPreBattleDialogue), 1f);
     }
 
@@ -79,9 +99,9 @@ public class BattleManager : MonoBehaviour
             return;
         }
 
-        string line = enemyDialogue.preBattleLines[preBattleLineIndex].line;
+        string line = enemyDialogue.GetNextPreBattleLine(preBattleLineIndex);
         preBattleLineIndex++;
-        ShowDialogue(line);
+        ShowEnemyDialogue(line);
 
         StartCoroutine(WaitForKeyThenDo(ShowNextPreBattleLine));
     }
@@ -97,31 +117,38 @@ public class BattleManager : MonoBehaviour
     IEnumerator EnemyTurnDialogue()
     {
         state = BattleState.EnemyDialogue;
+        SetButtonsInteractable(false);
 
         if (enemyDialogue != null)
         {
-            string line = enemyDialogue.GetNextTurnLine();
+            string line = enemyDialogue.GetNextTurnLine(enemyTookDamageThisTurn);
             if (!string.IsNullOrEmpty(line))
             {
-                ShowDialogue(line);
+                ShowEnemyDialogue(line);
                 yield return StartCoroutine(WaitForKeyPress());
             }
         }
 
-        PlayerTurn();
+        enemyTookDamageThisTurn = false;
+
+        ShowDialogue("* Your turn!");
+        yield return new WaitForSeconds(1f);
+
+        SetButtonsInteractable(true);
+        state = BattleState.PlayerTurn;
     }
 
     IEnumerator WaitForKeyPress()
     {
         yield return null;
-        while (!Input.anyKeyDown)
+        while (!Input.GetKeyDown(KeyCode.Return) && !Input.GetKeyDown(KeyCode.KeypadEnter))
             yield return null;
     }
 
     IEnumerator WaitForKeyThenDo(System.Action callback)
     {
         yield return null;
-        while (!Input.anyKeyDown)
+        while (!Input.GetKeyDown(KeyCode.Return) && !Input.GetKeyDown(KeyCode.KeypadEnter))
             yield return null;
         callback?.Invoke();
     }
@@ -129,10 +156,17 @@ public class BattleManager : MonoBehaviour
     public void PlayerTurn()
     {
         state = BattleState.PlayerTurn;
-        ShowDialogue("Your turn!");
+        SetButtonsInteractable(true);
+        ShowDialogue("* Your turn!");
     }
 
     public void OnPlayerAttackResult(bool success, bool isSpecial)
+    {
+        SetButtonsInteractable(false);
+        StartCoroutine(PlayerAttackSequence(success, isSpecial));
+    }
+
+    IEnumerator PlayerAttackSequence(bool success, bool isSpecial)
     {
         if (success)
         {
@@ -148,23 +182,30 @@ public class BattleManager : MonoBehaviour
             if (damage < 0)
             {
                 player.TakeDamage(damage);
-                ShowDialogue($"You used {attackName} and recovered {Mathf.Abs(damage)} HP!");
+                ShowDialogue($"* You used {attackName} and recovered {Mathf.Abs(damage)} HP!");
+                yield return new WaitForSeconds(2f);
             }
             else if (attackName == "Border Attack")
             {
+                enemy.TakeDamage(damage);
+                enemyTookDamageThisTurn = true;
                 defenseUpActive = true;
-                ShowDialogue("You raised your defense! Incoming damage will be halved!");
+                ShowDialogue($"* Border Attack! Dealt {damage} damage and raised your defense!");
+                yield return new WaitForSeconds(2f);
             }
             else if (attackName == "Extra Damage")
             {
                 damageUpActive = true;
-                ShowDialogue("You powered up! Next attack will deal 1.5x damage!");
+                ShowDialogue("* You powered up! Next attack will deal 1.5x damage!");
+                yield return new WaitForSeconds(2f);
             }
             else
             {
                 enemy.TakeDamage(damage);
+                enemyTookDamageThisTurn = true;
                 string hitLine = enemyDialogue != null ? enemyDialogue.GetNextHitLine() : "";
-                ShowDialogue(!string.IsNullOrEmpty(hitLine) ? hitLine : $"You dealt {damage} damage!");
+                ShowDialogue(!string.IsNullOrEmpty(hitLine) ? hitLine : $"* You dealt {damage} damage!");
+                yield return new WaitForSeconds(2f);
             }
 
             if (player.currentAttack != null && player.currentAttack.isSkill == 0)
@@ -179,19 +220,27 @@ public class BattleManager : MonoBehaviour
             if (enemy.currentHealth >= 100)
             {
                 WinBattle();
-                return;
+                yield break;
             }
         }
         else
         {
-            ShowDialogue("Time's up! The enemy takes their turn.");
+            ShowDialogue("* Time's up! The enemy takes their turn.");
+            enemyTookDamageThisTurn = false;
+            yield return new WaitForSeconds(2f);
         }
 
         state = BattleState.EnemyTurn;
-        Invoke(nameof(EnemyAttack), 2f);
+        EnemyAttack();
     }
 
     void EnemyAttack()
+    {
+        SetButtonsInteractable(false);
+        StartCoroutine(EnemyAttackSequence());
+    }
+
+    IEnumerator EnemyAttackSequence()
     {
         int damage = enemy.GetRandomDamage();
 
@@ -200,12 +249,26 @@ public class BattleManager : MonoBehaviour
             int reducedDamage = Mathf.RoundToInt(damage * 0.5f);
             enemy.AttackWithDamage(player, reducedDamage);
             defenseUpActive = false;
-            ShowDialogue($"The enemy attacked for {damage} but your defense reduced it to {reducedDamage}!");
+            ShowDialogue($"* The enemy attacked for {damage} damage...");
+            yield return new WaitForSeconds(2.5f);
+            ShowDialogue($"* But your defense reduced it to {reducedDamage}!");
+            yield return new WaitForSeconds(2.5f);
+        }
+        else if (itemDamageReduction > 0)
+        {
+            int reducedDamage = Mathf.Max(0, damage - itemDamageReduction);
+            enemy.AttackWithDamage(player, reducedDamage);
+            ShowDialogue($"* The enemy attacked for {damage} damage...");
+            yield return new WaitForSeconds(2.5f);
+            ShowDialogue($"* But your item reduced it to {reducedDamage}!");
+            yield return new WaitForSeconds(2.5f);
+            itemDamageReduction = 0;
         }
         else
         {
             enemy.AttackWithDamage(player, damage);
-            ShowDialogue($"The enemy attacked you for {damage} damage!");
+            ShowDialogue($"* The enemy attacked you for {damage} damage!");
+            yield return new WaitForSeconds(2.5f);
         }
 
         if (glitchEffect != null)
@@ -215,37 +278,29 @@ public class BattleManager : MonoBehaviour
         {
             string lowHealthLine = enemyDialogue.GetNextLowHealthLine();
             if (!string.IsNullOrEmpty(lowHealthLine))
-                Invoke(nameof(ShowLowHealthLine), 1.5f);
-        }
-
-        if (dialogueController != null)
-        {
-            if (player.currentHealth >= 75)
-                dialogueController.SetCondition("LowHealth", true);
+            {
+                ShowEnemyDialogue(lowHealthLine);
+                yield return new WaitForSeconds(2.5f);
+            }
         }
 
         if (player.currentHealth >= 100)
         {
             LoseBattle();
-            return;
+            yield break;
         }
 
-        Invoke(nameof(StartEnemyTurnDialogue), 2f);
-    }
-
-    void StartEnemyTurnDialogue()
-    {
         StartCoroutine(EnemyTurnDialogue());
     }
 
-    void ShowLowHealthLine()
+    public void ShowBattleDialogue(string message)
     {
-        if (enemyDialogue != null)
-        {
-            string line = enemyDialogue.GetNextLowHealthLine();
-            if (!string.IsNullOrEmpty(line))
-                ShowDialogue(line);
-        }
+        ShowDialogue(message);
+    }
+
+    public void ApplyDamageReduction(int amount)
+    {
+        itemDamageReduction = amount;
     }
 
     void ShowDialogue(string message)
@@ -253,8 +308,23 @@ public class BattleManager : MonoBehaviour
         if (dialogueController != null)
         {
             dialogueController.ShowText();
-            StopAllCoroutines();
-            StartCoroutine(TypewriterDialogue(message));
+            dialogueController.SetTextColor(systemTextColor);
+            if (typewriterCoroutine != null)
+                StopCoroutine(typewriterCoroutine);
+            typewriterCoroutine = StartCoroutine(TypewriterDialogue(message));
+        }
+    }
+
+    void ShowEnemyDialogue(string message)
+    {
+        if (dialogueController != null)
+        {
+            dialogueController.ShowText();
+            if (enemyDialogue != null)
+                dialogueController.SetTextColor(enemyDialogue.enemyTextColor);
+            if (typewriterCoroutine != null)
+                StopCoroutine(typewriterCoroutine);
+            typewriterCoroutine = StartCoroutine(TypewriterDialogue(message));
         }
     }
 
@@ -278,9 +348,14 @@ public class BattleManager : MonoBehaviour
         if (enemyData != null)
         {
             SaveLoadManager.Instance.AddCurrency(enemyData.currencyReward);
-            ShowDialogue($"You won! You earned {enemyData.currencyReward} currency!");
+            ShowDialogue($"* You won! You earned {enemyData.currencyReward} currency!");
         }
 
+        Invoke(nameof(ShowWinScreen), 3f);
+    }
+
+    void ShowWinScreen()
+    {
         if (gameOverManager != null) gameOverManager.ShowWin();
     }
 
@@ -288,7 +363,12 @@ public class BattleManager : MonoBehaviour
     {
         state = BattleState.Lost;
         SaveLoadManager.Instance.SaveBattleResult(currentLevelId, false);
-        ShowDialogue("You were defeated...");
+        ShowDialogue("* You were defeated...");
+        Invoke(nameof(ShowLoseScreen), 3f);
+    }
+
+    void ShowLoseScreen()
+    {
         if (gameOverManager != null) gameOverManager.ShowLose();
     }
 }

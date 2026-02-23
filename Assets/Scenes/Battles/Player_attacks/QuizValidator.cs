@@ -35,12 +35,6 @@ public class QuizValidator : MonoBehaviour
             timerComponent = popupCanvas.GetComponentInChildren<TimerComponent>();
     }
 
-    private void OnEnable()
-    {
-        if (scatterScript != null)
-            scatterScript.ScatterObjects();
-    }
-
     private void OnDoneClicked()
     {
         StartCoroutine(CheckWithDelay());
@@ -80,6 +74,7 @@ public class QuizValidator : MonoBehaviour
 
             Transform parent = answer.correctItem.transform.parent;
             bool found = false;
+
             while (parent != null)
             {
                 if (parent == answer.dropZone)
@@ -96,7 +91,6 @@ public class QuizValidator : MonoBehaviour
                 return false;
             }
         }
-
         return true;
     }
 
