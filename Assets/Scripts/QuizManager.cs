@@ -7,6 +7,7 @@ using TMPro;
 [System.Serializable]
 public class QuizQuestion
 {
+    [TextArea(1, 50)]
     public string question;
     public string correctAnswer;
     [TextArea(2, 4)]

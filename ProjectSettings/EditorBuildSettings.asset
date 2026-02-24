@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Dialogue/conversations/TutorialStart.unity
     guid: 9af129cd9feb5154094794f7e3d17d1a
   - enabled: 1
+    path: Assets/Scenes/Battles/TutorialBattle.unity
+    guid: b49e3ca8c0fa2f74395ecc3f7d43610e
+  - enabled: 0
     path: Assets/Scenes/Battles/BattleTemplate.unity
     guid: 8608990096e3f904584a7a3ef4a3bae4
   - enabled: 1

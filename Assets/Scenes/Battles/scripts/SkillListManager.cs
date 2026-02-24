@@ -26,10 +26,9 @@ public class SkillListManager : MonoBehaviour
         float currentBP = BattleManager.Instance.player.bitpoints;
         for (int i = 0; i < skills.Count; i++)
         {
-            if (i < availableSkills.Count)
+            if (i < availableSkills.Count && availableSkills[i] != null)
             {
                 skills[i].button.interactable = currentBP >= availableSkills[i].bitpointCost;
-                // Update button text to show current BP vs cost
                 if (skills[i].buttonText != null)
                     skills[i].buttonText.text = $"{availableSkills[i].attackName} ({(int)currentBP}/{availableSkills[i].bitpointCost} BP)";
             }
@@ -41,21 +40,29 @@ public class SkillListManager : MonoBehaviour
         var player = SaveLoadManager.Instance.LoadPlayer();
         if (player == null) return;
 
-        availableSkills = SaveLoadManager.Instance.GetSkills(player.selectedCharacter);
-        Debug.Log($"Found {availableSkills.Count} skills, Player BP: {BattleManager.Instance.player.bitpoints}");
+        var rawSkills = SaveLoadManager.Instance.GetSkills(player.selectedCharacter);
 
+        // Reorder to match inspector slot order by name
+        availableSkills = new List<AttackData>();
         for (int i = 0; i < skills.Count; i++)
         {
-            if (i < availableSkills.Count)
+            var match = rawSkills.Find(s => s.attackName == skills[i].attackName);
+            availableSkills.Add(match); // null if no match for this character
+        }
+
+        Debug.Log($"Found {rawSkills.Count} skills for {player.selectedCharacter}, Player BP: {BattleManager.Instance.player.bitpoints}");
+        for (int i = 0; i < availableSkills.Count; i++)
+            Debug.Log($"availableSkills[{i}] = {(availableSkills[i] != null ? availableSkills[i].attackName : "null")}");
+
+        float currentBP = BattleManager.Instance.player.bitpoints;
+        for (int i = 0; i < skills.Count; i++)
+        {
+            if (availableSkills[i] != null)
             {
                 skills[i].button.gameObject.SetActive(true);
-
-                float currentBP = BattleManager.Instance.player.bitpoints;
                 if (skills[i].buttonText != null)
                     skills[i].buttonText.text = $"{availableSkills[i].attackName} ({(int)currentBP}/{availableSkills[i].bitpointCost} BP)";
-
                 skills[i].button.interactable = currentBP >= availableSkills[i].bitpointCost;
-
                 int index = i;
                 skills[i].button.onClick.RemoveAllListeners();
                 skills[i].button.onClick.AddListener(() => SelectSkill(index));
@@ -69,6 +76,7 @@ public class SkillListManager : MonoBehaviour
 
     void SelectSkill(int index)
     {
+        if (availableSkills[index] == null) return;
         AttackData skill = availableSkills[index];
 
         if (BattleManager.Instance.player.bitpoints < skill.bitpointCost)
@@ -87,6 +95,9 @@ public class SkillListManager : MonoBehaviour
             skills[index].attackObject.SetActive(true);
 
         gameObject.SetActive(false);
+
+        if (skills[index].attackObject == null)
+            BattleManager.Instance.OnPlayerAttackResult(true, false);
     }
 
     public void ShowBattleUI()

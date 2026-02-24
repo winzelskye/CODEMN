@@ -10,6 +10,20 @@ public class EnemyBattle : MonoBehaviour
     public Slider healthBar;
     public TextMeshProUGUI hpText;
 
+    [Header("Enemy Selection")]
+    [Tooltip("-1 = use BattleManager currentLevelId, 0 = Handler, 1 = Dee Bug, 2 = Lady Bug, 3 = A.I., 4 = Hacker")]
+    public int selectedLevelId = -1;
+
+    void Start()
+    {
+        if (selectedLevelId >= 0)
+        {
+            var data = SaveLoadManager.Instance.GetEnemyForLevel(selectedLevelId);
+            if (data != null) Setup(data);
+            else Debug.LogWarning($"EnemyBattle: No enemy found for level {selectedLevelId}");
+        }
+    }
+
     public void Setup(EnemyData data)
     {
         minAttackDamage = data.attackDamage;

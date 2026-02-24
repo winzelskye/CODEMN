@@ -30,8 +30,8 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: You do not need to tell me who you are [Player]. I am told about
-      your abilities and potential.
+    dialogueText: You do not need to tell me who you are. I am told about your abilities
+      and potential.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}

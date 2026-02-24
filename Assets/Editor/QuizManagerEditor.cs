@@ -49,7 +49,7 @@ public class QuizManagerEditor : Editor
         EditorGUILayout.LabelField("Quiz Manager", EditorStyles.boldLabel);
         EditorGUILayout.Space();
 
-        // UI References Section
+        // UI References
         EditorGUILayout.LabelField("UI References", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(questionTextProp, new GUIContent("Question Text"));
         EditorGUILayout.PropertyField(answerInputProp, new GUIContent("Answer Input Field"));
@@ -59,14 +59,14 @@ public class QuizManagerEditor : Editor
         EditorGUILayout.PropertyField(feedbackTextProp, new GUIContent("Feedback Text"));
         EditorGUILayout.Space();
 
-        // Timer Settings Section
+        // Timer Settings
         EditorGUILayout.LabelField("Timer Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(totalTimeProp, new GUIContent("Total Time (seconds)"));
         EditorGUILayout.PropertyField(hideOnTimeoutProp, new GUIContent("Hide Canvas on Timeout"));
         EditorGUILayout.PropertyField(timePenaltyProp, new GUIContent("Time Penalty for Wrong Answer"));
         EditorGUILayout.Space();
 
-        // Quiz Settings Section
+        // Quiz Settings
         EditorGUILayout.LabelField("Quiz Settings", EditorStyles.boldLabel);
         EditorGUILayout.PropertyField(randomizeProp, new GUIContent("Randomize Questions"));
         EditorGUILayout.PropertyField(caseSensitiveProp, new GUIContent("Case Sensitive Answers"));
@@ -76,18 +76,17 @@ public class QuizManagerEditor : Editor
         EditorGUILayout.PropertyField(stayOnQuestionProp, new GUIContent("Stay on Question Until Correct"));
         EditorGUILayout.Space();
 
-        // Questions Section
+        // Questions
         EditorGUILayout.LabelField("Questions", EditorStyles.boldLabel);
 
-        // Add/Remove buttons
         EditorGUILayout.BeginHorizontal();
         if (GUILayout.Button("Add Question"))
         {
             questionsProp.arraySize++;
-            SerializedProperty newQuestion = questionsProp.GetArrayElementAtIndex(questionsProp.arraySize - 1);
-            newQuestion.FindPropertyRelative("question").stringValue = "New Question";
-            newQuestion.FindPropertyRelative("correctAnswer").stringValue = "";
-            newQuestion.FindPropertyRelative("wrongAnswers").arraySize = 0;
+            SerializedProperty newQ = questionsProp.GetArrayElementAtIndex(questionsProp.arraySize - 1);
+            newQ.FindPropertyRelative("question").stringValue = "New Question";
+            newQ.FindPropertyRelative("correctAnswer").stringValue = "";
+            newQ.FindPropertyRelative("wrongAnswers").arraySize = 0;
         }
         if (GUILayout.Button("Clear All"))
         {
@@ -100,17 +99,18 @@ public class QuizManagerEditor : Editor
         EditorGUILayout.EndHorizontal();
         EditorGUILayout.Space();
 
-        // Display questions
         for (int i = 0; i < questionsProp.arraySize; i++)
         {
             SerializedProperty question = questionsProp.GetArrayElementAtIndex(i);
+            SerializedProperty questionTextFieldProp = question.FindPropertyRelative("question");
 
             EditorGUILayout.BeginVertical("box");
 
+            // Foldout header
             EditorGUILayout.BeginHorizontal();
+            string preview = questionTextFieldProp.stringValue.Split('\n')[0]; // first line only for header
             question.isExpanded = EditorGUILayout.Foldout(question.isExpanded,
-                $"Question {i + 1}: {question.FindPropertyRelative("question").stringValue}", true);
-
+                $"Question {i + 1}: {preview}", true);
             if (GUILayout.Button("X", GUILayout.Width(25)))
             {
                 questionsProp.DeleteArrayElementAtIndex(i);
@@ -122,13 +122,18 @@ public class QuizManagerEditor : Editor
             {
                 EditorGUI.indentLevel++;
 
-                EditorGUILayout.PropertyField(question.FindPropertyRelative("question"),
-                    new GUIContent("Question Text"));
+                // Multiline question text area (min 1, max 50 lines)
+                EditorGUILayout.LabelField("Question Text");
+                questionTextFieldProp.stringValue = EditorGUILayout.TextArea(
+                    questionTextFieldProp.stringValue,
+                    GUILayout.MinHeight(EditorGUIUtility.singleLineHeight),
+                    GUILayout.MaxHeight(EditorGUIUtility.singleLineHeight * 50)
+                );
+
                 EditorGUILayout.PropertyField(question.FindPropertyRelative("correctAnswer"),
                     new GUIContent("Correct Answer"));
-
-                SerializedProperty wrongAnswers = question.FindPropertyRelative("wrongAnswers");
-                EditorGUILayout.PropertyField(wrongAnswers, new GUIContent("Wrong Answers (Optional)"), true);
+                EditorGUILayout.PropertyField(question.FindPropertyRelative("wrongAnswers"),
+                    new GUIContent("Wrong Answers (Optional)"), true);
 
                 EditorGUI.indentLevel--;
             }

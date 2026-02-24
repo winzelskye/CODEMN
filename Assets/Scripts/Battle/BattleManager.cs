@@ -35,7 +35,6 @@ public class BattleManager : MonoBehaviour
     public GameObject dialoguePromptImage;
 
     private bool defenseUpActive = false;
-    private bool damageUpActive = false;
     private int itemDamageReduction = 0;
     private int preBattleLineIndex = 0;
     private bool enemyTookDamageThisTurn = false;
@@ -55,6 +54,18 @@ public class BattleManager : MonoBehaviour
         StartBattle();
     }
 
+    void Update()
+    {
+        if (state == BattleState.PreBattle && Input.GetKeyDown(KeyCode.Z))
+        {
+            preBattleLineIndex = enemyDialogue.preBattleLines.Count;
+            StopAllCoroutines();
+            typewriterCoroutine = null;
+            if (dialoguePromptImage != null) dialoguePromptImage.SetActive(false);
+            if (battleStartButton != null) battleStartButton.SetActive(true);
+        }
+    }
+
     void SetButtonsInteractable(bool interactable)
     {
         if (fightButton != null) fightButton.interactable = interactable;
@@ -66,8 +77,9 @@ public class BattleManager : MonoBehaviour
     {
         state = BattleState.Start;
 
-        var enemyData = SaveLoadManager.Instance.GetEnemyForLevel(currentLevelId);
-        if (enemyData == null) { Debug.LogError($"No enemy found for level {currentLevelId}!"); return; }
+        int levelToLoad = enemy.selectedLevelId >= 0 ? enemy.selectedLevelId : currentLevelId;
+        var enemyData = SaveLoadManager.Instance.GetEnemyForLevel(levelToLoad);
+        if (enemyData == null) { Debug.LogError($"No enemy found for level {levelToLoad}!"); return; }
         enemy.Setup(enemyData);
 
         var playerData = SaveLoadManager.Instance.LoadPlayer();
@@ -146,7 +158,6 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator WaitForKeyPress()
     {
-        // Wait for typewriter to finish first
         while (typewriterCoroutine != null)
             yield return null;
 
@@ -163,7 +174,6 @@ public class BattleManager : MonoBehaviour
 
     IEnumerator WaitForKeyThenDo(System.Action callback)
     {
-        // Wait for typewriter to finish first
         while (typewriterCoroutine != null)
             yield return null;
 
@@ -200,30 +210,23 @@ public class BattleManager : MonoBehaviour
             int damage = isSpecial ? player.specialAttack.damage : player.currentAttack.damage;
             string attackName = isSpecial ? player.specialAttack.attackName : player.currentAttack.attackName;
 
-            if (damageUpActive && damage > 0)
-            {
-                damage = Mathf.RoundToInt(damage * 1.5f);
-                damageUpActive = false;
-            }
-
-            if (damage < 0)
-            {
-                player.TakeDamage(damage);
-                ShowDialogue($"* You used {attackName} and recovered {Mathf.Abs(damage)} HP!");
-                yield return new WaitForSeconds(2f);
-            }
-            else if (attackName == "Border Attack")
+            if (attackName == "Debug" || attackName == "Debug EX")
             {
                 enemy.TakeDamage(damage);
                 enemyTookDamageThisTurn = true;
-                defenseUpActive = true;
-                ShowDialogue($"* Border Attack! Dealt {damage} damage and raised your defense!");
+                player.TakeDamage(-12);
+                string hitLine = enemyDialogue != null ? enemyDialogue.GetNextHitLine() : "";
+                ShowDialogue(!string.IsNullOrEmpty(hitLine) ? hitLine : $"* {attackName}! Dealt {damage} damage and recovered 12 HP!");
                 yield return new WaitForSeconds(2f);
             }
-            else if (attackName == "Extra Damage")
+            else if (damage < 0)
             {
-                damageUpActive = true;
-                ShowDialogue("* You powered up! Next attack will deal 1.5x damage!");
+                player.TakeDamage(damage);
+
+                if (attackName == "Protection" || attackName == "Protection EX")
+                    defenseUpActive = true;
+
+                ShowDialogue($"* You used {attackName}! Recovered {Mathf.Abs(damage)} HP and raised your defense!");
                 yield return new WaitForSeconds(2f);
             }
             else
@@ -231,11 +234,12 @@ public class BattleManager : MonoBehaviour
                 enemy.TakeDamage(damage);
                 enemyTookDamageThisTurn = true;
                 string hitLine = enemyDialogue != null ? enemyDialogue.GetNextHitLine() : "";
-                ShowDialogue(!string.IsNullOrEmpty(hitLine) ? hitLine : $"* You dealt {damage} damage!");
+                ShowDialogue(!string.IsNullOrEmpty(hitLine) ? hitLine : $"* {attackName}! Dealt {damage} damage!");
                 yield return new WaitForSeconds(2f);
             }
 
-            if (player.currentAttack != null && player.currentAttack.isSkill == 0)
+            // Only add bitpoints for normal attacks (not skills, not specials)
+            if (player.currentAttack != null && player.currentAttack.isSkill == 0 && !isSpecial)
                 player.AddBitpoints(player.bitpointRate);
 
             if (dialogueController != null)
