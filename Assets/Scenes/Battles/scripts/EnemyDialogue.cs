@@ -42,24 +42,21 @@ public class EnemyDialogue : MonoBehaviour
     {
         if (currentTurnLineIndex >= turnLines.Count) return "";
 
-        while (currentTurnLineIndex < turnLines.Count)
-        {
-            EnemyDialogueLine line = turnLines[currentTurnLineIndex];
-            bool conditionMet = line.condition == TurnLineCondition.None ||
-                               (line.condition == TurnLineCondition.OnEnemyDamaged && enemyTookDamage);
+        EnemyDialogueLine line = turnLines[currentTurnLineIndex];
 
-            if (conditionMet)
-            {
-                string text = $"\"{line.line}\"";
-                currentTurnLineIndex++;
-                return text;
-            }
-            else
-            {
-                currentTurnLineIndex++;
-            }
+        bool conditionMet = line.condition == TurnLineCondition.None ||
+                           (line.condition == TurnLineCondition.OnEnemyDamaged && enemyTookDamage);
+
+        if (conditionMet)
+        {
+            string text = $"\"{line.line}\"";
+            currentTurnLineIndex++;
+            return text;
         }
-        return "";
+        else
+        {
+            return ""; // hold on this line until condition is met
+        }
     }
 
     public string GetNextHitLine()

@@ -1341,7 +1341,7 @@ GameObject:
   - component: {fileID: 5904838063917474370}
   - component: {fileID: 92410522065573498}
   m_Layer: 5
-  m_Name: BorderPopup 1
+  m_Name: Styles Popup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2703,7 +2703,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -4.566602, y: 0.038899902}
+  m_AnchoredPosition: {x: -4.5666013, y: 0.7684994}
   m_SizeDelta: {x: -18.875, y: -9.7073}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6277124292059022034

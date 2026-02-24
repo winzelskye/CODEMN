@@ -94,7 +94,7 @@ MonoBehaviour:
     destroyOnNextMessage: 1
   playerChoices:
   - choiceText: I see.
-    nextNode: {fileID: 11400000, guid: 8a4ec67299548994090ba122461a727c, type: 2}
+    nextNode: {fileID: 11400000, guid: 7cf36283b07019145b010293094347ef, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
