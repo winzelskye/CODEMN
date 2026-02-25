@@ -4,6 +4,17 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+[System.Serializable]
+public class NodeEndOverride
+{
+    [Tooltip("The dialogue node that when it ends, shows the object")]
+    public DialogueNode node;
+    [Tooltip("The scene object to show when this node ends")]
+    public GameObject objectToShow;
+    [Tooltip("Delay before showing the object")]
+    public float delay = 1.0f;
+}
+
 public class DialogueManager : MonoBehaviour
 {
     [Header("References")]
@@ -39,6 +50,19 @@ public class DialogueManager : MonoBehaviour
     public float delayBeforeNewNode = 1.5f;
     public float continuationDelay = 0.1f;
 
+    [Header("Scene Attached Objects")]
+    [Tooltip("Drag scene objects here that dialogue nodes will show/hide")]
+    public GameObject[] sceneAttachedObjects;
+
+    [Header("Node End Overrides")]
+    [Tooltip("Link a specific node to a specific scene object. When that node ends it shows that object.")]
+    public NodeEndOverride[] nodeEndOverrides;
+
+    [Header("Node End Fallback")]
+    [Tooltip("Fallback object to show if no override matches")]
+    public GameObject onNodeEndObject;
+    public float onNodeEndDelay = 1.0f;
+
     private DialogueNode currentNode;
     private string currentCharacter = "";
     private bool isTyping = false;
@@ -46,6 +70,7 @@ public class DialogueManager : MonoBehaviour
     private ConversationManager conversationManager;
     private GameObject lastDialogueLineObj;
     private GameObject currentAttachedObject;
+    private bool currentAttachedIsNodeEnd = false; // protects node end objects from being hidden
 
     private HashSet<DialogueNode> completedNodes = new HashSet<DialogueNode>();
 
@@ -204,6 +229,12 @@ public class DialogueManager : MonoBehaviour
 
         isNewNode = false;
 
+        // Fire node end object
+        if (node.showObjectOnEnd)
+        {
+            StartCoroutine(ShowOnEndObject(node));
+        }
+
         if (node.playerChoices != null && node.playerChoices.Length > 0)
         {
             ShowChoices(node.playerChoices);
@@ -255,10 +286,10 @@ public class DialogueManager : MonoBehaviour
             yield break;
         }
 
-        // Destroy previous attached object if needed
-        if (currentAttachedObject != null)
+        // Only hide attached object if it was NOT a node end object
+        if (currentAttachedObject != null && !currentAttachedIsNodeEnd)
         {
-            Destroy(currentAttachedObject);
+            currentAttachedObject.SetActive(false);
             currentAttachedObject = null;
         }
 
@@ -309,7 +340,6 @@ public class DialogueManager : MonoBehaviour
         yield return StartCoroutine(ScrollToBottom());
         yield return new WaitForSeconds(0.05f);
 
-        // Show attached GameObject if enabled
         if (line.showAttachedObject && line.attachedObjectPrefab != null)
         {
             StartCoroutine(ShowAttachedObject(line));
@@ -534,9 +564,9 @@ public class DialogueManager : MonoBehaviour
         ClearChoices();
         lastDialogueLineObj = null;
 
-        if (currentAttachedObject != null)
+        if (currentAttachedObject != null && !currentAttachedIsNodeEnd)
         {
-            Destroy(currentAttachedObject);
+            currentAttachedObject.SetActive(false);
             currentAttachedObject = null;
         }
     }
@@ -564,24 +594,66 @@ public class DialogueManager : MonoBehaviour
     {
         yield return new WaitForSeconds(line.attachedObjectDelay);
 
-        if (line.attachedObjectPrefab != null)
+        if (line.attachedObjectPrefab == null) yield break;
+
+        // Try to find matching scene object by name
+        if (sceneAttachedObjects != null)
         {
-            // Find Canvas to spawn under
-            Canvas canvas = FindObjectOfType<Canvas>();
-            Transform parent = canvas != null ? canvas.transform : null;
-
-            // Instantiate the prefab
-            GameObject spawnedObject = Instantiate(line.attachedObjectPrefab, parent);
-            spawnedObject.SetActive(true);
-
-            currentAttachedObject = spawnedObject;
-
-            Debug.Log($"Showing attached object: {spawnedObject.name}");
-
-            if (!line.destroyOnNextMessage)
+            foreach (GameObject obj in sceneAttachedObjects)
             {
-                currentAttachedObject = null;
+                if (obj != null && obj.name == line.attachedObjectPrefab.name)
+                {
+                    obj.SetActive(true);
+                    currentAttachedObject = obj;
+                    currentAttachedIsNodeEnd = false;
+                    Debug.Log($"Showing scene object: {obj.name}");
+
+                    if (!line.destroyOnNextMessage)
+                        currentAttachedObject = null;
+
+                    yield break;
+                }
             }
+        }
+
+        // Fallback: instantiate if no matching scene object found
+        Canvas canvas = FindFirstObjectByType<Canvas>();
+        Transform parent = canvas != null ? canvas.transform : null;
+        GameObject spawnedObject = Instantiate(line.attachedObjectPrefab, parent);
+        spawnedObject.SetActive(true);
+        currentAttachedObject = spawnedObject;
+        currentAttachedIsNodeEnd = false;
+        Debug.Log($"Fallback instantiate: {spawnedObject.name}");
+
+        if (!line.destroyOnNextMessage)
+            currentAttachedObject = null;
+    }
+
+    IEnumerator ShowOnEndObject(DialogueNode node)
+    {
+        // Check overrides first
+        if (nodeEndOverrides != null)
+        {
+            foreach (NodeEndOverride entry in nodeEndOverrides)
+            {
+                if (entry.node == node && entry.objectToShow != null)
+                {
+                    yield return new WaitForSeconds(entry.delay);
+                    entry.objectToShow.SetActive(true);
+                    // NOT tracked - dialogue system will never hide this
+                    Debug.Log($"Node ended - showing override object: {entry.objectToShow.name}");
+                    yield break;
+                }
+            }
+        }
+
+        // Fallback to default
+        if (onNodeEndObject != null)
+        {
+            yield return new WaitForSeconds(onNodeEndDelay);
+            onNodeEndObject.SetActive(true);
+            // NOT tracked - dialogue system will never hide this
+            Debug.Log($"Node ended - showing fallback object: {onNodeEndObject.name}");
         }
     }
 }

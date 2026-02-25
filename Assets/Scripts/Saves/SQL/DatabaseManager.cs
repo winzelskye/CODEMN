@@ -49,7 +49,7 @@ public class DatabaseManager : MonoBehaviour
         db.Insert(new AttackData { attackName = "HyperLink", damage = 20, unlockLevel = 4, isUnlocked = 0, isSpecial = 0, isSkill = 0, forCharacter = "both", bitpointCost = 8 });
 
         // Special attacks — unlock after completing Level 2 (A.I.)
-        db.Insert(new AttackData { attackName = "Debug EX", damage = 35, unlockLevel = 4, isUnlocked = 0, isSpecial = 1, isSkill = 1, forCharacter = "Michael", bitpointCost = 0 });
+        db.Insert(new AttackData { attackName = "Debug EX", damage = 35, unlockLevel = 4, isUnlocked = 0, isSpecial = 1, isSkill = 1, forCharacter = "Michael", bitpointCost = 50 });
         db.Insert(new AttackData { attackName = "Protection EX", damage = -40, unlockLevel = 4, isUnlocked = 0, isSpecial = 1, isSkill = 1, forCharacter = "Esther", bitpointCost = 50 });
 
         // Skills

@@ -8,7 +8,7 @@ public class FadeTransition : MonoBehaviour
     public static FadeTransition Instance;
 
     public Image fadeImage;
-    public float fadeDuration = 2f;
+    public float fadeDuration = 1f;
 
     void Awake()
     {

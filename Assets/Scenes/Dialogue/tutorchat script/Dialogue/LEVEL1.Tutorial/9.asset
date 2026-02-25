@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Yes, but they are not what you think.
+    dialogueText: Yes, but not in a way you think.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -27,8 +27,8 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: They will try to test you. And if you do not pass and beat them,
-      not only will you not fix the problem.
+    dialogueText: They are criminals and will try to get through your system to stop
+      you.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -40,7 +40,8 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: But they will also prevent you on going further.
+    dialogueText: The only way to stop them will be hacking their system back so
+      they would be powerless against you.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -57,3 +58,4 @@ MonoBehaviour:
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
+  showObjectOnEnd: 0
