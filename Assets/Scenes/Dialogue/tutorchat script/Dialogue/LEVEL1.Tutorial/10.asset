@@ -15,8 +15,8 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Yes. In simpler terms, your foes will be the representation of
-      the bugs, errors, or any problem you will face.
+    dialogueText: Yes. In simpler terms, they are annonymous criminals, taking the
+      names of html bugs, errors, and any website problems.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -28,7 +28,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: That's how we deal problems here in WHHA.
+    dialogueText: That's how things work here in WHHA.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -45,3 +45,4 @@ MonoBehaviour:
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
+  showObjectOnEnd: 0

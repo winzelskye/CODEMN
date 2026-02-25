@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6059528814581196162}
   - component: {fileID: 2021549373745979992}
   - component: {fileID: 3809431580339901946}
-  - component: {fileID: 4417211229443730406}
   - component: {fileID: 7950278078068996287}
   m_Layer: 5
   m_Name: Fade
@@ -86,23 +85,6 @@ MonoBehaviour:
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
   m_PresetInfoIsWorld: 0
---- !u!114 &4417211229443730406
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6722841442810743008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GraphicRaycaster
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &7950278078068996287
 MonoBehaviour:
   m_ObjectHideFlags: 0

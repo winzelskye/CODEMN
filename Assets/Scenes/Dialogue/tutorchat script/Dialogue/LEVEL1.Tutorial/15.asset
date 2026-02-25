@@ -22,9 +22,10 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights: []
-    showAttachedObject: 1
-    attachedObjectPrefab: {fileID: 6464230234252360636, guid: 058ff246b7f737f4a982c8cf4efe9e36, type: 3}
-    attachedObjectDelay: 5
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 0
     destroyOnNextMessage: 0
   playerChoices: []
   nextNode: {fileID: 0}
+  showObjectOnEnd: 1

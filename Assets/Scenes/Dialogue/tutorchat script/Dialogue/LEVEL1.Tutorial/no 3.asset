@@ -69,3 +69,4 @@ MonoBehaviour:
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
+  showObjectOnEnd: 0

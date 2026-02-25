@@ -28,3 +28,4 @@ MonoBehaviour:
     destroyOnNextMessage: 1
   playerChoices: []
   nextNode: {fileID: 11400000, guid: 3008d628140d6984ba1e90c910191bc8, type: 2}
+  showObjectOnEnd: 0

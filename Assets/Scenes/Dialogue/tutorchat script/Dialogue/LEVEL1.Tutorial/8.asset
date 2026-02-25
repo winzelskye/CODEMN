@@ -83,3 +83,4 @@ MonoBehaviour:
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 11400000, guid: da0faaed1666ed94887e4364e2b199ad, type: 2}
+  showObjectOnEnd: 0

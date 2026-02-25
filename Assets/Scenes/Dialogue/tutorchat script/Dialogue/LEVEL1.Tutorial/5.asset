@@ -15,8 +15,8 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Yes. Your missions includes dealing with HTML bugs, errors, and
-      if unlucky, hackers.
+    dialogueText: Yes. Your missions consists of dealing with HTML bugs, errors,
+      and if unlucky, hackers.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -55,3 +55,4 @@ MonoBehaviour:
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
+  showObjectOnEnd: 0
