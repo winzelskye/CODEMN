@@ -33,7 +33,7 @@ MonoBehaviour:
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 3
     isContinuation: 0
     wordHighlights:
     - word: acquaintance
@@ -48,7 +48,7 @@ MonoBehaviour:
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 3
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
@@ -61,7 +61,7 @@ MonoBehaviour:
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 1
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
@@ -69,8 +69,8 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: Alright, so when am I going to fight her?
-    nextNode: {fileID: 11400000, guid: 11e46afc7463d9e4c9f05a7b6a1472f6, type: 2}
+  - choiceText: Alright, so when am I going to 'fight' her?
+    nextNode: {fileID: 11400000, guid: 841ff198b10cf85459377b74f888db8d, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}

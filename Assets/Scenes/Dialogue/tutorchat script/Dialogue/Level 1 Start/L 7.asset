@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
-  - characterName: Handler
-    dialogueText: Your task is to hack the system of another hacker named "Lady Bug"
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+  - characterName: Dee Bug
+    dialogueText: 0H Y34H 1 F0RG0T Y0U'R3 H3R3
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
@@ -28,12 +28,12 @@ MonoBehaviour:
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
-  - characterName: Handler
-    dialogueText: 'She has been a long term acquaintance of the hacker we are tracking. '
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+  - characterName: Dee Bug
+    dialogueText: 1 4LR34DY 4NSW3R3D Y0UR QU3ST10N.
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 2
     isContinuation: 0
     wordHighlights:
     - word: acquaintance
@@ -42,26 +42,25 @@ MonoBehaviour:
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
-  - characterName: Handler
-    dialogueText: We recently have gotten access to her IP address which would allow
-      you to access her computer.
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+  - characterName: Dee Bug
+    dialogueText: BUT 0TH3R TH4N S331NG D34R 0LD H4NDL3R...
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 2
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
-  - characterName: Handler
-    dialogueText: All I need to do is to connect it using the command module in my
-      screen.
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+  - characterName: Dee Bug
+    dialogueText: 1 4M 4LSO H3R3 T0 S33 H0W MY L4DY W1LL D3STR0Y Y0U 1N 4 H4CK-0FF
+      = >:)
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 3
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
@@ -69,8 +68,8 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: Alright, so when am I going to fight her?
-    nextNode: {fileID: 11400000, guid: 11e46afc7463d9e4c9f05a7b6a1472f6, type: 2}
+  - choiceText: So you are just here to watch us fail?
+    nextNode: {fileID: 11400000, guid: 0531302b494d6d94ca7ff88f02a99d8d, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}

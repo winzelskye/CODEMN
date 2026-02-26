@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
-  - characterName: Handler
-    dialogueText: Your task is to hack the system of another hacker named "Lady Bug"
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+  - characterName: Dee Bug
+    dialogueText: W3LL DUH! 1T'S H0N3STLY SURPRIS1NG Y0U C4N'T T3LL TH4T.
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
@@ -28,12 +28,12 @@ MonoBehaviour:
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
-  - characterName: Handler
-    dialogueText: 'She has been a long term acquaintance of the hacker we are tracking. '
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+  - characterName: Dee Bug
+    dialogueText: 4 B1T 1R0N1C F0R 4 H4CK1NG C0MP4NY.
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 2
     isContinuation: 0
     wordHighlights:
     - word: acquaintance
@@ -43,12 +43,24 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: We recently have gotten access to her IP address which would allow
-      you to access her computer.
+    dialogueText: I thought you are stepping away from programming ever since we
+      arrested you.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: 0H H4NDL3R. MY D34R SW34T H4NDL3R.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 2
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
@@ -56,12 +68,47 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: All I need to do is to connect it using the command module in my
-      screen.
+    dialogueText: Stop calling me that.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 2
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: 1S 1T B4D T0 V1S1T AN 0LD FR13ND? = :)
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 2
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: We are not friends.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 2
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: RUD3!! = :(
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 2
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
@@ -69,8 +116,8 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: Alright, so when am I going to fight her?
-    nextNode: {fileID: 11400000, guid: 11e46afc7463d9e4c9f05a7b6a1472f6, type: 2}
+  - choiceText: Sooo... What are you doing here exactly?
+    nextNode: {fileID: 11400000, guid: 2675c47e25ce9364681e84a1acfa25ce, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}

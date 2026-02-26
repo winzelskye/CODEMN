@@ -6,51 +6,42 @@ using System.IO;
 using System.Text.RegularExpressions;
 
 /// <summary>
-/// Handles ALL image display — both static images and animated GIFs.
+/// Handles ALL image display — static images and animated GIFs.
+/// NO Layout Groups used — each image is manually positioned via anchoredPosition.
 ///
-/// STATIC IMAGES (.png, .jpg, etc.):
-///   Put them in Assets/Resources/
-///   Set Texture Type to "Sprite (2D and UI)" in Inspector
-///   Use in HTML: <img src="cat.png"> or <img src="cat">
+/// SETUP:
+///   imageDisplayArea should be a plain RectTransform with NO Layout Group on it.
+///   The container itself should be top-anchored and stretch full width.
 ///
-/// ANIMATED GIFS (.gif):
-///   Put them in Assets/StreamingAssets/ (keep .gif extension, no renaming needed)
-///   Use in HTML: <img src="confusedjohn.gif">
-///   Requires UniGif: https://github.com/WestHillApps/UniGif
+/// STATIC IMAGES: Put in Assets/Resources/, Texture Type = Sprite (2D and UI)
+/// ANIMATED GIFS: Put in Assets/StreamingAssets/
 ///
-/// SIZE CONTROL (per image in HTML):
-///   <img src="cat.png" width="300" height="200">
-///   <img src="cat.png" width="300">          (height auto from aspect ratio)
-///   <img src="cat.png" height="200">         (width auto from aspect ratio)
-///   <img src="cat.png">                      (clamped to Max Image Width/Height in Inspector)
+/// ALIGNMENT per image:
+///   <img src="nerd.png">                    default = center
+///   <img src="nerd.png" align="left">
+///   <img src="nerd.png" align="right">
+///   <img src="nerd.png" style="float:left">
+///   <img src="nerd.png" style="float:right">
 ///
-/// ALIGNMENT:
-///   <img src="cat.png" style="float:left">
-///   <img src="cat.png" style="float:right">
-///   <img src="cat.png">                      (default center)
+/// SIZE:
+///   <img src="nerd.png" width="200" height="150">
+///   <img src="nerd.png" width="200">         height auto
+///   <img src="nerd.png" height="150">        width auto
 /// </summary>
 public class HTMLSimpleImageSystem : MonoBehaviour
 {
     [Header("References")]
     public HTMLCodingSystem htmlSystem;
 
-    [Header("Image Display Areas")]
-    [Tooltip("Container for float:left images")]
-    public Transform imageDisplayAreaLeft;
-    [Tooltip("Container for float:right images")]
-    public Transform imageDisplayAreaRight;
-    [Tooltip("Default container (no float / center)")]
-    public Transform imageDisplayAreaCenter;
+    [Header("Image Display Area")]
+    [Tooltip("Plain RectTransform — NO Layout Group. Top-anchored, full width.")]
+    public RectTransform imageDisplayArea;
 
     [Header("Settings")]
     public GameObject imagePrefab;
     public int maxImageWidth = 400;
     public int maxImageHeight = 300;
-
-    // Cache for static sprites
     private Dictionary<string, Sprite> spriteCache = new Dictionary<string, Sprite>();
-
-    // Track all active GIF coroutines so we can stop them on clear
     private List<Coroutine> activeGifCoroutines = new List<Coroutine>();
 
     void Start()
@@ -63,8 +54,8 @@ public class HTMLSimpleImageSystem : MonoBehaviour
         else
             Debug.LogWarning("[ImageSystem] htmlSystem not assigned!");
 
-        if (imageDisplayAreaCenter == null)
-            Debug.LogWarning("[ImageSystem] imageDisplayAreaCenter not assigned!");
+        if (imageDisplayArea == null)
+            Debug.LogWarning("[ImageSystem] imageDisplayArea not assigned!");
 
         if (imagePrefab == null)
             Debug.LogWarning("[ImageSystem] imagePrefab not assigned!");
@@ -84,90 +75,137 @@ public class HTMLSimpleImageSystem : MonoBehaviour
             string attrs = match.Groups[1].Value;
 
             Match srcMatch = Regex.Match(attrs, @"src=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
-            if (!srcMatch.Success)
-            {
-                Debug.LogWarning("[ImageSystem] <img> tag missing src, skipping.");
-                continue;
-            }
+            if (!srcMatch.Success) { Debug.LogWarning("[ImageSystem] <img> missing src."); continue; }
 
             string filename = srcMatch.Groups[1].Value.Trim();
-            Alignment alignment = GetAlignment(attrs);
+            Alignment align = GetAlignment(attrs);
             string ext = Path.GetExtension(filename).ToLower();
             int w = GetIntAttr(attrs, "width");
             int h = GetIntAttr(attrs, "height");
 
-            Transform container = GetContainer(alignment);
-            if (container == null)
-            {
-                Debug.LogWarning("[ImageSystem] No container assigned, skipping image.");
-                continue;
-            }
+            if (imageDisplayArea == null) { Debug.LogWarning("[ImageSystem] No imageDisplayArea."); continue; }
 
             if (ext == ".gif")
             {
                 string nameNoExt = Path.GetFileNameWithoutExtension(filename);
-                Coroutine c = StartCoroutine(LoadAndDisplayGif(nameNoExt, container, w, h));
+                Coroutine c = StartCoroutine(LoadAndDisplayGif(nameNoExt, align, w, h));
                 activeGifCoroutines.Add(c);
             }
             else
             {
-                StartCoroutine(LoadAndDisplayStatic(filename, container, w, h));
+                StartCoroutine(LoadAndDisplayStatic(filename, align, w, h));
             }
         }
     }
 
-    // ── Attribute helpers ───────────────────────────────────────────────────
+    // ── Row-based placement ─────────────────────────────────────────────────
+    // The VLG controls vertical stacking of rows.
+    // Each image gets its own full-width row (added to VLG).
+    // Inside that row, the image is anchored left/center/right freely —
+    // the VLG never touches children of the row, only the row itself.
 
-    private int GetIntAttr(string attrs, string attrName)
+    private RectTransform CreateRow(float height)
     {
-        Match m = Regex.Match(attrs,
-            $@"{attrName}=[""']?(\d+)[""']?", RegexOptions.IgnoreCase);
-        if (m.Success && int.TryParse(m.Groups[1].Value, out int val))
-            return val;
-        return -1; // not specified
+        GameObject row = new GameObject("ImgRow", typeof(RectTransform));
+        row.transform.SetParent(imageDisplayArea, false);
+
+        RectTransform rowRt = row.GetComponent<RectTransform>();
+
+        // Stretch full width inside VLG, fixed height
+        rowRt.anchorMin = new Vector2(0, 0.5f);
+        rowRt.anchorMax = new Vector2(1, 0.5f);
+        rowRt.sizeDelta = new Vector2(0, height);
+        rowRt.pivot = new Vector2(0.5f, 0.5f);
+
+        // Tell VLG how tall this row is
+        LayoutElement le = row.AddComponent<LayoutElement>();
+        le.preferredHeight = height;
+        le.minHeight = height;
+        le.flexibleWidth = 1;
+
+        return rowRt;
+    }
+
+    private void PlaceImage(RectTransform imgRt, Vector2 size, Alignment alignment)
+    {
+        // Create a full-width row in the VLG for this image
+        RectTransform rowRt = CreateRow(size.y);
+
+        // Parent the image into the row
+        imgRt.SetParent(rowRt, false);
+
+        // Now anchor the image inside the row — VLG won't touch it here
+        imgRt.sizeDelta = size;
+
+        switch (alignment)
+        {
+            case Alignment.Left:
+                imgRt.anchorMin = new Vector2(0, 0.5f);
+                imgRt.anchorMax = new Vector2(0, 0.5f);
+                imgRt.pivot = new Vector2(0, 0.5f);
+                imgRt.anchoredPosition = Vector2.zero;
+                break;
+
+            case Alignment.Right:
+                imgRt.anchorMin = new Vector2(1, 0.5f);
+                imgRt.anchorMax = new Vector2(1, 0.5f);
+                imgRt.pivot = new Vector2(1, 0.5f);
+                imgRt.anchoredPosition = Vector2.zero;
+                break;
+
+            default: // Center
+                imgRt.anchorMin = new Vector2(0.5f, 0.5f);
+                imgRt.anchorMax = new Vector2(0.5f, 0.5f);
+                imgRt.pivot = new Vector2(0.5f, 0.5f);
+                imgRt.anchoredPosition = Vector2.zero;
+                break;
+        }
     }
 
     // ── Size calculation ────────────────────────────────────────────────────
 
     private Vector2 GetImageSize(int texW, int texH, int forceWidth, int forceHeight)
     {
-        // Both explicitly set in HTML
         if (forceWidth > 0 && forceHeight > 0)
             return new Vector2(forceWidth, forceHeight);
 
         float aspect = (float)texW / texH;
 
-        // Only width set — derive height
-        if (forceWidth > 0)
-            return new Vector2(forceWidth, forceWidth / aspect);
+        if (forceWidth > 0) return new Vector2(forceWidth, forceWidth / aspect);
+        if (forceHeight > 0) return new Vector2(forceHeight * aspect, forceHeight);
 
-        // Only height set — derive width
-        if (forceHeight > 0)
-            return new Vector2(forceHeight * aspect, forceHeight);
-
-        // Neither set — clamp to Inspector max
         if (texW > maxImageWidth) return new Vector2(maxImageWidth, maxImageWidth / aspect);
         if (texH > maxImageHeight) return new Vector2(maxImageHeight * aspect, maxImageHeight);
         return new Vector2(texW, texH);
     }
 
-    // ── Static image loading (Resources) ───────────────────────────────────
+    // ── Attribute helpers ───────────────────────────────────────────────────
 
-    private IEnumerator LoadAndDisplayStatic(string filename, Transform container,
+    private int GetIntAttr(string attrs, string attrName)
+    {
+        Match m = Regex.Match(attrs, $@"{attrName}=[""']?(\d+)[""']?", RegexOptions.IgnoreCase);
+        if (m.Success && int.TryParse(m.Groups[1].Value, out int val)) return val;
+        return -1;
+    }
+
+    // ── Static image loading ────────────────────────────────────────────────
+
+    private IEnumerator LoadAndDisplayStatic(string filename, Alignment alignment,
         int forceWidth = -1, int forceHeight = -1)
     {
         Sprite sprite = LoadSprite(filename);
         if (sprite != null)
-            DisplaySprite(sprite, container, forceWidth, forceHeight);
+            DisplaySprite(sprite, alignment, forceWidth, forceHeight);
         yield break;
     }
 
-    private void DisplaySprite(Sprite sprite, Transform container,
+    private void DisplaySprite(Sprite sprite, Alignment alignment,
         int forceWidth = -1, int forceHeight = -1)
     {
-        if (imagePrefab == null || container == null) return;
+        if (imagePrefab == null || imageDisplayArea == null) return;
 
-        GameObject imgObj = Instantiate(imagePrefab, container);
+        // Instantiate WITHOUT a parent so the VLG doesn't touch it yet
+        GameObject imgObj = Instantiate(imagePrefab);
         Image imgComp = imgObj.GetComponent<Image>();
 
         if (imgComp == null)
@@ -180,9 +218,12 @@ public class HTMLSimpleImageSystem : MonoBehaviour
         imgComp.sprite = sprite;
         imgComp.preserveAspect = (forceWidth <= 0 || forceHeight <= 0);
 
-        RectTransform rt = imgComp.GetComponent<RectTransform>();
-        rt.sizeDelta = GetImageSize(
-            sprite.texture.width, sprite.texture.height, forceWidth, forceHeight);
+        Vector2 size = GetImageSize(sprite.texture.width, sprite.texture.height, forceWidth, forceHeight);
+        RectTransform imgRt = imgObj.GetComponent<RectTransform>();
+        imgRt.sizeDelta = size;
+
+        // PlaceImage creates the row in the VLG and parents the image inside it
+        PlaceImage(imgRt, size, alignment);
     }
 
     private Sprite LoadSprite(string filename)
@@ -190,8 +231,7 @@ public class HTMLSimpleImageSystem : MonoBehaviour
         string nameNoExt = Path.GetFileNameWithoutExtension(filename);
         string key = nameNoExt.ToLower();
 
-        if (spriteCache.TryGetValue(key, out Sprite cached))
-            return cached;
+        if (spriteCache.TryGetValue(key, out Sprite cached)) return cached;
 
         Sprite sprite = Resources.Load<Sprite>(nameNoExt);
         if (sprite != null)
@@ -204,9 +244,7 @@ public class HTMLSimpleImageSystem : MonoBehaviour
         Texture2D tex = Resources.Load<Texture2D>(nameNoExt);
         if (tex != null)
         {
-            sprite = Sprite.Create(tex,
-                new Rect(0, 0, tex.width, tex.height),
-                new Vector2(0.5f, 0.5f));
+            sprite = Sprite.Create(tex, new Rect(0, 0, tex.width, tex.height), new Vector2(0.5f, 0.5f));
             spriteCache[key] = sprite;
             Debug.Log($"[ImageSystem] Loaded texture: Resources/{nameNoExt}");
             return sprite;
@@ -214,42 +252,30 @@ public class HTMLSimpleImageSystem : MonoBehaviour
 
         Debug.LogError(
             $"[ImageSystem] Could not find '{nameNoExt}' in Resources!\n" +
-            $"  → Assets/Resources/{nameNoExt}.png (or .jpg)\n" +
-            $"  → Texture Type must be 'Sprite (2D and UI)'"
-        );
+            $"  → Assets/Resources/{nameNoExt}.png  (Texture Type: Sprite 2D and UI)");
         return null;
     }
 
-    // ── GIF loading (StreamingAssets) ───────────────────────────────────────
+    // ── GIF loading ─────────────────────────────────────────────────────────
 
-    private IEnumerator LoadAndDisplayGif(string nameNoExt, Transform container,
+    private IEnumerator LoadAndDisplayGif(string nameNoExt, Alignment alignment,
         int forceWidth = -1, int forceHeight = -1)
     {
         string gifPath = Path.Combine(Application.streamingAssetsPath, nameNoExt + ".gif");
 
         if (!File.Exists(gifPath))
         {
-            Debug.LogError(
-                $"[ImageSystem] GIF not found: {gifPath}\n" +
-                $"  → Put '{nameNoExt}.gif' in Assets/StreamingAssets/"
-            );
+            Debug.LogError($"[ImageSystem] GIF not found: {gifPath}");
             yield break;
         }
 
         byte[] gifBytes = File.ReadAllBytes(gifPath);
-        Debug.Log($"[ImageSystem] Loaded GIF '{nameNoExt}' ({gifBytes.Length} bytes)");
-
         List<UniGif.GifTexture> frames = null;
         int loopCount = 0;
 
         yield return StartCoroutine(
             UniGif.GetTextureListCoroutine(gifBytes,
-                (textureList, loops, w, h) =>
-                {
-                    frames = textureList;
-                    loopCount = loops;
-                })
-        );
+                (list, loops, w, h) => { frames = list; loopCount = loops; }));
 
         if (frames == null || frames.Count == 0)
         {
@@ -259,23 +285,20 @@ public class HTMLSimpleImageSystem : MonoBehaviour
 
         if (imagePrefab == null) yield break;
 
-        GameObject imgObj = Instantiate(imagePrefab, container);
+        // Instantiate WITHOUT parent so VLG doesn't grab it before row is ready
+        GameObject imgObj = Instantiate(imagePrefab);
         Image imgComp = imgObj.GetComponent<Image>();
-
-        if (imgComp == null)
-        {
-            Destroy(imgObj);
-            yield break;
-        }
+        if (imgComp == null) { Destroy(imgObj); yield break; }
 
         imgComp.preserveAspect = (forceWidth <= 0 || forceHeight <= 0);
 
-        // Size from first frame
-        UniGif.GifTexture firstFrame = frames[0];
-        RectTransform rt = imgComp.GetComponent<RectTransform>();
-        rt.sizeDelta = GetImageSize(
-            firstFrame.m_texture2d.width, firstFrame.m_texture2d.height,
-            forceWidth, forceHeight);
+        UniGif.GifTexture first = frames[0];
+        Vector2 size = GetImageSize(first.m_texture2d.width, first.m_texture2d.height, forceWidth, forceHeight);
+
+        RectTransform imgRt = imgObj.GetComponent<RectTransform>();
+        imgRt.sizeDelta = size;
+
+        PlaceImage(imgRt, size, alignment);
 
         Coroutine c = StartCoroutine(AnimateGif(imgComp, frames, loopCount, imgObj));
         activeGifCoroutines.Add(c);
@@ -285,37 +308,29 @@ public class HTMLSimpleImageSystem : MonoBehaviour
         int loopCount, GameObject imgObj)
     {
         int loops = 0;
-
         while (true)
         {
-            for (int i = 0; i < frames.Count; i++)
+            foreach (UniGif.GifTexture frame in frames)
             {
                 if (imgObj == null || imgComp == null) yield break;
-
-                UniGif.GifTexture frame = frames[i];
-                Sprite frameSprite = Sprite.Create(
+                imgComp.sprite = Sprite.Create(
                     frame.m_texture2d,
                     new Rect(0, 0, frame.m_texture2d.width, frame.m_texture2d.height),
-                    new Vector2(0.5f, 0.5f)
-                );
-                imgComp.sprite = frameSprite;
-
+                    new Vector2(0.5f, 0.5f));
                 yield return new WaitForSeconds(frame.m_delaySec > 0 ? frame.m_delaySec : 0.1f);
             }
-
             loops++;
             if (loopCount > 0 && loops >= loopCount) break;
         }
     }
 
-    // ── Alignment ───────────────────────────────────────────────────────────
+    // ── Alignment detection ─────────────────────────────────────────────────
 
     private enum Alignment { Left, Right, Center }
 
     private Alignment GetAlignment(string attrs)
     {
-        Match styleMatch = Regex.Match(attrs,
-            @"style=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
+        Match styleMatch = Regex.Match(attrs, @"style=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
         if (styleMatch.Success)
         {
             string style = styleMatch.Groups[1].Value;
@@ -323,8 +338,7 @@ public class HTMLSimpleImageSystem : MonoBehaviour
             if (Regex.IsMatch(style, @"float\s*:\s*right", RegexOptions.IgnoreCase)) return Alignment.Right;
         }
 
-        Match alignMatch = Regex.Match(attrs,
-            @"align=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
+        Match alignMatch = Regex.Match(attrs, @"align=[""']([^""']+)[""']", RegexOptions.IgnoreCase);
         if (alignMatch.Success)
         {
             switch (alignMatch.Groups[1].Value.ToLower())
@@ -337,37 +351,18 @@ public class HTMLSimpleImageSystem : MonoBehaviour
         return Alignment.Center;
     }
 
-    private Transform GetContainer(Alignment alignment)
-    {
-        switch (alignment)
-        {
-            case Alignment.Left: return imageDisplayAreaLeft ?? imageDisplayAreaCenter;
-            case Alignment.Right: return imageDisplayAreaRight ?? imageDisplayAreaCenter;
-            default: return imageDisplayAreaCenter;
-        }
-    }
-
     // ── Public API ──────────────────────────────────────────────────────────
 
     public Sprite GetSprite(string name) => LoadSprite(name);
-
-    public bool IsGif(string filename) =>
-        Path.GetExtension(filename).ToLower() == ".gif";
+    public bool IsGif(string filename) => Path.GetExtension(filename).ToLower() == ".gif";
 
     public Coroutine StartGifOnImage(string nameNoExt, Image target)
-    {
-        return StartCoroutine(LoadAndPlayGifOnImage(nameNoExt, target));
-    }
+        => StartCoroutine(LoadAndPlayGifOnImage(nameNoExt, target));
 
     private IEnumerator LoadAndPlayGifOnImage(string nameNoExt, Image target)
     {
         string gifPath = Path.Combine(Application.streamingAssetsPath, nameNoExt + ".gif");
-
-        if (!File.Exists(gifPath))
-        {
-            Debug.LogError($"[ImageSystem] GIF not found for background: {gifPath}");
-            yield break;
-        }
+        if (!File.Exists(gifPath)) { Debug.LogError($"[ImageSystem] GIF not found: {gifPath}"); yield break; }
 
         byte[] gifBytes = File.ReadAllBytes(gifPath);
         List<UniGif.GifTexture> frames = null;
@@ -375,12 +370,7 @@ public class HTMLSimpleImageSystem : MonoBehaviour
 
         yield return StartCoroutine(
             UniGif.GetTextureListCoroutine(gifBytes,
-                (textureList, loops, w, h) =>
-                {
-                    frames = textureList;
-                    loopCount = loops;
-                })
-        );
+                (list, loops, w, h) => { frames = list; loopCount = loops; }));
 
         if (frames == null || frames.Count == 0) yield break;
 
@@ -396,16 +386,10 @@ public class HTMLSimpleImageSystem : MonoBehaviour
             if (c != null) StopCoroutine(c);
         activeGifCoroutines.Clear();
 
-        ClearContainer(imageDisplayAreaLeft);
-        ClearContainer(imageDisplayAreaRight);
-        ClearContainer(imageDisplayAreaCenter);
-    }
+        if (imageDisplayArea != null)
+            foreach (Transform child in imageDisplayArea)
+                Destroy(child.gameObject);
 
-    private void ClearContainer(Transform container)
-    {
-        if (container == null) return;
-        foreach (Transform child in container)
-            Destroy(child.gameObject);
     }
 
     void OnDestroy()

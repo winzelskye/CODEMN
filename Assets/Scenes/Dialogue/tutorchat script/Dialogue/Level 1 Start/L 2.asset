@@ -15,8 +15,7 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: 'Our target is an anonymous hacker who had hacked 30 different
-      online websites. '
+    dialogueText: 'Our target is an anonymous hacker. '
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -30,12 +29,11 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: 'He is skilled in this feild and have many acquaintances which
-      had cause many problems while trying to track his location. '
+    dialogueText: Who had hacked 30 different online websites.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 2
     isContinuation: 0
     wordHighlights:
     - word: acquaintances
@@ -44,9 +42,35 @@ MonoBehaviour:
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: 'He is skilled in this feild and have many acquaintances. '
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 1
+    isContinuation: 0
+    wordHighlights:
+    - word: acquaintances
+      highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Which had cause many problems while trying to track his location.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 2
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
   playerChoices:
   - choiceText: What do I do?
-    nextNode: {fileID: 11400000, guid: fcda50cdb6457c8419ef846fa500d514, type: 2}
+    nextNode: {fileID: 11400000, guid: dc44e34c28d74544fac01544fcceef66, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}

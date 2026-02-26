@@ -88,6 +88,10 @@ public class BattleManager : MonoBehaviour
         var stats = SaveLoadManager.Instance.LoadCharacterStats(playerData.selectedCharacter);
         if (stats == null) { Debug.LogError($"No stats found for {playerData.selectedCharacter}!"); return; }
 
+        // Unlock all attacks available for the player's current level
+        SaveLoadManager.Instance.UnlockAttacksForLevel(playerData.currentLevel);
+        Debug.Log($"Player current level: {playerData.currentLevel}");
+
         player.Setup(stats, playerData.selectedCharacter);
 
         if (battleStartButton != null)
@@ -375,6 +379,15 @@ public class BattleManager : MonoBehaviour
         state = BattleState.Won;
         SaveLoadManager.Instance.SaveBattleResult(currentLevelId, true);
         SaveLoadManager.Instance.CompleteLevel(currentLevelId);
+
+        // Auto-increment player level on win
+        var p = SaveLoadManager.Instance.LoadPlayer();
+        if (p != null)
+        {
+            p.currentLevel += 1;
+            SaveLoadManager.Instance.SavePlayer(p.playerName, p.selectedCharacter, p.currentLevel);
+            Debug.Log($"Player leveled up to {p.currentLevel}!");
+        }
 
         var enemyData = SaveLoadManager.Instance.GetEnemyForLevel(currentLevelId);
         if (enemyData != null)
