@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Recap 3
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  characterName: Handler
+  npcLines:
+  - characterName: Handler
+    dialogueText: ...
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 5
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Oh right, my bad
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 5
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Must be Dee Bug bothering me.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Well I supposed I can teach you that today too.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Well I supposed I can teach you that today too.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: 'for styles, text alignment looks like this:'
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: <p style="text-align:center;">Centered paragraph.</p>
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights:
+    - word: <p style="text-align:center;">Centered paragraph.</p>
+      highlightColor: {r: 0, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Putting center will put the image in, well, the center.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Then left for left and Right for right.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  playerChoices:
+  - choiceText: How about for images?
+    nextNode: {fileID: 11400000, guid: 6efbb23d9e20cfd4181719920db8e720, type: 2}
+    choiceSound: {fileID: 0}
+    switchToCharacter: 
+  nextNode: {fileID: 0}
+  showObjectOnEnd: 0

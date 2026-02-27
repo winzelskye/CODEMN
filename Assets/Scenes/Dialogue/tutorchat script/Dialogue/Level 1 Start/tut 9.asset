@@ -16,7 +16,7 @@ MonoBehaviour:
   npcLines:
   - characterName: ???
     dialogueText: 4W3 M4NNN. 1TS N0T TH4T H4RD 2 GU3SS = :(
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2

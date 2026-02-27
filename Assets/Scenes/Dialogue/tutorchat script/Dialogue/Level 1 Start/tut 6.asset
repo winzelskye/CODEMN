@@ -60,9 +60,5 @@ MonoBehaviour:
     nextNode: {fileID: 11400000, guid: 4b7e731afe2597447b0c153d8a27475d, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
-  - choiceText: I did listen to yesterday!
-    nextNode: {fileID: 11400000, guid: 11e46afc7463d9e4c9f05a7b6a1472f6, type: 2}
-    choiceSound: {fileID: 0}
-    switchToCharacter: 
   nextNode: {fileID: 0}
   showObjectOnEnd: 0

@@ -16,7 +16,6 @@ public class CharacterSelectionManager : MonoBehaviour
 
     void Start()
     {
-        // Auto-initialize managers if missing
         if (DatabaseManager.Instance == null)
         {
             GameObject managers = new GameObject("Managers");
@@ -45,14 +44,15 @@ public class CharacterSelectionManager : MonoBehaviour
             GameObject managers = new GameObject("Managers");
             var dbManager = managers.AddComponent<DatabaseManager>();
             managers.AddComponent<SaveLoadManager>();
-            dbManager.InitDB(); // Force initialize immediately
+            dbManager.InitDB();
         }
         else if (DatabaseManager.Instance.db == null)
         {
-            DatabaseManager.Instance.InitDB(); // Force initialize if db is null
+            DatabaseManager.Instance.InitDB();
         }
 
-        SaveLoadManager.Instance.SavePlayer("Player", selectedCharacter, 1);
+        // Use character name as player name
+        SaveLoadManager.Instance.SavePlayer(selectedCharacter, selectedCharacter, 0);
         Debug.Log($"Confirmed: {selectedCharacter}");
 
         SceneController sceneController = FindFirstObjectByType<SceneController>();
@@ -75,6 +75,6 @@ public class CharacterSelectionManager : MonoBehaviour
 
     public static void ClearSelection()
     {
-        SaveLoadManager.Instance.SavePlayer("Player", "Esther", 1);
+        SaveLoadManager.Instance.SavePlayer("Esther", "Esther", 0);
     }
 }

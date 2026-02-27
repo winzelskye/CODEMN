@@ -2253,6 +2253,7 @@ MonoBehaviour:
   itemsButton: {fileID: 1181796474}
   systemTextColor: {r: 1, g: 1, b: 1, a: 1}
   dialoguePromptImage: {fileID: 503265832}
+  playerNameText: {fileID: 274022994}
 --- !u!1 &488684864
 GameObject:
   m_ObjectHideFlags: 0

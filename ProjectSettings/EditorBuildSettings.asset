@@ -32,6 +32,15 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Handler's shop/Shop.unity
     guid: 6d99a5f5aff855d4fae447c9a5d08859
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/conversations/Level1Start.unity
+    guid: 9403588b210bfaf49a7fa1ab7440e7c3
+  - enabled: 1
+    path: Assets/Scenes/Battles/Level1 Battle.unity
+    guid: be567a6f9b18c5c49b50f7f379e57ea7
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/conversations/Level1End.unity
+    guid: 018d668ce1c018d48b9f1d3417994cad
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

@@ -2253,6 +2253,7 @@ MonoBehaviour:
   itemsButton: {fileID: 1181796474}
   systemTextColor: {r: 1, g: 1, b: 1, a: 1}
   dialoguePromptImage: {fileID: 503265832}
+  playerNameText: {fileID: 274022994}
 --- !u!1 &488684864
 GameObject:
   m_ObjectHideFlags: 0
@@ -7866,9 +7867,16 @@ MonoBehaviour:
     condition: 0
   - line: CH3CK 1T 0UT!
     condition: 0
-  turnLines: []
+  turnLines:
+  - line: HUH? WH4T'S TH3 B0RD3R F0R? 0H, 1 F0RG0T T0 T34CH TH4T...
+    condition: 1
+  - line: '1T''S FINE, 1T''S 3ASY. JUST PUT "border: sizepx color". 1T''S N0T TH4T
+      H4RD. '
+    condition: 0
+  - line: Y0U R34LLY 4R3 G0ING 0N 4B0UT 1T HUH. W3LP, M4Y TH3 B3ST H4CK3R WINS!
+    condition: 0
   lowHealthLines:
-  - line: Almost there.
+  - line: 0H CR4P.
     condition: 0
   hitReactionLines: []
 --- !u!1 &1467963985
@@ -11472,7 +11480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3182932380693680603, guid: 9ce3f732c5142f44791741329263ccd7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
-      value: TutorialEnd
+      value: Level1End
       objectReference: {fileID: 0}
     - target: {fileID: 8119656014950426434, guid: 9ce3f732c5142f44791741329263ccd7, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

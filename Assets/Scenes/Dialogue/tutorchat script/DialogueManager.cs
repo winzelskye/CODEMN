@@ -70,12 +70,16 @@ public class DialogueManager : MonoBehaviour
     private ConversationManager conversationManager;
     private GameObject lastDialogueLineObj;
     private GameObject currentAttachedObject;
-    private bool currentAttachedIsNodeEnd = false; // protects node end objects from being hidden
+    private bool currentAttachedIsNodeEnd = false;
 
     private HashSet<DialogueNode> completedNodes = new HashSet<DialogueNode>();
 
     void Start()
     {
+        // Use AudioSettings sfxSource if no audioSource assigned
+        if (audioSource == null && AudioSettings.Instance != null)
+            audioSource = AudioSettings.Instance.sfxSource;
+
         if (!ValidateReferences())
         {
             Debug.LogError("DialogueManager is missing required references! Check the Inspector.");
@@ -229,7 +233,6 @@ public class DialogueManager : MonoBehaviour
 
         isNewNode = false;
 
-        // Fire node end object
         if (node.showObjectOnEnd)
         {
             StartCoroutine(ShowOnEndObject(node));
@@ -286,7 +289,6 @@ public class DialogueManager : MonoBehaviour
             yield break;
         }
 
-        // Only hide attached object if it was NOT a node end object
         if (currentAttachedObject != null && !currentAttachedIsNodeEnd)
         {
             currentAttachedObject.SetActive(false);
@@ -519,10 +521,7 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator ScrollToBottom()
     {
-        if (scrollRect == null)
-        {
-            yield break;
-        }
+        if (scrollRect == null) yield break;
 
         yield return null;
         yield return null;
@@ -540,10 +539,7 @@ public class DialogueManager : MonoBehaviour
 
     void ClearChoices()
     {
-        if (choiceContainer == null)
-        {
-            return;
-        }
+        if (choiceContainer == null) return;
 
         foreach (Transform child in choiceContainer)
         {
@@ -596,7 +592,6 @@ public class DialogueManager : MonoBehaviour
 
         if (line.attachedObjectPrefab == null) yield break;
 
-        // Try to find matching scene object by name
         if (sceneAttachedObjects != null)
         {
             foreach (GameObject obj in sceneAttachedObjects)
@@ -616,7 +611,6 @@ public class DialogueManager : MonoBehaviour
             }
         }
 
-        // Fallback: instantiate if no matching scene object found
         Canvas canvas = FindFirstObjectByType<Canvas>();
         Transform parent = canvas != null ? canvas.transform : null;
         GameObject spawnedObject = Instantiate(line.attachedObjectPrefab, parent);
@@ -631,7 +625,6 @@ public class DialogueManager : MonoBehaviour
 
     IEnumerator ShowOnEndObject(DialogueNode node)
     {
-        // Check overrides first
         if (nodeEndOverrides != null)
         {
             foreach (NodeEndOverride entry in nodeEndOverrides)
@@ -640,19 +633,16 @@ public class DialogueManager : MonoBehaviour
                 {
                     yield return new WaitForSeconds(entry.delay);
                     entry.objectToShow.SetActive(true);
-                    // NOT tracked - dialogue system will never hide this
                     Debug.Log($"Node ended - showing override object: {entry.objectToShow.name}");
                     yield break;
                 }
             }
         }
 
-        // Fallback to default
         if (onNodeEndObject != null)
         {
             yield return new WaitForSeconds(onNodeEndDelay);
             onNodeEndObject.SetActive(true);
-            // NOT tracked - dialogue system will never hide this
             Debug.Log($"Node ended - showing fallback object: {onNodeEndObject.name}");
         }
     }

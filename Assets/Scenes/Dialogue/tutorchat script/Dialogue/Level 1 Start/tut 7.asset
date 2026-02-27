@@ -50,8 +50,6 @@ MonoBehaviour:
     delayAfter: 2
     isContinuation: 0
     wordHighlights:
-    - word: background-color.
-      highlightColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     - word: color
       highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
     showAttachedObject: 0

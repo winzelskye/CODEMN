@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 using System.Collections;
 
 [System.Serializable]
@@ -21,10 +20,6 @@ public class AudioSettings : MonoBehaviour
     [Header("Audio Sources")]
     public AudioSource musicSource;
     public AudioSource sfxSource;
-
-    [Header("Sliders")]
-    public Slider musicSlider;
-    public Slider sfxSlider;
 
     [Header("Background Music")]
     public SceneMusicEntry[] sceneMusics;
@@ -53,11 +48,9 @@ public class AudioSettings : MonoBehaviour
 
     void Start()
     {
-        musicSlider.value = PlayerPrefs.GetFloat("MusicVolume", 1f);
-        sfxSlider.value = PlayerPrefs.GetFloat("SFXVolume", 1f);
-
-        SetMusicVolume(musicSlider.value);
-        SetSFXVolume(sfxSlider.value);
+        // Apply saved volume on startup
+        SetMusicVolume(PlayerPrefs.GetFloat("MusicVolume", 1f));
+        SetSFXVolume(PlayerPrefs.GetFloat("SFXVolume", 1f));
     }
 
     // --- Volume Controls ---

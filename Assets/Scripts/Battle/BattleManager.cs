@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public enum BattleState { Start, PreBattle, EnemyDialogue, PlayerTurn, EnemyTurn, Won, Lost }
 
@@ -33,6 +34,9 @@ public class BattleManager : MonoBehaviour
 
     [Header("Dialogue Prompt Image")]
     public GameObject dialoguePromptImage;
+
+    [Header("Player Name Text")]
+    public TextMeshProUGUI playerNameText;
 
     private bool defenseUpActive = false;
     private int itemDamageReduction = 0;
@@ -91,6 +95,10 @@ public class BattleManager : MonoBehaviour
         // Unlock all attacks available for the player's current level
         SaveLoadManager.Instance.UnlockAttacksForLevel(playerData.currentLevel);
         Debug.Log($"Player current level: {playerData.currentLevel}");
+
+        // Set player name text
+        if (playerNameText != null)
+            playerNameText.text = playerData.playerName;
 
         player.Setup(stats, playerData.selectedCharacter);
 
