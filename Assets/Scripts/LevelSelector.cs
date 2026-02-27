@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
+using System.Collections.Generic;
 
 [Serializable]
 public class LevelEntry
@@ -28,12 +29,12 @@ public class LevelSelector : MonoBehaviour
     public Color selectedColor = new Color(1f, 0.85f, 0.2f, 1f); // golden glow
 
     private int selectedLevelIndex = -1;
+    private Dictionary<Button, Color> originalColors = new Dictionary<Button, Color>();
 
     void Start()
     {
         var levelData = SaveLoadManager.Instance.GetAllLevels();
 
-        // Run button starts non-interactable until a level is selected
         if (runButton != null)
             runButton.interactable = false;
 
@@ -42,14 +43,17 @@ public class LevelSelector : MonoBehaviour
             int index = i;
             bool isUnlocked = unlockAllLevels || (i < levelData.Count && levelData[i].isUnlocked == 1);
             levels[i].button.interactable = isUnlocked;
-
             levels[i].button.onClick.AddListener(() => SelectLevel(index));
+
+            // Cache each button's original color
+            var img = levels[i].button.GetComponent<Image>();
+            if (img != null)
+                originalColors[levels[i].button] = img.color;
         }
 
         if (runButton != null)
             runButton.onClick.AddListener(OnRunClicked);
 
-        // Show shop button only if Level 1 is completed
         if (shopButton != null)
         {
             var level1 = levelData.Find(l => l.id == 1);
@@ -60,12 +64,18 @@ public class LevelSelector : MonoBehaviour
 
     void SelectLevel(int index)
     {
+        // Reset all buttons to their original colors
+        foreach (var level in levels)
+        {
+            if (originalColors.TryGetValue(level.button, out Color original))
+                SetButtonColor(level.button, original);
+        }
+
         selectedLevelIndex = index;
 
         // Highlight selected button
         SetButtonColor(levels[index].button, selectedColor);
 
-        // Enable run button now that a level is selected
         if (runButton != null)
             runButton.interactable = true;
 
