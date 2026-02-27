@@ -6,7 +6,8 @@ public class SettingsUI : MonoBehaviour
     [SerializeField] private Button closeButton;
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Slider sfxSlider;
-    [SerializeField] private GameObject backgroundBlocker; // add a full screen transparent panel
+    [SerializeField] private GameObject backgroundBlocker;
+    [SerializeField] private GameObject titleLogo;
 
     private void Start()
     {
@@ -20,16 +21,14 @@ public class SettingsUI : MonoBehaviour
 
     private void OnEnable()
     {
-        // Block everything behind when panel opens
-        if (backgroundBlocker != null)
-            backgroundBlocker.SetActive(true);
+        if (titleLogo != null) titleLogo.SetActive(false);
+        if (backgroundBlocker != null) backgroundBlocker.SetActive(true);
     }
 
     private void OnDisable()
     {
-        // Unblock when panel closes
-        if (backgroundBlocker != null)
-            backgroundBlocker.SetActive(false);
+        if (titleLogo != null) titleLogo.SetActive(true);
+        if (backgroundBlocker != null) backgroundBlocker.SetActive(false);
     }
 
     public void CloseSettings()
