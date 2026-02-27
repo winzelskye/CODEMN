@@ -2317,9 +2317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HTMLSimpleImageSystem
   htmlSystem: {fileID: 496843115}
-  imageDisplayAreaLeft: {fileID: 191420145}
-  imageDisplayAreaRight: {fileID: 191420145}
-  imageDisplayAreaCenter: {fileID: 191420145}
+  imageDisplayArea: {fileID: 191420145}
   imagePrefab: {fileID: 1239237928672392111, guid: e489688ef4832184ca1ad8880bd1ef53, type: 3}
   maxImageWidth: 1000
   maxImageHeight: 1000
@@ -4598,7 +4596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.10980392, g: 0.09803922, b: 0.13333334, a: 0.74509805}
+  m_Color: {r: 0.10980392, g: 0.09803922, b: 0.13333334, a: 0.93333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -7742,7 +7740,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
   m_Material: {fileID: 0}
-  m_Color: {r: 0.11091185, g: 0.09760295, b: 0.13207549, a: 0.9019608}
+  m_Color: {r: 0.11091185, g: 0.09760295, b: 0.13207549, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

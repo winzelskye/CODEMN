@@ -1,0 +1,238 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: n0 1
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  characterName: Handler
+  npcLines:
+  - characterName: Handler
+    dialogueText: Are you even listening?
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights:
+    - word: acquaintance
+      highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: N0 WORI3SS TH0! 1T'S 34SY!
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 2
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: Y0U KN0W H0W Y0U C0L0R T3XTS US1NG STYL3S L1K3 THIS?
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 2
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: <style = "color:blue;">?
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: <style = "color:blue;">
+      highlightColor: {r: 0, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: Y34H 1T'S L1K3 TH4T BUT 1NST34D 0F "color:blue;"
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: '"color:blue;"'
+      highlightColor: {r: 0, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: Y0U PUT "font-family:font-name;" 1NST34D T0 CH4NG3 F0NTS!
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: '"font-family:font-name;"'
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - word: CH4NG3 F0NTS
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: 0R PUT "font-size:30%;" 0R 4NY NUMB3R Y0U W4NT T0 CH4NGE S1ZES!
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: '"font-size:30%;"'
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - word: CH4NGE S1ZES
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Thats...
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Correct actually...
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: I'm even more surprised you didn't typed the code with your quirky
+      text style.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: 1M N0T TH4T H34RTL3SS
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: '"font-size:30%;"'
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - word: CH4NGE S1ZES
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: B3S1D3S, TH3 C0D3 W0N'T W0RK TH4T W4Y
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: '"font-size:30%;"'
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - word: CH4NGE S1ZES
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: 0H Y34H 1 F0RG0T T0 S4Y TH1S 4PP H4V3 L1M1T3D F0NTS
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: '"font-size:30%;"'
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - word: CH4NGE S1ZES
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: S0 TRY 1T W1TH ANTON SFX 0R SMTH
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: '"font-size:30%;"'
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - word: CH4NGE S1ZES
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: S0 R00K13! TR13D 1T 0UT Y3T?
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: '"font-size:30%;"'
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    - word: CH4NGE S1ZES
+      highlightColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  playerChoices:
+  - choiceText: Yeah, it works. Thanks ig
+    nextNode: {fileID: 11400000, guid: 680d1f3a3e316bd47b812ff20649c94c, type: 2}
+    choiceSound: {fileID: 0}
+    switchToCharacter: 
+  nextNode: {fileID: 0}
+  showObjectOnEnd: 0

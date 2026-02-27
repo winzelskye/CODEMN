@@ -31,7 +31,7 @@ MonoBehaviour:
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 1
     isContinuation: 0
     wordHighlights:
     - word: White Hat Hackers Association
@@ -42,11 +42,11 @@ MonoBehaviour:
     destroyOnNextMessage: 1
   playerChoices:
   - choiceText: I think?
-    nextNode: {fileID: 11400000, guid: e3225dff356f63f49bb98c7611614e0f, type: 2}
+    nextNode: {fileID: 11400000, guid: bd73b53621a6ee64b979312184f7770c, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   - choiceText: Ready as I can ever be.
-    nextNode: {fileID: 11400000, guid: b49d64275979abf409745efec0b97b21, type: 2}
+    nextNode: {fileID: 11400000, guid: 32231d778da45ae4d8a2797af3ebd873, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}

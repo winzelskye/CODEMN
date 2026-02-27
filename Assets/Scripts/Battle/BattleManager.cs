@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using TMPro;
 
 public enum BattleState { Start, PreBattle, EnemyDialogue, PlayerTurn, EnemyTurn, Won, Lost }
 
@@ -33,6 +34,9 @@ public class BattleManager : MonoBehaviour
 
     [Header("Dialogue Prompt Image")]
     public GameObject dialoguePromptImage;
+
+    [Header("Player Name Text")]
+    public TextMeshProUGUI playerNameText;
 
     private bool defenseUpActive = false;
     private int itemDamageReduction = 0;
@@ -87,6 +91,14 @@ public class BattleManager : MonoBehaviour
 
         var stats = SaveLoadManager.Instance.LoadCharacterStats(playerData.selectedCharacter);
         if (stats == null) { Debug.LogError($"No stats found for {playerData.selectedCharacter}!"); return; }
+
+        // Unlock all attacks available for the player's current level
+        SaveLoadManager.Instance.UnlockAttacksForLevel(playerData.currentLevel);
+        Debug.Log($"Player current level: {playerData.currentLevel}");
+
+        // Set player name text
+        if (playerNameText != null)
+            playerNameText.text = playerData.playerName;
 
         player.Setup(stats, playerData.selectedCharacter);
 
@@ -375,6 +387,15 @@ public class BattleManager : MonoBehaviour
         state = BattleState.Won;
         SaveLoadManager.Instance.SaveBattleResult(currentLevelId, true);
         SaveLoadManager.Instance.CompleteLevel(currentLevelId);
+
+        // Auto-increment player level on win
+        var p = SaveLoadManager.Instance.LoadPlayer();
+        if (p != null)
+        {
+            p.currentLevel += 1;
+            SaveLoadManager.Instance.SavePlayer(p.playerName, p.selectedCharacter, p.currentLevel);
+            Debug.Log($"Player leveled up to {p.currentLevel}!");
+        }
 
         var enemyData = SaveLoadManager.Instance.GetEnemyForLevel(currentLevelId);
         if (enemyData != null)

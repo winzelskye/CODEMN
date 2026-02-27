@@ -24,12 +24,16 @@ public class LevelSelector : MonoBehaviour
     [Header("Unlock Settings")]
     public bool unlockAllLevels = false;
 
+    [Header("Selection Glow")]
+    public Color selectedColor = new Color(1f, 0.85f, 0.2f, 1f); // golden glow
+
     private int selectedLevelIndex = -1;
 
     void Start()
     {
         var levelData = SaveLoadManager.Instance.GetAllLevels();
 
+        // Run button starts non-interactable until a level is selected
         if (runButton != null)
             runButton.interactable = false;
 
@@ -38,6 +42,7 @@ public class LevelSelector : MonoBehaviour
             int index = i;
             bool isUnlocked = unlockAllLevels || (i < levelData.Count && levelData[i].isUnlocked == 1);
             levels[i].button.interactable = isUnlocked;
+
             levels[i].button.onClick.AddListener(() => SelectLevel(index));
         }
 
@@ -56,9 +61,22 @@ public class LevelSelector : MonoBehaviour
     void SelectLevel(int index)
     {
         selectedLevelIndex = index;
+
+        // Highlight selected button
+        SetButtonColor(levels[index].button, selectedColor);
+
+        // Enable run button now that a level is selected
         if (runButton != null)
             runButton.interactable = true;
+
         Debug.Log($"Level {index + 1} selected");
+    }
+
+    void SetButtonColor(Button btn, Color color)
+    {
+        if (btn == null) return;
+        var img = btn.GetComponent<Image>();
+        if (img != null) img.color = color;
     }
 
     void OnRunClicked()

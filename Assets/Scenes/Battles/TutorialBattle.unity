@@ -2253,6 +2253,7 @@ MonoBehaviour:
   itemsButton: {fileID: 1181796474}
   systemTextColor: {r: 1, g: 1, b: 1, a: 1}
   dialoguePromptImage: {fileID: 503265832}
+  playerNameText: {fileID: 274022994}
 --- !u!1 &488684864
 GameObject:
   m_ObjectHideFlags: 0
@@ -7918,7 +7919,7 @@ MonoBehaviour:
     condition: 1
   - line: That skill will reduce their hacking progress whenever you need it. But
       keep in mind, the enemy can AND WILL still attack you even after you recovered.
-      So only use it when you are in deep need. Try attacking again to get more BITPOINTS
+      So only use it when you are in deep need.
     condition: 1
   - line: That would be everything for now. Let's see if you can hack my entire system.
     condition: 1

@@ -29,15 +29,12 @@ public class HTMLCodingSystem : MonoBehaviour
         runButton.onClick.AddListener(RunCode);
         clearButton.onClick.AddListener(ClearAll);
 
-        // Disable rich text in INPUT field so tags show as plain text while coding
         if (codeInputField != null)
             codeInputField.richText = false;
 
-        // Auto-add link handler to output panel if missing
         if (outputPanel != null && outputPanel.GetComponent<HTMLLinkHandler>() == null)
             outputPanel.gameObject.AddComponent<HTMLLinkHandler>();
 
-        // Apply default background color immediately on start
         if (outputPanelBackground != null)
         {
             outputPanelBackground.sprite = null;
@@ -85,7 +82,6 @@ public class HTMLCodingSystem : MonoBehaviour
         {
             string bodyStyle = bodyTagMatch.Groups[1].Value;
 
-            // background-image: url('name')
             Match bgImageMatch = Regex.Match(bodyStyle,
                 @"background-image:\s*url\(['""]?([^'"")\s]+)['""]?\)", RegexOptions.IgnoreCase);
             if (bgImageMatch.Success)
@@ -101,7 +97,6 @@ public class HTMLCodingSystem : MonoBehaviour
                 }
             }
 
-            // background-color: value
             Match bgColorMatch = Regex.Match(bodyStyle,
                 @"background-color:\s*([^;]+)", RegexOptions.IgnoreCase);
             if (bgColorMatch.Success)
@@ -116,7 +111,6 @@ public class HTMLCodingSystem : MonoBehaviour
             }
         }
 
-        // Default
         outputPanelBackground.sprite = null;
         outputPanelBackground.color = defaultBackgroundColor;
     }
@@ -133,8 +127,10 @@ public class HTMLCodingSystem : MonoBehaviour
             errors.Add("Missing <body> tag");
 
         Stack<string> tagStack = new Stack<string>();
+
+        // Void/optional-closing tags — never flagged as unclosed
         HashSet<string> voidTags = new HashSet<string>
-            { "br", "hr", "img", "meta", "link", "input" };
+            { "br", "hr", "img", "meta", "link", "input", "center", "left", "right" };
 
         foreach (Match tag in Regex.Matches(html, @"<(/?)(\w+)([^>]*)(/?)>", RegexOptions.IgnoreCase))
         {
@@ -227,7 +223,8 @@ public class HTMLCodingSystem : MonoBehaviour
     {
         string result = content;
 
-        // Styled block tags first
+        // ── Styled block tags ────────────────────────────────────────────────
+
         result = Regex.Replace(result,
             @"<p\s+style=""([^""]+)""[^>]*>(.*?)</p>",
             m => ApplyStyles(m.Groups[2].Value, m.Groups[1].Value, "p"),
@@ -252,52 +249,120 @@ public class HTMLCodingSystem : MonoBehaviour
                 RegexOptions.IgnoreCase | RegexOptions.Singleline);
         }
 
-        // Images — stripped here, HTMLSimpleImageSystem handles actual display
+        // ── Images ───────────────────────────────────────────────────────────
         result = Regex.Replace(result, @"<img[^>]*>", "", RegexOptions.IgnoreCase);
 
-        // Links — TMP link tag so HTMLLinkHandler can detect clicks
+        // ── Links ─────────────────────────────────────────────────────────────
         result = Regex.Replace(result,
             @"<a[^>]*href=[""']([^""']+)[""'][^>]*>(.*?)</a>",
             m =>
             {
                 string url = m.Groups[1].Value.Trim();
                 string text = m.Groups[2].Value;
-
                 if (!url.StartsWith("http://", System.StringComparison.OrdinalIgnoreCase) &&
                     !url.StartsWith("https://", System.StringComparison.OrdinalIgnoreCase))
                     url = "https://" + url;
-
                 return $"<link=\"{url}\"><color=#00BFFF><u>{text}</u></color></link>";
             },
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-        // Unstyled headers
+        // ── Unstyled headers  H1=49  H2=40  H3=33  H4=27  H5=22  H6=18 ──────
+        int[] headingSizes = { 49, 40, 33, 27, 22, 18 };
         for (int i = 1; i <= 6; i++)
         {
-            int size = 30 - (i * 3);
+            int size = headingSizes[i - 1];
             result = Regex.Replace(result,
                 $@"<h{i}[^>]*>(.*?)</h{i}>",
                 $"<size={size}><b>$1</b></size>\n",
                 RegexOptions.IgnoreCase | RegexOptions.Singleline);
         }
 
-        // Paragraphs
+        // ── Paragraphs ────────────────────────────────────────────────────────
         result = Regex.Replace(result, @"<p[^>]*>(.*?)</p>", "$1\n\n",
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-        // Inline formatting
-        result = Regex.Replace(result, @"<(b|strong)[^>]*>(.*?)</(b|strong)>", "<b>$2</b>",
+        // ── Inline formatting ─────────────────────────────────────────────────
+        // \b after single-letter tags prevents <b> matching <br>, <i> matching <img>, <u> matching <ul>
+        result = Regex.Replace(result, @"<(b\b|strong)[^>]*>(.*?)</(b|strong)>", "<b>$2</b>",
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        result = Regex.Replace(result, @"<(i|em)[^>]*>(.*?)</(i|em)>", "<i>$2</i>",
+        result = Regex.Replace(result, @"<(i\b|em)[^>]*>(.*?)</(i|em)>", "<i>$2</i>",
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
-        result = Regex.Replace(result, @"<u[^>]*>(.*?)</u>", "<u>$1</u>",
+        result = Regex.Replace(result, @"<u\b[^>]*>(.*?)</u>", "<u>$1</u>",
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-        // Line break / rule
-        result = Regex.Replace(result, @"<br\s*/?>", "\n", RegexOptions.IgnoreCase);
-        result = Regex.Replace(result, @"<hr\s*/?>", "──────────────────\n", RegexOptions.IgnoreCase);
+        // ── Strikethrough — separate patterns to avoid matching </small> etc. ──
+        result = Regex.Replace(result, @"<del[^>]*>(.*?)</del>",
+            "<s>$1</s>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result, @"<s\b[^>]*>(.*?)</s>",
+            "<s>$1</s>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-        // Lists
+        // ── Extended inline tags ──────────────────────────────────────────────
+        result = Regex.Replace(result, @"<mark[^>]*>(.*?)</mark>",
+            "<mark=#FFFF0066>$1</mark>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result, @"<small[^>]*>(.*?)</small>",
+            "<size=70%>$1</size>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result, @"<big[^>]*>(.*?)</big>",
+            "<size=130%>$1</size>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result, @"<code[^>]*>(.*?)</code>",
+            "<mspace=0.5em><mark=#00000033>$1</mark></mspace>",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result, @"<pre[^>]*>(.*?)</pre>",
+            "<mspace=0.5em>\n$1\n</mspace>\n", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result, @"<sub[^>]*>(.*?)</sub>",
+            "<sub>$1</sub>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result, @"<sup[^>]*>(.*?)</sup>",
+            "<sup>$1</sup>", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result, @"<blockquote[^>]*>(.*?)</blockquote>",
+            "\n  <i>$1</i>\n", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result, @"<marquee[^>]*>(.*?)</marquee>",
+            "<i>$1</i>\n", RegexOptions.IgnoreCase | RegexOptions.Singleline);
+
+        // ── Alignment tags ────────────────────────────────────────────────────
+        // FIX: After NormalizeHTML() everything is a single line, so $ anchors
+        // and multiline lookaheads don't work. Instead we use two-pass matching:
+        //   Pass 1 — with closing tag  : <center>content</center>
+        //   Pass 2 — without closing tag: <center>content   (stops at next < or end)
+        // Process left → center → right so they don't swallow each other.
+
+        // LEFT
+        result = Regex.Replace(result,
+            @"<left[^>]*>(.*?)</left>",
+            "<align=left>$1</align>\n",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result,
+            @"<left[^>]*>([^<]*)",
+            "<align=left>$1</align>\n",
+            RegexOptions.IgnoreCase);
+
+        // CENTER
+        result = Regex.Replace(result,
+            @"<center[^>]*>(.*?)</center>",
+            "<align=center>$1</align>\n",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result,
+            @"<center[^>]*>([^<]*)",
+            "<align=center>$1</align>\n",
+            RegexOptions.IgnoreCase);
+
+        // RIGHT
+        result = Regex.Replace(result,
+            @"<right[^>]*>(.*?)</right>",
+            "<align=right>$1</align>\n",
+            RegexOptions.IgnoreCase | RegexOptions.Singleline);
+        result = Regex.Replace(result,
+            @"<right[^>]*>([^<]*)",
+            "<align=right>$1</align>\n",
+            RegexOptions.IgnoreCase);
+
+        // ── Line break ────────────────────────────────────────────────────────
+        result = Regex.Replace(result, @"<br\s*/?>", "\n<size=6> </size>\n",
+            RegexOptions.IgnoreCase);
+
+        // ── Horizontal rule ───────────────────────────────────────────────────
+        result = Regex.Replace(result, @"<hr\s*/?>", "──────────────────\n",
+            RegexOptions.IgnoreCase);
+
+        // ── Lists ─────────────────────────────────────────────────────────────
         result = Regex.Replace(result, @"<ul[^>]*>(.*?)</ul>", "\n$1\n",
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
         result = Regex.Replace(result, @"<ol[^>]*>(.*?)</ol>", "\n$1\n",
@@ -305,15 +370,16 @@ public class HTMLCodingSystem : MonoBehaviour
         result = Regex.Replace(result, @"<li[^>]*>(.*?)</li>", "• $1\n",
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-        // Unstyled divs / spans
+        // ── Unstyled divs / spans ─────────────────────────────────────────────
         result = Regex.Replace(result, @"<div[^>]*>(.*?)</div>", "$1\n",
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
         result = Regex.Replace(result, @"<span[^>]*>(.*?)</span>", "$1",
             RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
-        // Strip remaining unknown HTML — preserve TMP rich-text tags
+        // Strip remaining unknown tags — preserve TMP rich-text tags.
+        // Word boundaries on b/i/u/s prevent stripping <b> but keep <br>, <big> etc. already handled above.
         result = Regex.Replace(result,
-            @"<(?!\/?(?:color|size|b|i|u|s|mark|sup|sub|link)[\s=>\/])[^>]+>",
+            @"<(?!\/?(?:color|size|b\b|i\b|u\b|s\b|mark|sup|sub|link|align|mspace)[\s=>\/])[^>]+>",
             "", RegexOptions.IgnoreCase);
 
         result = Regex.Replace(result, @"\n{3,}", "\n\n");
@@ -361,19 +427,20 @@ public class HTMLCodingSystem : MonoBehaviour
         }
 
         if (Regex.IsMatch(styleAttr, @"font-weight:\s*bold", RegexOptions.IgnoreCase))
-        {
-            open += "<b>"; close = "</b>" + close;
-        }
+        { open += "<b>"; close = "</b>" + close; }
 
         if (Regex.IsMatch(styleAttr, @"font-style:\s*italic", RegexOptions.IgnoreCase))
+        { open += "<i>"; close = "</i>" + close; }
+
+        Match fontMatch = Regex.Match(styleAttr, @"font-family:\s*([^;]+)", RegexOptions.IgnoreCase);
+        if (fontMatch.Success)
         {
-            open += "<i>"; close = "</i>" + close;
+            string fontName = fontMatch.Groups[1].Value.Trim().Trim('\'', '"');
+            open += $"<font=\"{fontName}\">"; close = "</font>" + close;
         }
 
         if (tagName.Length == 2 && tagName[0] == 'h' && char.IsDigit(tagName[1]))
-        {
-            open += "<b>"; close = "</b>" + close;
-        }
+        { open += "<b>"; close = "</b>" + close; }
 
         return open + content + close;
     }

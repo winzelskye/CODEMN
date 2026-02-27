@@ -5862,9 +5862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HTMLSimpleImageSystem
   htmlSystem: {fileID: 1211757623}
-  imageDisplayAreaLeft: {fileID: 1921149486}
-  imageDisplayAreaRight: {fileID: 1921149486}
-  imageDisplayAreaCenter: {fileID: 1921149486}
+  imageDisplayArea: {fileID: 1921149486}
   imagePrefab: {fileID: 1239237928672392111, guid: e489688ef4832184ca1ad8880bd1ef53, type: 3}
   maxImageWidth: 1000
   maxImageHeight: 1000
@@ -6602,7 +6600,7 @@ MonoBehaviour:
   choiceContainer: {fileID: 1327785678}
   typingIndicatorPrefab: {fileID: 5631967077384050630, guid: 6e004daafc399e44584b8d420992985a, type: 3}
   audioSource: {fileID: 0}
-  defaultMessageSound: {fileID: 0}
+  defaultMessageSound: {fileID: 8300000, guid: 6795add37a111574682113a8699c4701, type: 3}
   startingNode: {fileID: 11400000, guid: 28b030693073ff04cbd5ead024ab3a3b, type: 2}
   timeBetweenLines: 0.12
   useTypewriter: 0

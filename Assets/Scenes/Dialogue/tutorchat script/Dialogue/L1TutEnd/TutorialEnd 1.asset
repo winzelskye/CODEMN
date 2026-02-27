@@ -19,7 +19,7 @@ MonoBehaviour:
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 1.37
+    delayAfter: 3
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
@@ -27,11 +27,11 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
-    dialogueText: 'Now that you now know how things work I will expect a lot in you. '
+    dialogueText: Now that you had learned the basics you can rest for now.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0
+    delayAfter: 3
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
@@ -39,23 +39,31 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
-    dialogueText: But no pressure, you can always come back whenever you need to.
+    dialogueText: Simply click the 'x' button to close the tab.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0
+    delayAfter: 3
     isContinuation: 0
     wordHighlights:
-    - word: always come back
-      highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
+    - word: x
+      highlightColor: {r: 0, g: 1, b: 1, a: 1}
     showAttachedObject: 0
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
-  playerChoices:
-  - choiceText: Right...
-    nextNode: {fileID: 11400000, guid: adc523c17a83431408bc9ff310715fe0, type: 2}
-    choiceSound: {fileID: 0}
-    switchToCharacter: 
+  - characterName: Handler
+    dialogueText: Your real job starts tomorrow.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 0
+    destroyOnNextMessage: 0
+  playerChoices: []
   nextNode: {fileID: 0}
   showObjectOnEnd: 0
