@@ -50,8 +50,8 @@ public class DatabaseManager : MonoBehaviour
         db.Insert(new AttackData { attackName = "HyperLink", damage = 20, unlockLevel = 4, isUnlocked = 0, isSpecial = 0, isSkill = 0, forCharacter = "both", bitpointCost = 8 });
 
         // Skills
-        db.Insert(new AttackData { attackName = "Debug", damage = 20, unlockLevel = 1, isUnlocked = 0, isSpecial = 0, isSkill = 1, forCharacter = "both", bitpointCost = 30 });
-        db.Insert(new AttackData { attackName = "Protection", damage = -15, unlockLevel = 2, isUnlocked = 0, isSpecial = 0, isSkill = 1, forCharacter = "both", bitpointCost = 50 });
+        db.Insert(new AttackData { attackName = "Debug", damage = 20, unlockLevel = 0, isUnlocked = 0, isSpecial = 0, isSkill = 1, forCharacter = "both", bitpointCost = 30 });
+        db.Insert(new AttackData { attackName = "Protection", damage = -15, unlockLevel = 1, isUnlocked = 0, isSpecial = 0, isSkill = 1, forCharacter = "both", bitpointCost = 50 });
 
         // Special attacks
         db.Insert(new AttackData { attackName = "Debug EX", damage = 35, unlockLevel = 3, isUnlocked = 0, isSpecial = 1, isSkill = 1, forCharacter = "Michael", bitpointCost = 50 });
