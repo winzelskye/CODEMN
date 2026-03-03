@@ -15,38 +15,21 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Greetings, again.
+    dialogueText: Good work again. Now that we have that out of the way, we can now
+      proceed.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
+    delayAfter: 3
     isContinuation: 0
     wordHighlights: []
     showAttachedObject: 0
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
-  - characterName: Handler
-    dialogueText: Are you ready?
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 0.24
-    isContinuation: 0
-    wordHighlights:
-    - word: White Hat Hackers Association
-      highlightColor: {r: 1, g: 1, b: 1, a: 1}
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: I think?
-    nextNode: {fileID: 0}
-    choiceSound: {fileID: 0}
-    switchToCharacter: 
-  - choiceText: Ready as I can ever be.
-    nextNode: {fileID: 0}
+  - choiceText: Thanks.
+    nextNode: {fileID: 11400000, guid: 5d76e75ec35fd0b479cef14c917b0d76, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
