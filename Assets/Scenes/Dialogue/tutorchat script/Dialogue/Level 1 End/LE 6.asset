@@ -63,6 +63,60 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
+    dialogueText: Oh and by the way, I decided to run a little business in the sidelines.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 0
+    destroyOnNextMessage: 0
+  - characterName: Handler
+    dialogueText: 'I decided to run a little shop. Simply to help my comarades as
+      they hack. '
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: shop
+      highlightColor: {r: 0, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 0
+    destroyOnNextMessage: 0
+  - characterName: Handler
+    dialogueText: Just call me any time, and i'll seell you something you can use
+      in your battles.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: call
+      highlightColor: {r: 0, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 0
+    destroyOnNextMessage: 0
+  - characterName: Handler
+    dialogueText: That is all.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 0
+    destroyOnNextMessage: 0
+  - characterName: Handler
     dialogueText: See you tomorow.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0

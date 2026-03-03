@@ -2941,13 +2941,13 @@ MonoBehaviour:
   - button: {fileID: 465141049}
     convoScene: TutorialStart
   - button: {fileID: 595743016}
-    convoScene: Level1Start 1
+    convoScene: Level1Start
   - button: {fileID: 1582544742}
-    convoScene: 
+    convoScene: Level2Start
   - button: {fileID: 705695574}
-    convoScene: 
+    convoScene: Level3Start
   - button: {fileID: 1933698429}
-    convoScene: 
+    convoScene: Level4Start
   runButton: {fileID: 2013893682}
   shopButton: {fileID: 108772377}
   unlockAllLevels: 0

@@ -30,9 +30,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Battles/BattleTemplate.unity
     guid: 8608990096e3f904584a7a3ef4a3bae4
   - enabled: 1
-    path: Assets/Scenes/Handler's shop/Shop.unity
-    guid: 6d99a5f5aff855d4fae447c9a5d08859
-  - enabled: 1
     path: Assets/Scenes/Dialogue/conversations/Level1Start.unity
     guid: 9403588b210bfaf49a7fa1ab7440e7c3
   - enabled: 1
@@ -41,6 +38,40 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Dialogue/conversations/Level1End.unity
     guid: 018d668ce1c018d48b9f1d3417994cad
+  - enabled: 1
+    path: Assets/Scenes/Handler's shop/Shop.unity
+    guid: 6d99a5f5aff855d4fae447c9a5d08859
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/conversations/Level2Start.unity
+    guid: 74ad2adb1a1e8da419c75242d3644816
+  - enabled: 1
+    path: Assets/Scenes/Battles/Level 2 Battle.unity
+    guid: 461fe2f6bbebfd549b89fd3f12bf57f7
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/conversations/Level2End.unity
+    guid: d1017efc9f2c33b45807c0367fb00850
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/conversations/Level3Start.unity
+    guid: 4881e6b3c90a49a48ad5508d7a3557cb
+  - enabled: 1
+    path: Assets/Scenes/Battles/Level 3 Battle.unity
+    guid: 003e55cb935fcc74f97c35153eb600d3
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/conversations/Level3End.unity
+    guid: 37e4e42cd987dc8429a005581651f0ab
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/conversations/Level4Start.unity
+    guid: 867477f5722ed2646b82aa9f64c56900
+  - enabled: 1
+    path: Assets/Scenes/Battles/Level 4 Battle.unity
+    guid: a4a96397583136b46bbcae29a8a12aeb
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/conversations/Level4End.unity
+    guid: 2b72185aded58224099057a80d8d14df
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/tutorchat script/Dialogue/Level 4 End/Thank you
+      for playing.unity
+    guid: d166c9a76d2012a45a974fb87db14e41
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
