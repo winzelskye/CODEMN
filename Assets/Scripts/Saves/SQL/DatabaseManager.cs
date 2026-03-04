@@ -46,8 +46,8 @@ public class DatabaseManager : MonoBehaviour
         // unlockLevel = the player level required to have this attack
         db.Insert(new AttackData { attackName = "Classics", damage = 8, unlockLevel = 0, isUnlocked = 1, isSpecial = 0, isSkill = 0, forCharacter = "both", bitpointCost = 0 });
         db.Insert(new AttackData { attackName = "Styalize", damage = 12, unlockLevel = 1, isUnlocked = 0, isSpecial = 0, isSkill = 0, forCharacter = "both", bitpointCost = 3 });
-        db.Insert(new AttackData { attackName = "Pictionary", damage = 18, unlockLevel = 3, isUnlocked = 0, isSpecial = 0, isSkill = 0, forCharacter = "both", bitpointCost = 5 });
-        db.Insert(new AttackData { attackName = "HyperLink", damage = 20, unlockLevel = 4, isUnlocked = 0, isSpecial = 0, isSkill = 0, forCharacter = "both", bitpointCost = 8 });
+        db.Insert(new AttackData { attackName = "Pictionary", damage = 18, unlockLevel = 2, isUnlocked = 0, isSpecial = 0, isSkill = 0, forCharacter = "both", bitpointCost = 5 });
+        db.Insert(new AttackData { attackName = "HyperLink", damage = 20, unlockLevel = 3, isUnlocked = 0, isSpecial = 0, isSkill = 0, forCharacter = "both", bitpointCost = 8 });
 
         // Skills
         db.Insert(new AttackData { attackName = "Debug", damage = 20, unlockLevel = 0, isUnlocked = 0, isSpecial = 0, isSkill = 1, forCharacter = "both", bitpointCost = 30 });

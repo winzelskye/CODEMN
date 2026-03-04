@@ -92,6 +92,9 @@ public class BattleManager : MonoBehaviour
         var stats = SaveLoadManager.Instance.LoadCharacterStats(playerData.selectedCharacter);
         if (stats == null) { Debug.LogError($"No stats found for {playerData.selectedCharacter}!"); return; }
 
+        // DEBUG LOG - tells us the player level when entering battle
+        Debug.Log($">>> Player level on battle start: {playerData.currentLevel}");
+
         // Unlock all attacks available for the player's current level
         SaveLoadManager.Instance.UnlockAttacksForLevel(playerData.currentLevel);
         Debug.Log($"Player current level: {playerData.currentLevel}");

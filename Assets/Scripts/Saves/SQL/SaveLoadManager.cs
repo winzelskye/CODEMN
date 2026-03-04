@@ -56,11 +56,11 @@ public class SaveLoadManager : MonoBehaviour
                  .FirstOrDefault();
     }
 
-    // SKILLS
+    // SKILLS - includes specials (isSpecial == 0 filter removed)
     public List<AttackData> GetSkills(string characterName)
     {
         return db.Table<AttackData>()
-                 .Where(a => a.isSkill == 1 && a.isSpecial == 0 && a.isUnlocked == 1 &&
+                 .Where(a => a.isSkill == 1 && a.isUnlocked == 1 &&
                             (a.forCharacter == "both" || a.forCharacter == characterName))
                  .ToList();
     }
