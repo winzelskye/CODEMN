@@ -41,7 +41,7 @@ public class ItemListManager : MonoBehaviour
                     itemSlots[i].button.gameObject.SetActive(true);
 
                 if (itemSlots[i].itemNameText != null)
-                    itemSlots[i].itemNameText.text = item.itemName;
+                    itemSlots[i].itemNameText.text = GetItemDescription(item);
 
                 int index = i;
                 if (itemSlots[i].button != null)
@@ -58,6 +58,17 @@ public class ItemListManager : MonoBehaviour
         }
     }
 
+    string GetItemDescription(InventoryItem item)
+    {
+        List<string> effects = new List<string>();
+        if (item.hpHealing > 0) effects.Add($"+{item.hpHealing} HP");
+        if (item.bitPointsAdded > 0) effects.Add($"+{item.bitPointsAdded} BP");
+        if (item.damageReduction > 0) effects.Add($"-{item.damageReduction} DMG");
+
+        string effectStr = effects.Count > 0 ? $" ({string.Join(", ", effects)})" : "";
+        return $"{item.itemName}{effectStr}";
+    }
+
     void UseItem(int index)
     {
         if (index >= inventory.Count) return;
@@ -71,13 +82,11 @@ public class ItemListManager : MonoBehaviour
             Debug.Log($"HP after heal: {BattleManager.Instance.player.currentHealth}");
             BattleManager.Instance.ShowBattleDialogue($"Used {item.itemName}! Recovered {item.hpHealing} HP!");
         }
-
         if (item.bitPointsAdded > 0)
         {
             BattleManager.Instance.player.AddBitpoints(item.bitPointsAdded);
             BattleManager.Instance.ShowBattleDialogue($"Used {item.itemName}! Added {item.bitPointsAdded} BP!");
         }
-
         if (item.damageReduction > 0)
         {
             BattleManager.Instance.ApplyDamageReduction(item.damageReduction);
@@ -85,7 +94,6 @@ public class ItemListManager : MonoBehaviour
         }
 
         SaveLoadManager.Instance.DeleteInventoryItem(item.id);
-
         gameObject.SetActive(false);
         ShowBattleUI();
         BattleManager.Instance.OnPlayerAttackResult(true, false);

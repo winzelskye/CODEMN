@@ -19,8 +19,8 @@ public class GameOverManager : MonoBehaviour
 
     void Awake()
     {
-        if (proceedButton != null)
-            proceedButton.onClick.AddListener(Proceed);
+        //if (proceedButton != null)
+            //proceedButton.onClick.AddListener(Proceed);
         if (retryButton != null)
             retryButton.onClick.AddListener(Retry);
         if (mainMenuButton != null)

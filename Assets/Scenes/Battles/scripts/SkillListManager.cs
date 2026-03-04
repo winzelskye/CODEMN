@@ -42,27 +42,36 @@ public class SkillListManager : MonoBehaviour
 
         var rawSkills = SaveLoadManager.Instance.GetSkills(player.selectedCharacter);
 
+        Debug.Log($"Found {rawSkills.Count} skills for {player.selectedCharacter}");
+        foreach (var s in rawSkills)
+            Debug.Log($"Raw skill: '{s.attackName}'");
+
         // Reorder to match inspector slot order by name
         availableSkills = new List<AttackData>();
         for (int i = 0; i < skills.Count; i++)
         {
             var match = rawSkills.Find(s => s.attackName == skills[i].attackName);
-            availableSkills.Add(match); // null if no match for this character
+            availableSkills.Add(match);
         }
 
-        Debug.Log($"Found {rawSkills.Count} skills for {player.selectedCharacter}, Player BP: {BattleManager.Instance.player.bitpoints}");
+        Debug.Log($"Player BP: {BattleManager.Instance.player.bitpoints}");
         for (int i = 0; i < availableSkills.Count; i++)
             Debug.Log($"availableSkills[{i}] = {(availableSkills[i] != null ? availableSkills[i].attackName : "null")}");
 
         float currentBP = BattleManager.Instance.player.bitpoints;
+
         for (int i = 0; i < skills.Count; i++)
         {
             if (availableSkills[i] != null)
             {
+                Debug.Log($"Activating slot {i}: {availableSkills[i].attackName}, button null: {skills[i].button == null}");
                 skills[i].button.gameObject.SetActive(true);
+
                 if (skills[i].buttonText != null)
                     skills[i].buttonText.text = $"{availableSkills[i].attackName} ({(int)currentBP}/{availableSkills[i].bitpointCost} BP)";
+
                 skills[i].button.interactable = currentBP >= availableSkills[i].bitpointCost;
+
                 int index = i;
                 skills[i].button.onClick.RemoveAllListeners();
                 skills[i].button.onClick.AddListener(() => SelectSkill(index));
@@ -77,6 +86,7 @@ public class SkillListManager : MonoBehaviour
     void SelectSkill(int index)
     {
         if (availableSkills[index] == null) return;
+
         AttackData skill = availableSkills[index];
 
         if (BattleManager.Instance.player.bitpoints < skill.bitpointCost)

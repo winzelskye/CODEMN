@@ -8,6 +8,7 @@ public class SceneController : MonoBehaviour
 
     public void ChangeScene(string sceneName)
     {
+        Debug.Log("ChangeScene called with: '" + sceneName + "' on object: " + gameObject.name + " instance ID: " + GetInstanceID());
         StartCoroutine(ChangeSceneCoroutine(sceneName));
     }
 
