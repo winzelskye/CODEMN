@@ -15,6 +15,34 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
+    dialogueText: Html links are Hyperlinks.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights:
+    - word: Hyperlinks
+      highlightColor: {r: 0, g: 0.8078432, b: 0.8196079, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Hyperlinks are defined with the <a> tag.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights:
+    - word: <a>
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
     dialogueText: The links in HTML doesn't need to be texts.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
