@@ -75,8 +75,8 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
-    dialogueText: 'I decided to run a little shop. Simply to help my comarades as
-      they hack. '
+    dialogueText: 'I am running a little online shop. Simply to help my comarades
+      as they hack. '
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -129,7 +129,10 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: System
-    dialogueText: -- Handler closed the memo --
+    dialogueText: '-- Handler closed the memo --
+
+      -- Handler deleted the memo
+      --'
     textColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}

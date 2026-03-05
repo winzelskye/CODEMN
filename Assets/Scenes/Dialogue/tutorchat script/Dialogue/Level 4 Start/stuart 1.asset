@@ -51,8 +51,32 @@ MonoBehaviour:
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
+  - characterName: H@cker
+    dialogueText: You @re the first to do th@t.
+    textColor: {r: 1, g: 0, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: H@cker
+    dialogueText: Good Job.
+    textColor: {r: 1, g: 0, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: What did you do to handler?
+  - choiceText: What did you do to Handler?
     nextNode: {fileID: 11400000, guid: aa647aa5124561d4a94b10d29cf8bc80, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 

@@ -15,8 +15,7 @@ MonoBehaviour:
   characterName: Hacker
   npcLines:
   - characterName: H@cker
-    dialogueText: It's @nnoying. You c@n't even get @ single ounce of privacy bec@use
-      of them.
+    dialogueText: How does it feel to be @ part of such terible comp@ny?
     textColor: {r: 1, g: 0, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -28,7 +27,8 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: H@cker
-    dialogueText: They @lways s@y it's for the good of our people.
+    dialogueText: I me@n, wh@t kind of comp@ny uses html @s their primary coding
+      langu@ge?
     textColor: {r: 1, g: 0, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -40,32 +40,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: H@cker
-    dialogueText: Who @re they kidding? @bsolutely not me.
-    textColor: {r: 1, g: 0, b: 0, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 3
-    isContinuation: 0
-    wordHighlights: []
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
-  - characterName: H@cker
-    dialogueText: If they @re re@lly serious @bout @ll of this, then they would focus
-      on @resting someone else.
-    textColor: {r: 1, g: 0, b: 0, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 3
-    isContinuation: 0
-    wordHighlights: []
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
-  - characterName: H@cker
-    dialogueText: Like th@t corrupt politician. i hate him so much.
+    dialogueText: How unprofecion@l.
     textColor: {r: 1, g: 0, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -77,7 +52,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: What does this have to do with hacking?
+  - choiceText: What do those even have to do with me?
     nextNode: {fileID: 11400000, guid: ede718cf4cd3ab64e83babc523d5e957, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 

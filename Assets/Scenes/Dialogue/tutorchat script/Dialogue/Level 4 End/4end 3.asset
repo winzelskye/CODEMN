@@ -13,21 +13,10 @@ MonoBehaviour:
   m_Name: 4end 3
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Hacker
-  npcLines:
-  - characterName: H@cker
-    dialogueText: Do you even know the re@son why im getting @rested?
-    textColor: {r: 1, g: 0, b: 0, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 4
-    isContinuation: 0
-    wordHighlights: []
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
+  npcLines: []
   playerChoices:
-  - choiceText: I supposed no?
+  - choiceText: You are planning to destroy something millions rely on. What's even
+      the point?
     nextNode: {fileID: 11400000, guid: 255ea0415b4434a4dbda00191499e95f, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 

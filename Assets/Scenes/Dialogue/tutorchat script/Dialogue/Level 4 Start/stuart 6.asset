@@ -15,31 +15,8 @@ MonoBehaviour:
   characterName: Hacker
   npcLines:
   - characterName: H@cker
-    dialogueText: Th@t's wh@t i did, @nd guess who's @bout to get @rested.
-    textColor: {r: 1, g: 0, b: 0, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 3
-    isContinuation: 0
-    wordHighlights: []
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
-  - characterName: H@cker
-    dialogueText: But i won't bec@use i'm not like you.
-    textColor: {r: 1, g: 0, b: 0, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 3
-    isContinuation: 0
-    wordHighlights: []
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
-  - characterName: H@cker
-    dialogueText: Don't you re@lize that YOUR company is m@king @ fun of you?
+    dialogueText: Oh please, don't you re@lize that YOUR company is m@king @ fun
+      of you?
     textColor: {r: 1, g: 0, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}

@@ -8057,28 +8057,47 @@ MonoBehaviour:
     condition: 0
   - line: Is What I would Say If I Wasn't Expecting Your Call, White Hat.
     condition: 0
-  - line: 'That Little Bee Has Done His Job Of Informing Me On Time And I Know You
-      Came Prepared. '
+  - line: I Can See Your Stats Here On My Screen. You Are No Match For Me.
     condition: 0
-  - line: What's That Look? You Really Think I Would Show My Real Face To You?
+  - line: Oh? You Want To Negotiate With Me?
     condition: 0
-  - line: Anywho, I Won't Waste Any More Time.
+  - line: Ugh, You Are Working With Hacker Arent You?
     condition: 0
-  - line: If Information Is What You Seek, Then Getting It Is What You Should Work
-      For.
+  - line: Well Then, If Information Is What You Seek, Then Getting It Is What You
+      Should Work For.
     condition: 0
   - line: 'Impress Me, Then Maybe I''ll Give You And Your Manager Some Time To Negotiate. '
+    condition: 0
+  - line: Anywho, I Won't Waste Any More Time.
     condition: 0
   - line: Did I Make Myself Clear?
     condition: 0
   turnLines:
   - line: Very Well. Surprise Me Darling.~
     condition: 0
-  - line: Seems Like You Had Made Some Progress. But I Had Made More. Let's See If
-      You Can Catch Up.
+  - line: Images! How Cute. That's nothing.
+    condition: 1
+  - line: Let's See How Long Can You Last.
+    condition: 1
+  - line: I Must Say, I'm Quite Impressed About Your Progress So Far.
+    condition: 1
+  - line: I Have An Idea.
+    condition: 1
+  - line: How Bout You Join Us? You Have A Great Potential.
+    condition: 1
+  - line: That's A No Then? That's Too Bad. I Was Considering Working with You.
+    condition: 1
+  - line: I Supposed All White Hats Are "Loyal" To That Corrupted Company.
+    condition: 1
+  - line: Have You Ever Even Know What They Did To Those They Arested? It's Not A
+      Good Sight Darling.
+    condition: 1
+  - line: Oh Well, Let's Continue The Fight Shall We?
     condition: 1
   lowHealthLines:
   - line: ...
+    condition: 0
+  - line: I Supposed This Is It...
     condition: 0
   hitReactionLines: []
 --- !u!1 &1467963985
@@ -9164,8 +9183,8 @@ Transform:
   m_GameObject: {fileID: 1694327247}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -6500.25}
-  m_LocalScale: {x: 54.60932, y: 57.960564, z: 72.225}
+  m_LocalPosition: {x: 54.34, y: -96, z: -6500.25}
+  m_LocalScale: {x: 114.74511, y: 109.08757, z: 72.225}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 695750892}
@@ -9180,7 +9199,7 @@ Animator:
   m_GameObject: {fileID: 1694327247}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4ffe1c173c45016438099e978996597a, type: 2}
+  m_Controller: {fileID: 9100000, guid: a4cbd6a31eb595f41bf4a3b28740725d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -9241,12 +9260,12 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -1755179638177863713, guid: 0b6d30a2600205b4da0414858704d35a, type: 3}
+  m_Sprite: {fileID: 4354908431371713909, guid: 402c00e99c07c3b47bb9e27162070f3e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 9.539999, y: 11.09}
+  m_Size: {x: 6.6299996, y: 7.0199995}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -10845,7 +10864,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1995817649
 Transform:
   m_ObjectHideFlags: 0

@@ -27,6 +27,20 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
+    dialogueText: Besides, she is quite hostile to me the last time we talked.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 2
+    isContinuation: 0
+    wordHighlights:
+    - word: White Hat Hackers Association
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
     dialogueText: Now off you go.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0

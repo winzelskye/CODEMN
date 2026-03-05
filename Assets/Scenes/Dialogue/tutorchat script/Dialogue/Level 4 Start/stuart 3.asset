@@ -15,8 +15,7 @@ MonoBehaviour:
   characterName: Hacker
   npcLines:
   - characterName: H@cker
-    dialogueText: 'Have you ever felt tired of being in the const@nt w@tch of the
-      government? '
+    dialogueText: S@y, you @re @ new member, correct?
     textColor: {r: 1, g: 0, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -28,12 +27,8 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: Maybe?
+  - choiceText: Maybe? So what.
     nextNode: {fileID: 11400000, guid: fc0a42c98c7de6b45a88cd4bdb41773e, type: 2}
-    choiceSound: {fileID: 0}
-    switchToCharacter: 
-  - choiceText: No.
-    nextNode: {fileID: 11400000, guid: 63130bf7c5dbe9944a4d07cdbb1d136f, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
