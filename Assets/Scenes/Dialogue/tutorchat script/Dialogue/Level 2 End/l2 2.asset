@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Lady Bug
-    dialogueText: 'I Supposed A Hackin Battle Is Unavoidable. '
+    dialogueText: 'I Supposed A Hacking Battle Is Unavoidable. '
     textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}

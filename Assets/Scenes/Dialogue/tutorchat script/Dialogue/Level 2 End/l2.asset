@@ -27,8 +27,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: Greetings Lady Bug. I assume you had accepted to negociate with
-      us?
+    dialogueText: Hello again , Lady Bug. I assumed you finally agreed to negotiate?
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -186,8 +185,23 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: He had broken one of the biggest hacking rules and the higher-ups
-      had instructed me to arrest him.
+    dialogueText: We had found out that he is planning to shut down every hacker
+      server worldwide. Including yours.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: White Hat Hackers Association
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: We are simply tasked to stop him. And as one of his aquaintance
+      we need your help.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -201,8 +215,49 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Lady Bug
-    dialogueText: I Supposed It's Time For Him To Pay His Due. But What's In It For
-      Me?
+    dialogueText: Oh My, I Supposed It Is Quite Bad For Me As Well.
+    textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: White Hat Hackers Association
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Lady Bug
+    dialogueText: Gog, Why Does He Have To Be So Selfish?
+    textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: White Hat Hackers Association
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Lady Bug
+    dialogueText: Other Than Not Getting Our Server Hacked, What's In It For Me?
+    textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: White Hat Hackers Association
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Lady Bug
+    dialogueText: Its Very Unusual For The White Hats To Ask A Black Hat For Help.
     textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -231,7 +286,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Lady Bug
-    dialogueText: How About A Year?
+    dialogueText: Hmmm, How Much Are We Talking?
     textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -245,7 +300,35 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: If the higher-ups agreed then we could make some arrangements.
+    dialogueText: $100,000
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: White Hat Hackers Association
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Lady Bug
+    dialogueText: I Supposed I Can Take That.
+    textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: White Hat Hackers Association
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Great. I'll speak with the higher-ups for the arrangements.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -259,7 +342,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: Whoa, you're just going to ditch him that fast?
+  - choiceText: Won't H@cker find out about this?
     nextNode: {fileID: 11400000, guid: c414357f14e5d2c45b6dc554c533f2aa, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 

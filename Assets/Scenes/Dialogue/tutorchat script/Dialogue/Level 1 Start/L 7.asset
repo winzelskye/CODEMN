@@ -14,6 +14,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
+  - characterName: Handler
+    dialogueText: Unfortunately...
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
   - characterName: Dee Bug
     dialogueText: 0H Y34H 1 F0RG0T Y0U'R3 H3R3
     textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
@@ -24,20 +36,6 @@ MonoBehaviour:
     wordHighlights:
     - word: Lady Bug
       highlightColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
-  - characterName: Dee Bug
-    dialogueText: 1 4LR34DY 4NSW3R3D Y0UR QU3ST10N.
-    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 2
-    isContinuation: 0
-    wordHighlights:
-    - word: acquaintance
-      highlightColor: {r: 0, g: 1, b: 0.77254903, a: 1}
     showAttachedObject: 0
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
@@ -54,9 +52,33 @@ MonoBehaviour:
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: I'm not old.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 1
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
   - characterName: Dee Bug
-    dialogueText: 1 4M 4LSO H3R3 T0 S33 H0W MY L4DY W1LL D3STR0Y Y0U 1N 4 H4CK-0FF
-      = >:)
+    dialogueText: 1 4M 4LSO H3R3 T0 S33 1F Y0U H4V3 4 CH4NC3 4G41NST TH3 L4DY 1N
+      4 H4CK-0FF = >:)
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Dee Bug
+    dialogueText: WH1CH 0BVI0USLY 1N Y0UR CURR3NT L3V3L, Y0U D0NT.
     textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}

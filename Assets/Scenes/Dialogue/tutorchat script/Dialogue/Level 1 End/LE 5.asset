@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Mainly to distract and waste his time.
+    dialogueText: It's to stop him from chatting again and get into more trouble.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -27,28 +27,13 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
-    dialogueText: I ceased the oportunity to talk with the higher ups while you fight.
+    dialogueText: Although it is probably useless anyways.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 4
     isContinuation: 0
     wordHighlights: []
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 0
-    destroyOnNextMessage: 0
-  - characterName: Handler
-    dialogueText: And the new attack he put on your attack list can be helpful so
-      that too.
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 4
-    isContinuation: 0
-    wordHighlights:
-    - word: new attack
-      highlightColor: {r: 0, g: 1, b: 1, a: 1}
     showAttachedObject: 0
     attachedObjectPrefab: {fileID: 0}
     attachedObjectDelay: 0

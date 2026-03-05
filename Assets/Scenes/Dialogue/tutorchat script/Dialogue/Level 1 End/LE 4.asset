@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Handler
   npcLines: []
   playerChoices:
-  - choiceText: Why Bother with the entire fight anyways?
+  - choiceText: 'Do you really need to ban him if you are deleting the entire thing? '
     nextNode: {fileID: 11400000, guid: c0eab354fdb65074f9e805a57129e81b, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 

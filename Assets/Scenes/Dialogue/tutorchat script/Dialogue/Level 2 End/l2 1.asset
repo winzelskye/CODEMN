@@ -15,8 +15,7 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Lady Bug
-    dialogueText: That's Just How Life Works Darling. You Have To Betray Your Friends
-      For Your Own Good.
+    dialogueText: If We Are Not Careful That Is.
     textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -30,7 +29,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Lady Bug
-    dialogueText: Besides, If The White Hackers Had Mannaged To Contact Me.
+    dialogueText: Fortunately, I Am A Master Of Transactions.
     textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -44,8 +43,8 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Lady Bug
-    dialogueText: Then It's Only A Matter Of Time Before They Find My Location And
-      Arrest Me.
+    dialogueText: Unlike Your Worthless Company Who's Plan Got Leaked Before It Is
+      Even Put Into Action.
     textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -73,7 +72,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: You are indeed correct.
+    dialogueText: Unfortunately. But what is done is done.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -87,8 +86,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Lady Bug
-    dialogueText: Splendid. Now That We Got That Done, What Do You Two Need From
-      Me?
+    dialogueText: Indeed. Now, What Information Do You Seek From Me?
     textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}

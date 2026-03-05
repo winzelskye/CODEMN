@@ -87,7 +87,7 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Dee Bug
-    dialogueText: 1 H3LP3D Y0U!
+    dialogueText: 1 H3LP3D Y0U! 4ND R00K13!
     textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -99,7 +99,8 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
-    dialogueText: Don't make me think I forgot what you said a few minutes ago.
+    dialogueText: If they found out that you were here, ban is not the only thing
+      you'll get.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -111,7 +112,8 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
-    dialogueText: You are here to watch us fail.
+    dialogueText: I had talked with the higher ups and they revealed the plan was
+      leaked.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -123,7 +125,8 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
-    dialogueText: Which means you are up to something.
+    dialogueText: So although you were a great help, you can get accised as a suspect
+      just for being here.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -135,45 +138,8 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
-    dialogueText: And knowing you and the fact that Lady Bug has ditched you once
-      is enough to say something.
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 3
-    isContinuation: 0
-    wordHighlights: []
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 0
-    destroyOnNextMessage: 0
-  - characterName: Handler
-    dialogueText: 'You were going waste our time and then to tell Lady Bugabout it
-      to get her approval again. '
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 3
-    isContinuation: 0
-    wordHighlights: []
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 0
-    destroyOnNextMessage: 0
-  - characterName: Handler
-    dialogueText: So when it is time for us to set our plan, we will fail.
-    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 3
-    isContinuation: 0
-    wordHighlights: []
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 0
-    destroyOnNextMessage: 0
-  - characterName: Handler
-    dialogueText: Too bad for you I already had thought it out.
+    dialogueText: And knowing you once had an affliation with Lady Bug, it's not
+      helping your case.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -185,7 +151,19 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Dee Bug
-    dialogueText: D4RN, BUST3D = :(
+    dialogueText: = :(
+    textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 1
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 0
+    destroyOnNextMessage: 0
+  - characterName: Dee Bug
+    dialogueText: 1M N0T 3V3N 4 BL4CK H4T 4NYM0R3 = :(
     textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -197,7 +175,31 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
-    dialogueText: And that's why you are getting banned. Goodbye.
+    dialogueText: That still can be suspicious.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 0
+    destroyOnNextMessage: 0
+  - characterName: Handler
+    dialogueText: So if I were you, i'd rather get banned than accused.
+    textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights: []
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 0
+    destroyOnNextMessage: 0
+  - characterName: Handler
+    dialogueText: Besides, this conversation will get deleted anyways. Goodbye.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -209,7 +211,7 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Dee Bug
-    dialogueText: W41T!
+    dialogueText: W3LP, CY4 I GUESS
     textColor: {r: 0.51572317, g: 0.23714338, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}

@@ -7900,15 +7900,19 @@ MonoBehaviour:
     condition: 0
   - line: W3LL 4NYW4YS, 1 4DDED A N3W 4TT4CK 1N Y0UR 4TT4CK L1ST
     condition: 0
-  - line: CH3CK 1T 0UT!
+  - line: BUT UHH, B3F0R3 TH4T...
     condition: 0
-  turnLines:
-  - line: HUH? WH4T'S TH3 B0RD3R F0R? 0H, 1 F0RG0T T0 T34CH TH4T...
-    condition: 1
+  - line: 1 F0RG0T T0 T34CH Y0U H0W T0 D0 B0RD3RS.
+    condition: 0
   - line: '1T''S FINE, 1T''S 3ASY. JUST PUT "border: sizepx color". 1T''S N0T TH4T
       H4RD. '
     condition: 0
-  - line: Y0U R34LLY 4R3 G0ING 0N 4B0UT 1T HUH. W3LP, M4Y TH3 B3ST H4CK3R WINS!
+  - line: Y0U C4N TRY 1T 0UT L4T3R
+    condition: 0
+  - line: R1GTH N0W, CH3CK Y0UR N3W 4TT4CK!
+    condition: 0
+  turnLines:
+  - line: M4Y TH3 B3ST H4CK3R W1NS! = :P
     condition: 0
   lowHealthLines:
   - line: 0H CR4P.
@@ -9075,7 +9079,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_MaskInteraction: 0
   m_Sprite: {fileID: 6068154180590680192, guid: c2929a1bf46920a44b541bf33e5a584a, type: 3}
-  m_Color: {r: 0.6603774, g: 0.64616525, b: 0.5087813, a: 1}
+  m_Color: {r: 0.8050314, g: 0.7932397, b: 0.65567017, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

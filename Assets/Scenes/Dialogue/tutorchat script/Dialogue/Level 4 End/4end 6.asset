@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Hacker
   npcLines:
   - characterName: H@cker
-    dialogueText: So wh@t? ur gonn@ @rest me now?
+    dialogueText: I @m still deleting the servers @nd you c@n't stop me.
     textColor: {r: 1, g: 0, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -27,8 +27,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: 'Unfortunately, stealing is still against the law. Even if it''s
-      for good cause. '
+    dialogueText: You're right. I can't
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -42,7 +41,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: Worry not, it won't be for long as what i've been told.
+    dialogueText: But they can.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -56,7 +55,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: H@cker
-    dialogueText: 'Sigh. the cops @re in my house now '
+    dialogueText: Wh@t the-!
     textColor: {r: 1, g: 0, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -68,7 +67,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: H@cker
-    dialogueText: I c@n he@r them bre@k my door.
+    dialogueText: The cops @re here!
     textColor: {r: 1, g: 0, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -80,7 +79,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: H@cker
-    dialogueText: I supposed this is @ farewell?
+    dialogueText: How did you find my @ddress?!
     textColor: {r: 1, g: 0, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -92,7 +91,21 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: More like a see you later.
+    dialogueText: Let's just say your call allowed us to trace you.
+    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 4
+    isContinuation: 0
+    wordHighlights:
+    - word: White Hat Hackers Association
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Handler
+    dialogueText: Sayonara, H@cker.
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -134,7 +147,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: Will he be ok tho?
+  - choiceText: Thanks
     nextNode: {fileID: 11400000, guid: 47f9bf729e839564091b76cc31b29423, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
