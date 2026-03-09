@@ -1162,6 +1162,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3084f745187745044b354b71dede2371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableText
+  boundaryRect: {fileID: 6078196756666578376}
 --- !u!114 &6144552117167967665
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1430,7 +1431,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &7203628633363167626
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1551,6 +1552,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3084f745187745044b354b71dede2371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableText
+  boundaryRect: {fileID: 6078196756666578376}
 --- !u!114 &5342556177555822859
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2183,6 +2185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3084f745187745044b354b71dede2371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableText
+  boundaryRect: {fileID: 6078196756666578376}
 --- !u!114 &7586926332827476411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2467,6 +2470,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3084f745187745044b354b71dede2371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableText
+  boundaryRect: {fileID: 6078196756666578376}
 --- !u!114 &4017489383694309074
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2532,6 +2536,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3084f745187745044b354b71dede2371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableText
+  boundaryRect: {fileID: 6078196756666578376}
 --- !u!114 &8909236615736769491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2718,6 +2723,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3084f745187745044b354b71dede2371, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DraggableText
+  boundaryRect: {fileID: 6078196756666578376}
 --- !u!114 &533976888930106206
 MonoBehaviour:
   m_ObjectHideFlags: 0

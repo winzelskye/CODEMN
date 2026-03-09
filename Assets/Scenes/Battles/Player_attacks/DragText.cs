@@ -11,6 +11,10 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
     private Transform originalParent;
     private int originalSiblingIndex;
 
+    [Header("Boundary")]
+    [Tooltip("Assign the RectTransform that defines the drag boundary. Leave empty for no boundary.")]
+    public RectTransform boundaryRect;
+
     private void Awake()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -20,9 +24,26 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
         canvas = GetComponentInParent<Canvas>();
     }
 
+    private void OnEnable()
+    {
+        if (canvasGroup != null)
+        {
+            canvasGroup.blocksRaycasts = true;
+            canvasGroup.alpha = 1f;
+        }
+    }
+
+    private Canvas GetCanvas()
+    {
+        Canvas c = GetComponentInParent<Canvas>();
+        if (c == null)
+            c = FindObjectOfType<Canvas>();
+        return c;
+    }
+
     public void OnBeginDrag(PointerEventData eventData)
     {
-        canvas = GetComponentInParent<Canvas>();
+        canvas = GetCanvas();
         if (canvas == null) return;
 
         originalPosition = rectTransform.anchoredPosition;
@@ -54,7 +75,40 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
             eventData.position,
             eventData.pressEventCamera,
             out mousePos);
-        rectTransform.anchoredPosition = mousePos + offset;
+
+        Vector2 targetPos = mousePos + offset;
+
+        if (boundaryRect != null)
+            targetPos = ClampToBoundary(targetPos);
+
+        rectTransform.anchoredPosition = targetPos;
+    }
+
+    private Vector2 ClampToBoundary(Vector2 targetPos)
+    {
+        // Get boundary corners in canvas local space
+        Vector3[] boundaryCorners = new Vector3[4];
+        boundaryRect.GetWorldCorners(boundaryCorners);
+
+        // Get dragged object corners offset from its pivot
+        Vector2 sizeDelta = rectTransform.rect.size;
+        Vector2 pivot = rectTransform.pivot;
+
+        // Convert boundary world corners to canvas local space
+        RectTransform canvasRect = canvas.transform as RectTransform;
+        Vector2 minBoundary = canvasRect.InverseTransformPoint(boundaryCorners[0]);
+        Vector2 maxBoundary = canvasRect.InverseTransformPoint(boundaryCorners[2]);
+
+        // Calculate how much space the object's pivot offsets the edges
+        float minX = minBoundary.x + sizeDelta.x * pivot.x;
+        float maxX = maxBoundary.x - sizeDelta.x * (1f - pivot.x);
+        float minY = minBoundary.y + sizeDelta.y * pivot.y;
+        float maxY = maxBoundary.y - sizeDelta.y * (1f - pivot.y);
+
+        return new Vector2(
+            Mathf.Clamp(targetPos.x, minX, maxX),
+            Mathf.Clamp(targetPos.y, minY, maxY)
+        );
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -74,6 +128,9 @@ public class DragObject : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDr
 
     public void ReturnToOriginalPosition()
     {
+        canvasGroup.alpha = 1f;
+        canvasGroup.blocksRaycasts = true;
+
         if (originalParent != null)
         {
             rectTransform.SetParent(originalParent);
