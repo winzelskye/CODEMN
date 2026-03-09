@@ -125,7 +125,7 @@ MonoBehaviour:
     attachedObjectDelay: 0
     destroyOnNextMessage: 0
   - characterName: Handler
-    dialogueText: So although you were a great help, you can get accised as a suspect
+    dialogueText: So although you were a great help, you can get accused as a suspect
       just for being here.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0

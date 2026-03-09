@@ -41,6 +41,5 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices: []
-  nextNode: {fileID: 11400000}
+  nextNode: {fileID: 11400000, guid: aeede905a2310f945804a33b78db2137, type: 2}
   showObjectOnEnd: 0
-

@@ -46,6 +46,9 @@ MonoBehaviour:
     nextNode: {fileID: 11400000, guid: 3dc3789528425684890562c7fd805949, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
+  - choiceText: skip
+    nextNode: {fileID: 11400000, guid: fbfdbb00832823b49ad84bea61a2ce23, type: 2}
+    choiceSound: {fileID: 0}
+    switchToCharacter: 
   nextNode: {fileID: 0}
   showObjectOnEnd: 0
-

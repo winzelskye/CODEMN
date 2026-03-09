@@ -58,9 +58,8 @@ MonoBehaviour:
     destroyOnNextMessage: 1
   playerChoices:
   - choiceText: That would be nice
-    nextNode: {fileID: 11400000, guid: 8770cda1e38b53042a75bd419ff9dd8c, type: 2}
+    nextNode: {fileID: 0}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
   showObjectOnEnd: 1
-
