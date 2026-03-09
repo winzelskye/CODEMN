@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 12f37c115253878448593ecff98bb63e, type: 3}
   m_Name: no
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
@@ -150,3 +150,4 @@ MonoBehaviour:
   playerChoices: []
   nextNode: {fileID: 11400000, guid: 9067635dc9686694695da439efc9b1bb, type: 2}
   showObjectOnEnd: 0
+

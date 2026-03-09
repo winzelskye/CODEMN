@@ -12,7 +12,7 @@ public class CharacterSelectionManager : MonoBehaviour
     [Header("Next Scene")]
     [SerializeField] private string nextSceneName = "Level Select";
 
-    private string selectedCharacter = "Esther";
+    private string selectedCharacter = null; // Changed from "Esther" to null
 
     void Start()
     {
@@ -25,20 +25,31 @@ public class CharacterSelectionManager : MonoBehaviour
 
         if (estherButton != null)
             estherButton.onClick.AddListener(() => HighlightCharacter("Esther"));
+
         if (michaelButton != null)
             michaelButton.onClick.AddListener(() => HighlightCharacter("Michael"));
+
         if (confirmButton != null)
+        {
             confirmButton.onClick.AddListener(ConfirmSelection);
+            confirmButton.interactable = false; // Disabled on start
+        }
     }
 
     private void HighlightCharacter(string characterName)
     {
         selectedCharacter = characterName;
         Debug.Log($"Highlighted: {characterName}");
+
+        // Enable confirm button now that a character is selected
+        if (confirmButton != null)
+            confirmButton.interactable = true;
     }
 
     private void ConfirmSelection()
     {
+        if (selectedCharacter == null) return; // Extra safety guard
+
         if (DatabaseManager.Instance == null)
         {
             GameObject managers = new GameObject("Managers");
@@ -51,7 +62,6 @@ public class CharacterSelectionManager : MonoBehaviour
             DatabaseManager.Instance.InitDB();
         }
 
-        // Use character name as player name
         SaveLoadManager.Instance.SavePlayer(selectedCharacter, selectedCharacter, 0);
         Debug.Log($"Confirmed: {selectedCharacter}");
 
