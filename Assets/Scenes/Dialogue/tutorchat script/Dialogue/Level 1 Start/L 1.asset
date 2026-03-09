@@ -41,14 +41,13 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: I think?
-    nextNode: {fileID: 11400000, guid: bd73b53621a6ee64b979312184f7770c, type: 2}
-    choiceSound: {fileID: 0}
-    switchToCharacter: 
   - choiceText: Ready as I can ever be.
     nextNode: {fileID: 11400000, guid: 32231d778da45ae4d8a2797af3ebd873, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
+  - choiceText: skip
+    nextNode: {fileID: 11400000, guid: f9a7eaf6a5b5a0d43994c961c67393fa, type: 2}
+    choiceSound: {fileID: 0}
+    switchToCharacter: 
   nextNode: {fileID: 0}
   showObjectOnEnd: 0
-

@@ -29,7 +29,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: As the name sudgested, these tags do not require a closing tag.
+    dialogueText: As the name suggested, these tags do not require a closing tag.
     textColor: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -89,4 +89,3 @@ MonoBehaviour:
   playerChoices: []
   nextNode: {fileID: 11400000, guid: 9dea65b5c8eddef43ab4cf14f73a748b, type: 2}
   showObjectOnEnd: 0
-

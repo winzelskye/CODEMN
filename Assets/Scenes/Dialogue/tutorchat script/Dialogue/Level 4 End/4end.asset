@@ -81,4 +81,3 @@ MonoBehaviour:
     switchToCharacter: 
   nextNode: {fileID: 0}
   showObjectOnEnd: 0
-
