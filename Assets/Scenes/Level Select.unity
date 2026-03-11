@@ -2949,20 +2949,24 @@ MonoBehaviour:
   levels:
   - button: {fileID: 465141049}
     convoScene: TutorialStart
+    infoPanel: {fileID: 1915469572}
   - button: {fileID: 595743016}
     convoScene: Level1Start
+    infoPanel: {fileID: 466618554}
   - button: {fileID: 1582544742}
     convoScene: Level2Start
+    infoPanel: {fileID: 1037057767}
   - button: {fileID: 705695574}
     convoScene: Level3Start
+    infoPanel: {fileID: 1452013079}
   - button: {fileID: 1933698429}
     convoScene: Level4Start
+    infoPanel: {fileID: 953898480}
   runButton: {fileID: 2013893682}
   shopButton: {fileID: 108772377}
   unlockAllLevels: 0
   defaultSelectedLevel: 0
   selectedColor: {r: 0, g: 1, b: 1, a: 1}
-  defaultButtonColor: {r: 0, g: 1, b: 1, a: 1}
 --- !u!4 &1799725183
 Transform:
   m_ObjectHideFlags: 0

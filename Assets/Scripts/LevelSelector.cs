@@ -9,6 +9,7 @@ public class LevelEntry
 {
     public Button button;
     public string convoScene;
+    public GameObject infoPanel;
 }
 
 public class LevelSelector : MonoBehaviour
@@ -53,6 +54,10 @@ public class LevelSelector : MonoBehaviour
             // If locked, force black
             if (!isUnlocked)
                 SetButtonColor(levels[i].button, Color.black);
+
+            // Hide all panels initially
+            if (levels[i].infoPanel != null)
+                levels[i].infoPanel.SetActive(false);
         }
 
         if (runButton != null)
@@ -109,10 +114,18 @@ public class LevelSelector : MonoBehaviour
         {
             if (originalColors.TryGetValue(level.button, out Color original))
                 SetButtonColor(level.button, level.button.interactable ? original : Color.black);
+
+            // Hide all panels
+            if (level.infoPanel != null)
+                level.infoPanel.SetActive(false);
         }
 
         selectedLevelIndex = index;
         SetButtonColor(levels[index].button, selectedColor);
+
+        // Show selected panel
+        if (levels[index].infoPanel != null)
+            levels[index].infoPanel.SetActive(true);
 
         if (runButton != null)
             runButton.interactable = true;

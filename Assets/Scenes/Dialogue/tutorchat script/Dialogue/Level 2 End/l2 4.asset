@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Handler
-    dialogueText: Indeed. I should congratulate you for that.
+    dialogueText: ...
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -29,7 +29,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: You did well.
+    dialogueText: The higher-ups won't be happy about this...
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -43,10 +43,9 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: Thank You.
+  - choiceText: Surely...
     nextNode: {fileID: 11400000, guid: 44c5966a8cccc274280e3cb7c3fd3ea1, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
   showObjectOnEnd: 0
-

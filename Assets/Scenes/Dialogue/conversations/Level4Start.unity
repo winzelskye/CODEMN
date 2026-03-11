@@ -7908,7 +7908,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2859282aed96947846331699033204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneMusicTrigger
-  music: {fileID: 8300000, guid: 9251f5b659d524a4394289944c196686, type: 3}
+  music: {fileID: 8300000, guid: 0d53c38f1fbf40d4a9f94b1174a30738, type: 3}
 --- !u!4 &1573262303
 Transform:
   m_ObjectHideFlags: 0

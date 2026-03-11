@@ -92,14 +92,11 @@ public class BattleManager : MonoBehaviour
         var stats = SaveLoadManager.Instance.LoadCharacterStats(playerData.selectedCharacter);
         if (stats == null) { Debug.LogError($"No stats found for {playerData.selectedCharacter}!"); return; }
 
-        // DEBUG LOG - tells us the player level when entering battle
         Debug.Log($">>> Player level on battle start: {playerData.currentLevel}");
 
-        // Unlock all attacks available for the player's current level
         SaveLoadManager.Instance.UnlockAttacksForLevel(playerData.currentLevel);
         Debug.Log($"Player current level: {playerData.currentLevel}");
 
-        // Set player name text
         if (playerNameText != null)
             playerNameText.text = playerData.playerName;
 
@@ -218,6 +215,19 @@ public class BattleManager : MonoBehaviour
         StartCoroutine(PlayerAttackSequence(success, isSpecial));
     }
 
+    public void OnPlayerUsedItem()
+    {
+        SetButtonsInteractable(false);
+        StartCoroutine(EndPlayerTurnAfterItem());
+    }
+
+    IEnumerator EndPlayerTurnAfterItem()
+    {
+        yield return new WaitForSeconds(2f);
+        state = BattleState.EnemyTurn;
+        EnemyAttack();
+    }
+
     IEnumerator PlayerAttackSequence(bool success, bool isSpecial)
     {
         if (success)
@@ -253,7 +263,6 @@ public class BattleManager : MonoBehaviour
                 yield return new WaitForSeconds(2f);
             }
 
-            // Only add bitpoints for normal attacks (not skills, not specials)
             if (player.currentAttack != null && player.currentAttack.isSkill == 0 && !isSpecial)
                 player.AddBitpoints(player.bitpointRate);
 
@@ -318,7 +327,11 @@ public class BattleManager : MonoBehaviour
         }
 
         if (glitchEffect != null)
+        {
             glitchEffect.TriggerGlitch();
+            yield return new WaitForSeconds(0.1f); // tweak this value to sync with glitch
+            AudioSettings.Instance.PlaySFX(3); // Damage SFX
+        }
 
         if (player.currentHealth >= 75 && enemyDialogue != null)
         {
@@ -388,10 +401,11 @@ public class BattleManager : MonoBehaviour
     void WinBattle()
     {
         state = BattleState.Won;
+        AudioSettings.Instance.StopMusicForPanel(); // pause music
+        AudioSettings.Instance.PlaySFX(2);          // victory sfx
         SaveLoadManager.Instance.SaveBattleResult(currentLevelId, true);
         SaveLoadManager.Instance.CompleteLevel(currentLevelId);
 
-        // Auto-increment player level on win
         var p = SaveLoadManager.Instance.LoadPlayer();
         if (p != null)
         {
@@ -418,6 +432,8 @@ public class BattleManager : MonoBehaviour
     void LoseBattle()
     {
         state = BattleState.Lost;
+        AudioSettings.Instance.StopMusicForPanel(); // pause music
+        AudioSettings.Instance.PlaySFX(6);          // death sfx
         SaveLoadManager.Instance.SaveBattleResult(currentLevelId, false);
         ShowDialogue("* You were defeated...");
         Invoke(nameof(ShowLoseScreen), 3f);

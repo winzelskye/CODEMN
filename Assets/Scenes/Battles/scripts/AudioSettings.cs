@@ -31,6 +31,9 @@ public class AudioSettings : MonoBehaviour
     public AudioClip panelOpenSFX;
     public AudioClip panelCloseSFX;
 
+    [Header("Click SFX")]
+    public bool enableClickSound = true;
+
     private static AudioSettings instance;
 
     void Awake()
@@ -53,8 +56,15 @@ public class AudioSettings : MonoBehaviour
         SetSFXVolume(PlayerPrefs.GetFloat("SFXVolume", 1f));
     }
 
-    // --- Volume Controls ---
+    void Update()
+    {
+        if (enableClickSound && Input.GetMouseButtonDown(0))
+        {
+            PlaySFX(4); // Click sfx (Element 4)
+        }
+    }
 
+    // --- Volume Controls ---
     public void SetMusicVolume(float value)
     {
         musicSource.volume = value;
@@ -68,7 +78,6 @@ public class AudioSettings : MonoBehaviour
     }
 
     // --- Scene Music ---
-
     public void PlaySceneMusic(string sceneName)
     {
         foreach (SceneMusicEntry music in sceneMusics)
@@ -85,7 +94,6 @@ public class AudioSettings : MonoBehaviour
     }
 
     // --- Stop and Resume Music ---
-
     public void StopMusicForPanel()
     {
         if (panelOpenSFX != null)
@@ -101,7 +109,6 @@ public class AudioSettings : MonoBehaviour
     }
 
     // --- SFX ---
-
     public void PlaySFX(int index)
     {
         if (index < sfxClips.Length && sfxClips[index] != null)
@@ -109,6 +116,5 @@ public class AudioSettings : MonoBehaviour
     }
 
     // --- Static Instance ---
-
     public static AudioSettings Instance => instance;
 }
