@@ -14,38 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
   characterName: Handler
   npcLines:
-  - characterName: Handler
-    dialogueText: Thank you for this information. I will contact you about our deal
-      again once I talked with the higher-ups.
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 2
-    isContinuation: 0
-    wordHighlights:
-    - word: White Hat Hackers Association
-      highlightColor: {r: 1, g: 1, b: 1, a: 1}
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
-  - characterName: Handler
-    dialogueText: Thank you for your cooperation. You may go now.
-    textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 2
-    isContinuation: 0
-    wordHighlights:
-    - word: White Hat Hackers Association
-      highlightColor: {r: 1, g: 1, b: 1, a: 1}
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
-  - characterName: Lady Bug
-    dialogueText: Toodles!~
-    textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
+  - characterName: System
+    dialogueText: --Lady Bug Ceased Responding To The Memo--
+    textColor: {r: 0.9, g: 0.9, b: 0.9, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
     delayAfter: 2
@@ -58,10 +29,9 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: That went well.
+  - choiceText: ...
     nextNode: {fileID: 11400000, guid: 911cdaa99b7f74c4d93eb2b6bb46744a, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
   showObjectOnEnd: 0
-

@@ -69,6 +69,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Dialogue/conversations/Level4End.unity
     guid: 2b72185aded58224099057a80d8d14df
   - enabled: 1
+    path: Assets/Scenes/Dialogue/tutorchat script/Dialogue/Level 4 End/Arrested.unity
+    guid: 061cad8ab8043e64b9c3b338c05c7e0d
+  - enabled: 1
+    path: Assets/Scenes/Dialogue/conversations/Final.unity
+    guid: a64714014c3380043badfea737187666
+  - enabled: 1
     path: Assets/Scenes/Dialogue/tutorchat script/Dialogue/Level 4 End/Thank you
       for playing.unity
     guid: d166c9a76d2012a45a974fb87db14e41

@@ -15,7 +15,7 @@ MonoBehaviour:
   characterName: Handler
   npcLines:
   - characterName: Lady Bug
-    dialogueText: If We Are Not Careful That Is.
+    dialogueText: Chaos Darling.
     textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -29,36 +29,8 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Lady Bug
-    dialogueText: Fortunately, I Am A Master Of Transactions.
-    textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 3
-    isContinuation: 0
-    wordHighlights:
-    - word: White Hat Hackers Association
-      highlightColor: {r: 1, g: 1, b: 1, a: 1}
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
-  - characterName: Lady Bug
-    dialogueText: Unlike Your Worthless Company Who's Plan Got Leaked Before It Is
-      Even Put Into Action.
-    textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
-    isPlayer: 0
-    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
-    delayAfter: 3
-    isContinuation: 0
-    wordHighlights:
-    - word: White Hat Hackers Association
-      highlightColor: {r: 1, g: 1, b: 1, a: 1}
-    showAttachedObject: 0
-    attachedObjectPrefab: {fileID: 0}
-    attachedObjectDelay: 1
-    destroyOnNextMessage: 1
-  - characterName: Lady Bug
-    dialogueText: Is That Correct Handler?
+    dialogueText: Sometimes The World Just Need A Little Reset To Get It Working
+      Again.
     textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -72,7 +44,7 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Handler
-    dialogueText: Unfortunately. But what is done is done.
+    dialogueText: Won't shutting all servers affect you too?
     textColor: {r: 1, g: 0.94424546, b: 0, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -86,7 +58,35 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   - characterName: Lady Bug
-    dialogueText: Indeed. Now, What Information Do You Seek From Me?
+    dialogueText: Do You Really Think We Are That Stupid?
+    textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights:
+    - word: White Hat Hackers Association
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Lady Bug
+    dialogueText: Of Course Ours Will Remain Active, Silly.
+    textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
+    isPlayer: 0
+    messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
+    delayAfter: 3
+    isContinuation: 0
+    wordHighlights:
+    - word: White Hat Hackers Association
+      highlightColor: {r: 1, g: 1, b: 1, a: 1}
+    showAttachedObject: 0
+    attachedObjectPrefab: {fileID: 0}
+    attachedObjectDelay: 1
+    destroyOnNextMessage: 1
+  - characterName: Lady Bug
+    dialogueText: Then We Can Watch The World Go Spirals After The Internet Is Gone.
     textColor: {r: 0.735849, g: 0.11338539, b: 0.12886956, a: 1}
     isPlayer: 0
     messageSound: {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
@@ -100,10 +100,9 @@ MonoBehaviour:
     attachedObjectDelay: 1
     destroyOnNextMessage: 1
   playerChoices:
-  - choiceText: How can we hack his system?
+  - choiceText: You're all cruel!
     nextNode: {fileID: 11400000, guid: 7d995b4203ab98a419010818d59aa141, type: 2}
     choiceSound: {fileID: 0}
     switchToCharacter: 
   nextNode: {fileID: 0}
   showObjectOnEnd: 0
-

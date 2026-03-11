@@ -1,0 +1,455 @@
+fileFormatVersion: 2
+guid: c6d39a5246897854fbf27456c9390b86
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 1634371553842926020
+    second: Controls guide_0
+  - first:
+      213: 1721945353879095376
+    second: Controls guide_1
+  - first:
+      213: 5871546717549402874
+    second: Controls guide_2
+  - first:
+      213: 5956117277632223459
+    second: Controls guide_3
+  - first:
+      213: -1256896262945675940
+    second: Controls guide_4
+  - first:
+      213: 5795237791496831730
+    second: Controls guide_5
+  - first:
+      213: 8308879777934138826
+    second: Controls guide_6
+  - first:
+      213: -7278878227712972283
+    second: Controls guide_7
+  - first:
+      213: 778788336651152629
+    second: Controls guide_8
+  - first:
+      213: -7644247040514461472
+    second: Controls guide_9
+  - first:
+      213: 4591252172494790750
+    second: Controls guide_10
+  - first:
+      213: 6614918949825980395
+    second: Controls guide_11
+  - first:
+      213: 6047268221810951016
+    second: Controls guide_12
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 1
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Controls guide_0
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 754
+        width: 377
+        height: 78
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c19fc9d4447ea610800000000000000
+      internalID: 1634371553842926020
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_1
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 754
+        width: 29
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 05809941d2495e710800000000000000
+      internalID: 1721945353879095376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_2
+      rect:
+        serializedVersion: 2
+        x: 60
+        y: 410
+        width: 427
+        height: 189
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afa94ad71aceb7150800000000000000
+      internalID: 5871546717549402874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_3
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 421
+        width: 297
+        height: 217
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3e8d5dd6b1168a250800000000000000
+      internalID: 5956117277632223459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_4
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 392
+        width: 685
+        height: 343
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c556b97128b9e8ee0800000000000000
+      internalID: -1256896262945675940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_5
+      rect:
+        serializedVersion: 2
+        x: 3
+        y: 221
+        width: 654
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f2861f1112dc6050800000000000000
+      internalID: 5795237791496831730
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_6
+      rect:
+        serializedVersion: 2
+        x: 510
+        y: 287
+        width: 223
+        height: 75
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: acdd03db2221f4370800000000000000
+      internalID: 8308879777934138826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_7
+      rect:
+        serializedVersion: 2
+        x: 859
+        y: 224
+        width: 358
+        height: 138
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 50ae7d921da3cfa90800000000000000
+      internalID: -7278878227712972283
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_8
+      rect:
+        serializedVersion: 2
+        x: 1543
+        y: 230
+        width: 307
+        height: 136
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5fc2f41bddfceca00800000000000000
+      internalID: 778788336651152629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_9
+      rect:
+        serializedVersion: 2
+        x: 746
+        y: 224
+        width: 103
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e0fdce41dd2ae590800000000000000
+      internalID: -7644247040514461472
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_10
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 230
+        width: 174
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e50eacf768767bf30800000000000000
+      internalID: 4591252172494790750
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_11
+      rect:
+        serializedVersion: 2
+        x: 1468
+        y: 223
+        width: 213
+        height: 53
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be7a06eccb9eccb50800000000000000
+      internalID: 6614918949825980395
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Controls guide_12
+      rect:
+        serializedVersion: 2
+        x: 1860
+        y: 230
+        width: 150
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 863cc8e68663ce350800000000000000
+      internalID: 6047268221810951016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Controls guide_0: 1634371553842926020
+      Controls guide_1: 1721945353879095376
+      Controls guide_10: 4591252172494790750
+      Controls guide_11: 6614918949825980395
+      Controls guide_12: 6047268221810951016
+      Controls guide_2: 5871546717549402874
+      Controls guide_3: 5956117277632223459
+      Controls guide_4: -1256896262945675940
+      Controls guide_5: 5795237791496831730
+      Controls guide_6: 8308879777934138826
+      Controls guide_7: -7278878227712972283
+      Controls guide_8: 778788336651152629
+      Controls guide_9: -7644247040514461472
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

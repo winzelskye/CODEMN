@@ -64,7 +64,7 @@ public class DatabaseManager : MonoBehaviour
         db.Insert(new LevelData { id = 3, levelName = "Level 3", isUnlocked = 0, isCompleted = 0 });
         db.Insert(new LevelData { id = 4, levelName = "Level 4", isUnlocked = 0, isCompleted = 0 });
 
-        db.Insert(new EnemyData { levelId = 0, enemyName = "Handler", attackDamage = 5, maxAttackDamage = 10, defense = 5, currencyReward = 0 });
+        db.Insert(new EnemyData { levelId = 0, enemyName = "Handler", attackDamage = 5, maxAttackDamage = 10, defense = 5, currencyReward = 5 });
         db.Insert(new EnemyData { levelId = 1, enemyName = "Dee Bug", attackDamage = 8, maxAttackDamage = 15, defense = 5, currencyReward = 15 });
         db.Insert(new EnemyData { levelId = 2, enemyName = "Lady Bug", attackDamage = 12, maxAttackDamage = 20, defense = 8, currencyReward = 20 });
         db.Insert(new EnemyData { levelId = 3, enemyName = "A.I.", attackDamage = 15, maxAttackDamage = 25, defense = 10, currencyReward = 35 });

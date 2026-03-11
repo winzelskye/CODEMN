@@ -162,7 +162,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 0
+  m_PresetInfoIsWorld: 1
 --- !u!114 &1840572684430013985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,21 +202,41 @@ MonoBehaviour:
   hideCanvasOnTimeout: 1
   timePenaltyForWrongAnswer: 5
   questions:
-  - question: What tag defines a hyperlink?
-    correctAnswer: <a>
+  - question: 'What tag defines a hyperlink?
+
+      Type the letter only.
+
+
+      a.
+      <a>    b.  </a>    c. <src>   d. <p>'
+    correctAnswer: a
     wrongAnswers: []
-  - question: What attribute sets the link destination?
-    correctAnswer: href
+  - question: 'The href attribute sets the link destination.
+
+
+      True or False?'
+    correctAnswer: True
     wrongAnswers: []
   - question: Can an image be a hyperlink? Yes or No?
     correctAnswer: yes
     wrongAnswers: []
-  - question: HTML links are _________s.
-    correctAnswer: hyperlink
+  - question: Are HTML links are hyperlinks? Yes or No.
+    correctAnswer: Yes
     wrongAnswers: []
-  - question: What part of an hyperlink text will be visible to the reader and will
+  - question: 'What part of an hyperlink text will be visible to the reader and will
       send the reader to the specified URL address when clicked?
-    correctAnswer: link text
+
+
+
+      a. Text
+
+      b.
+      Linked text
+
+      c. <a>
+
+      d. <href>'
+    correctAnswer: b
     wrongAnswers: []
   randomizeQuestions: 1
   caseSensitiveAnswers: 0

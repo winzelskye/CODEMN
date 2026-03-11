@@ -1204,10 +1204,15 @@ MonoBehaviour:
   sfxClips:
   - {fileID: 8300000, guid: 2310fdff703bd2c4db3c4c2930812960, type: 3}
   - {fileID: 8300000, guid: 6795add37a111574682113a8699c4701, type: 3}
-  - {fileID: 8300000, guid: d2a438800794a614585f4bd0a0d72260, type: 3}
+  - {fileID: 8300000, guid: eb1c64dbfcee0754cb65b435d84f989a, type: 3}
   - {fileID: 8300000, guid: 4e5c4322b38160848abe91c6569d1644, type: 3}
+  - {fileID: 8300000, guid: beaffc3e344afb044ab3c5ab0a17933c, type: 3}
+  - {fileID: 8300000, guid: d70b4865ff27dd74d89a7f3f7fcef5a0, type: 3}
+  - {fileID: 8300000, guid: 3e25d6923ead4764993205b2e0c220b1, type: 3}
   panelOpenSFX: {fileID: 8300000, guid: 6795add37a111574682113a8699c4701, type: 3}
   panelCloseSFX: {fileID: 8300000, guid: 6795add37a111574682113a8699c4701, type: 3}
+  clickSound: {fileID: 8300000, guid: beaffc3e344afb044ab3c5ab0a17933c, type: 3}
+  enableClickSound: 1
 --- !u!4 &845639622
 Transform:
   m_ObjectHideFlags: 0

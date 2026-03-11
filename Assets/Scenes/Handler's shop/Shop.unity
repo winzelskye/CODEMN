@@ -392,7 +392,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.33, y: 4.58}
+  m_AnchoredPosition: {x: 3.5549002, y: 4.58}
   m_SizeDelta: {x: 2.5949, y: 2.1117}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &209352608
@@ -684,7 +684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -2, y: -569}
+  m_AnchoredPosition: {x: -2, y: -191.85178}
   m_SizeDelta: {x: 20.48, y: 12.53}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &238256313
@@ -1344,11 +1344,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6512240026527570615, guid: c3ee6cd111f29494eba2ff6188c5a5c2, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6512240026527570615, guid: c3ee6cd111f29494eba2ff6188c5a5c2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 370.68103
       objectReference: {fileID: 0}
     - target: {fileID: 6512240026527570615, guid: c3ee6cd111f29494eba2ff6188c5a5c2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1523,7 +1523,7 @@ MonoBehaviour:
   itemNameText: {fileID: 1120493550}
   itemPriceText: {fileID: 1749974457}
   itemStatsText: {fileID: 1617977445}
-  inventoryFullText: {fileID: 0}
+  inventoryFullText: {fileID: 1030544840}
   buyButton: {fileID: 587461567}
 --- !u!4 &877742219
 Transform:
@@ -1929,7 +1929,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1030544838}
   - component: {fileID: 1030544842}
-  - component: {fileID: 1030544841}
   - component: {fileID: 1030544840}
   - component: {fileID: 1030544839}
   m_Layer: 5
@@ -2108,18 +2107,6 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
---- !u!114 &1030544841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030544837}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 48a9521a65058d746a06499919e583da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::BattleDialogueController
 --- !u!222 &1030544842
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3147,9 +3134,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1028871758}
   - {fileID: 238256312}
   - {fileID: 683683059}
+  - {fileID: 1028871758}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
