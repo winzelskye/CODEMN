@@ -25,8 +25,11 @@ public class LevelSelector : MonoBehaviour
     [Header("Unlock Settings")]
     public bool unlockAllLevels = false;
 
+    [Header("Auto Selection")]
+    public int defaultSelectedLevel = 0;
+
     [Header("Selection Glow")]
-    public Color selectedColor = new Color(1f, 0.85f, 0.2f, 1f); // golden glow
+    public Color selectedColor = new Color(0f, 1f, 1f, 1f); // #00FFFF
 
     private int selectedLevelIndex = -1;
     private Dictionary<Button, Color> originalColors = new Dictionary<Button, Color>();
@@ -45,10 +48,11 @@ public class LevelSelector : MonoBehaviour
             levels[i].button.interactable = isUnlocked;
             levels[i].button.onClick.AddListener(() => SelectLevel(index));
 
-            // Cache each button's original color
-            var img = levels[i].button.GetComponent<Image>();
-            if (img != null)
-                originalColors[levels[i].button] = img.color;
+            originalColors[levels[i].button] = levels[i].button.colors.normalColor;
+
+            // If locked, force black
+            if (!isUnlocked)
+                SetButtonColor(levels[i].button, Color.black);
         }
 
         if (runButton != null)
@@ -60,20 +64,54 @@ public class LevelSelector : MonoBehaviour
             bool level1Completed = level1 != null && level1.isCompleted == 1;
             shopButton.gameObject.SetActive(level1Completed);
         }
+
+        AutoSelectLevel(levelData);
+    }
+
+    void AutoSelectLevel(List<LevelData> levelData)
+    {
+        // Option 1: Select the highest unlocked level
+        int lastUnlockedIndex = -1;
+        for (int i = 0; i < levels.Length; i++)
+        {
+            if (levels[i].button.interactable)
+                lastUnlockedIndex = i;
+        }
+
+        if (lastUnlockedIndex != -1)
+        {
+            SelectLevel(lastUnlockedIndex);
+            return;
+        }
+
+        // Option 2: Use the defaultSelectedLevel set in Inspector
+        if (defaultSelectedLevel >= 0 && defaultSelectedLevel < levels.Length
+            && levels[defaultSelectedLevel].button.interactable)
+        {
+            SelectLevel(defaultSelectedLevel);
+            return;
+        }
+
+        // Option 3: Fall back to first unlocked level
+        for (int i = 0; i < levels.Length; i++)
+        {
+            if (levels[i].button.interactable)
+            {
+                SelectLevel(i);
+                return;
+            }
+        }
     }
 
     void SelectLevel(int index)
     {
-        // Reset all buttons to their original colors
         foreach (var level in levels)
         {
             if (originalColors.TryGetValue(level.button, out Color original))
-                SetButtonColor(level.button, original);
+                SetButtonColor(level.button, level.button.interactable ? original : Color.black);
         }
 
         selectedLevelIndex = index;
-
-        // Highlight selected button
         SetButtonColor(levels[index].button, selectedColor);
 
         if (runButton != null)
@@ -85,8 +123,15 @@ public class LevelSelector : MonoBehaviour
     void SetButtonColor(Button btn, Color color)
     {
         if (btn == null) return;
+
         var img = btn.GetComponent<Image>();
         if (img != null) img.color = color;
+
+        ColorBlock cb = btn.colors;
+        cb.normalColor = color;
+        cb.selectedColor = color;
+        cb.disabledColor = Color.black;
+        btn.colors = cb;
     }
 
     void OnRunClicked()
@@ -98,7 +143,9 @@ public class LevelSelector : MonoBehaviour
         }
 
         var levelData = SaveLoadManager.Instance.GetAllLevels();
-        int levelId = selectedLevelIndex < levelData.Count ? levelData[selectedLevelIndex].id : selectedLevelIndex + 1;
+        int levelId = selectedLevelIndex < levelData.Count
+            ? levelData[selectedLevelIndex].id
+            : selectedLevelIndex + 1;
 
         var player = SaveLoadManager.Instance.LoadPlayer();
         if (player != null)
