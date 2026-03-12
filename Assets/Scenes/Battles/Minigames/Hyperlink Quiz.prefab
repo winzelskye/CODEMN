@@ -238,6 +238,36 @@ MonoBehaviour:
       d. <href>'
     correctAnswer: b
     wrongAnswers: []
+  - question: '<a href="https://blackhats.com">black_hats<__>
+
+
+      What''s missing?'
+    correctAnswer: /a
+    wrongAnswers: []
+  - question: '<a ____="https://blackhats.com">black_hats</a>
+
+
+      What''s missing?'
+    correctAnswer: href
+    wrongAnswers: []
+  - question: '<a href_"https://blackhats.com">black_hats</a>
+
+
+      What''s missing?'
+    correctAnswer: =
+    wrongAnswers: []
+  - question: '<a href="https://blackhats.com">black_hats<_a>
+
+
+      What''s missing?'
+    correctAnswer: /
+    wrongAnswers: []
+  - question: '<a href="https://blackhats.___">black_hats</a>
+
+
+      What''s missing?'
+    correctAnswer: com
+    wrongAnswers: []
   randomizeQuestions: 1
   caseSensitiveAnswers: 0
   feedbackDisplayTime: 1.5

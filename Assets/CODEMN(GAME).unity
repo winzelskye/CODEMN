@@ -1209,9 +1209,9 @@ MonoBehaviour:
   - {fileID: 8300000, guid: beaffc3e344afb044ab3c5ab0a17933c, type: 3}
   - {fileID: 8300000, guid: d70b4865ff27dd74d89a7f3f7fcef5a0, type: 3}
   - {fileID: 8300000, guid: 3e25d6923ead4764993205b2e0c220b1, type: 3}
+  - {fileID: 8300000, guid: d168ce856a7669740a16b3845ff6ca67, type: 3}
   panelOpenSFX: {fileID: 8300000, guid: 6795add37a111574682113a8699c4701, type: 3}
   panelCloseSFX: {fileID: 8300000, guid: 6795add37a111574682113a8699c4701, type: 3}
-  clickSound: {fileID: 8300000, guid: beaffc3e344afb044ab3c5ab0a17933c, type: 3}
   enableClickSound: 1
 --- !u!4 &845639622
 Transform:

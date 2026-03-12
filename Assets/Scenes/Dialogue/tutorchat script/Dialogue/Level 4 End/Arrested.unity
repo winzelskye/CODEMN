@@ -973,6 +973,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1610009211}
   - component: {fileID: 1610009210}
+  - component: {fileID: 1610009212}
   m_Layer: 0
   m_Name: MusicTrigger
   m_TagString: Untagged
@@ -992,7 +993,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a2859282aed96947846331699033204, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneMusicTrigger
-  music: {fileID: 8300000, guid: c35f3db0022f03b47919ca05b228f83d, type: 3}
+  music: {fileID: 8300000, guid: 399c8a49e45479b41a541a4bd14cfaa0, type: 3}
 --- !u!4 &1610009211
 Transform:
   m_ObjectHideFlags: 0
@@ -1008,6 +1009,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1610009212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1610009209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5e413700e263e468ebf8e0f08f850c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SceneLoopSFX
 --- !u!1 &2068774678
 GameObject:
   m_ObjectHideFlags: 0
